@@ -215,6 +215,27 @@ class AndroidRemoteControl extends eqLogic {
             case "com.google.android.youtube.tv":
           			$this->checkAndUpdateCmd('encours', "youtube");
           	break;
+            case "com.google.android.leanbacklauncher":
+          			$this->checkAndUpdateCmd('encours', "acceuil");
+          	break;
+            case "org.xbmc.kodi":
+          			$this->checkAndUpdateCmd('encours', "kodi");
+          	break;
+            case "com.amazon.amazonvideo.livingroom.nvidia":
+          			$this->checkAndUpdateCmd('encours', "amazon");
+          	break;
+            case "org.videolan.vlc":
+          			$this->checkAndUpdateCmd('encours', "vlc");
+          	break;
+            case "com.vevo":
+          			$this->checkAndUpdateCmd('encours', "vevo");
+          	break;
+            case "com.plexapp.android":
+          			$this->checkAndUpdateCmd('encours', "plex");
+          	break;
+            case "com.spotify.tv.android":
+          			$this->checkAndUpdateCmd('encours', "spotify");
+          	break;
             default:
                 	$this->checkAndUpdateCmd('encours', "inconnu");
           	}
@@ -233,12 +254,12 @@ class AndroidRemoteControl extends eqLogic {
         $check=shell_exec("sudo adb devices | grep ".$this->getConfiguration('ip')." | cut -f2 | xargs");
       	echo $check;
         if(strstr($check, "offline"))
-            throw new Exception("AndroidRemoteControl détectée 'offline' par ADB.", 1);
+            throw new Exception("Votre appareil est détectée 'offline' par ADB.", 1);
         if(!strstr($check, "device")) {
             #shell_exec("sudo adb kill-server");
             #shell_exec("sudo adb start-server");
             #shell_exec("sudo adb connect ".$eqLogic->getConfiguration('ip'));
-            throw new Exception("AndroidRemoteControl non détectée par ADB.", 1);
+            throw new Exception("Votre appareil est non détectée par ADB.", 1);
         }
     }
 
