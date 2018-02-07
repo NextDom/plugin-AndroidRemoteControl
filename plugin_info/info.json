@@ -1,0 +1,14 @@
+{
+	"id" : "AndroidRemoteControl",
+	"name" : "AndroidRemoteControl",
+	"description" : "Plugin pour piloter les android TV et autres équipements android",
+	"licence" : "AGPL",
+	"author" : "Byackee",
+	"require" : "3.0",
+	"category" : "multimedia",
+	"hasDependency" : false,
+	"hasOwnDeamon" : false,
+	"maxDependancyInstallTime" : 0,
+	"changelog" : "",
+	"documentation" : ""
+}
