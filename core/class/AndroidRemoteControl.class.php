@@ -235,9 +235,9 @@ class AndroidRemoteControl extends eqLogic {
         if(strstr($check, "offline"))
             throw new Exception("AndroidRemoteControl détectée 'offline' par ADB.", 1);
         if(!strstr($check, "device")) {
-            shell_exec("sudo adb kill-server");
-            shell_exec("sudo adb start-server");
-            shell_exec("sudo adb connect ".$eqLogic->getConfiguration('ip'));
+            #shell_exec("sudo adb kill-server");
+            #shell_exec("sudo adb start-server");
+            #shell_exec("sudo adb connect ".$eqLogic->getConfiguration('ip'));
             throw new Exception("AndroidRemoteControl non détectée par ADB.", 1);
         }
     }
