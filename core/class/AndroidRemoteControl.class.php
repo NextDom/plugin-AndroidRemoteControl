@@ -93,6 +93,7 @@ class AndroidRemoteControl extends eqLogic {
             $cmd->setLogicalId('play');
             $cmd->setIsVisible(1);
             $cmd->setName(__('play', __FILE__));
+            $cmd->setDisplay('icon','<i class=\"fa fa-play\"><\/i>');
         }
         $cmd->setType('action');
         $cmd->setSubType('other');
@@ -267,20 +268,6 @@ class AndroidRemoteControl extends eqLogic {
 }
 
 class AndroidRemoteControlCmd extends cmd {
-    /*     * *************************Attributs****************************** */
-
-
-    /*     * ***********************Methode static*************************** */
-
-
-    /*     * *********************Methode d'instance************************* */
-
-    /*
-     * Non obligatoire permet de demander de ne pas supprimer les commandes même si elles ne sont pas dans la nouvelle configuration de l'équipement envoyé en JS
-      public function dontRemoveCmd() {
-      return true;
-      }
-     */
 
     public function execute($_options = array()) {
         $eqLogic = $this->getEqLogic();
@@ -299,4 +286,170 @@ class AndroidRemoteControlCmd extends cmd {
     }
 
     /*     * **********************Getteur Setteur*************************** */
+
+    public function toHtml($_version = 'dashboard') { //Fini
+            if ($this->getIsEnable() != 1) {
+                return '';
+            }
+    		if (!$this->hasRight('r')) {
+    			return '';
+    		}
+
+    		$version = jeedom::versionAlias($_version, false);
+    		if ($this->getDisplay('showOn' . $version, 1) == 0) {
+    			return '';
+    		}
+
+    		$replace = array(
+    			'#id#' => $this->getId(),
+    			'#name#' => $this->getName(),
+    			'#synoid#' => $this->getlogicalId(),
+    			'#name_display#' => $this->getName(),
+    			'#hideEqLogicName#' => '',
+    			'#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
+    			'#category#' => $this->getPrimaryCategory(),
+    			'#uid#' => 'synovideo' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
+    			'#color#' => '#ffffff',
+    			'#border#' => 'none',
+    			'#border-radius#' => '4px',
+    			'#style#' => '',
+    			'#max_width#' => '650px',
+    			'#logicalId#' => $this->getLogicalId(),
+    			'#object_name#' => '',
+    			'#height#' => $this->getDisplay('height', 'auto'),
+    			'#width#' => $this->getDisplay('width', 'auto'),
+    			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
+    			'#refresh_id#' => '',
+    			'#version#' => $_version,
+    			'#text-color#' => $this->getDisplay('pgTextColor'),
+    			'#background-color#' => $this->getDisplay('pgBackColor'),
+    			'#hideThumbnail#' => 0,
+    			'#disable#' => 0
+    		);
+
+    		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
+    			if (isset($_default['#background-color#'])) {
+    				$replace['#background-color#'] = $_default['#background-color#'];
+    			} else {
+    				$replace['#background-color#'] = $this->getBackgroundColor($version);
+    			}
+    		} else {
+    			$replace['#background-color#'] = ($this->getDisplay('background-color-transparent' . $_version, 0) == 1) ? 'transparent' : $this->getDisplay('background-color' . $version, $this->getBackgroundColor($version));
+    		}
+    		if ($this->getDisplay('color-default' . $version, 1) != 1) {
+    			$replace['#color#'] = $this->getDisplay('color' . $version, '#ffffff');
+    		}
+    		if ($this->getDisplay('border-default' . $version, 1) != 1) {
+    			$replace['#border#'] = $this->getDisplay('border' . $version, 'none');
+    		}
+    		if ($this->getDisplay('border-radius-default' . $version, 1) != 1) {
+    			$replace['#border-radius#'] = $this->getDisplay('border-radius' . $version, '4') . 'px';
+    		}
+
+    		if ($_version == 'dview' || $_version == 'mview') {
+    			$object = $this->getObject();
+    			$replace['#name#'] = (is_object($object)) ? $object->getName() . ' - ' . $replace['#name#'] : $replace['#name#'];
+    		}
+    		if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
+    			$replace['#name#'] = '';
+    		}
+    		if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
+    			$replace['#name#'] = '';
+    		}
+
+    		if ($this->getDisplay('showObjectNameOn' . $version, 0) == 1) {
+    			$object = $this->getObject();
+    			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
+    		}
+    		if ($this->getDisplay('showNameOn' . $version, 1) == 0) {
+    			$replace['#hideEqLogicName#'] = 'display:none;';
+    		}
+    		$default_opacity = config::byKey('widget::background-opacity');
+    		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->getOptions('widget::background-opacity::' . $version, null) !== null) {
+    			$default_opacity = $_SESSION['user']->getOptions('widget::background-opacity::' . $version);
+    		}
+    		$opacity = $this->getDisplay('background-opacity' . $version, $default_opacity);
+    		if ($replace['#background-color#'] != 'transparent' && $opacity != '' && $opacity < 1) {
+    			list($r, $g, $b) = sscanf($replace['#background-color#'], "#%02x%02x%02x");
+    			$replace['#background-color#'] = 'rgba(' . $r . ',' . $g . ',' . $b . ',' . $opacity . ')';
+    		}
+    		if ($this->getDisplay('isLight') == 1) {
+    			$replace['#hideThumbnail#'] = '1';
+    		}
+    		$cmd_state = $this->getCmd(null, 'state');
+    		if (is_object($cmd_state)) {
+    			$replace['#state#'] = $cmd_state->execCmd();
+    			if ($replace['#state#'] == __('Lecture', __FILE__)) {
+    				$replace['#state_nb#'] = 1;
+    			} else {
+    				$replace['#state_nb#'] = 0;
+    			}
+    		}
+    		$cmd_track_title = $this->getCmd(null, 'movie_title');
+    		if (is_object($cmd_track_title)) {
+    			$replace['#title#'] = $cmd_track_title->execCmd();
+    		}
+    		if (strlen($replace['#title#']) > 15) {
+    			$replace['#title#'] = '<marquee behavior="scroll" direction="left" scrollamount="2">' . $replace['#title#'] . '</marquee>';
+    		}
+    		$cmd_track_image = $this->getCmd(null, 'movie_image');
+    		if (is_object($cmd_track_image)) {
+    			//$img = dirname(__FILE__) . '/../../../../plugins/synovideo/doc/images/syno_poster_' . $this->getId() . '.jpg';
+    			$img=$cmd_track_image->execCmd();
+    			if (file_exists(dirname(__FILE__) . '/../../../../'. $img) && filesize(dirname(__FILE__) . '/../../../../'. $img) > 110) {
+    			//	$replace['#thumbnail#'] = 'plugins/synovideo/doc/images/syno_poster_' . $this->getId() . '.jpg?time=' .time();
+    				$replace['#thumbnail#'] = $img . '?time=' .time();
+    			} else {
+    				$replace['#thumbnail#'] = 'plugins/synovideo/doc/images/syno_poster_default.png?time=' .time();
+    			}
+    		}
+
+    		$replace['#seekable#'] = $this->getConfiguration('seekable');
+
+    		$replace['#blockVolume#'] = $this->getConfiguration('volume_adjustable');
+
+    		$cmd_volume = $this->getCmd(null, 'volume');
+    		if (is_object($cmd_volume)) {
+    			$replace['#volume#'] = $cmd_volume->execCmd();
+    		}
+
+    		$cmd_position = $this->getCmd(null, 'position');
+    		$replace['#position#'] = intval($cmd_position->execCmd())*1000;
+    		$cmd_duration = $this->getCmd(null, 'duration');
+    		$replace['#duration#'] = intval($cmd_duration->execCmd())*1000;
+    		if (is_object($cmd_position) && is_object($cmd_duration)) {
+    			$position100= (intval($cmd_position->execCmd())/intval($cmd_duration->execCmd()))*100;
+    			$replace['#position100#'] = $position100;
+    		}
+    		$cmd_setVolume = $this->getCmd(null, 'setVolume');
+    		if (is_object($cmd_setVolume)) {
+    			$replace['#volume_id#'] = $cmd_setVolume->getId();
+    		}
+    		$cmd_setPosition = $this->getCmd(null, 'setPosition');
+    		if (is_object($cmd_setPosition)) {
+    			$replace['#position_id#'] = $cmd_setPosition->getId();
+    		}
+
+    		$volume=cache::byKey('SYNO.tmp.volume');
+    		if (is_object($volume)) {
+    			$replace['#onmute#'] = true;
+    		}
+    		foreach ($this->getCmd('action') as $cmd) {
+    			$replace['#cmd_' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
+    		}
+    		$parameters = $this->getDisplay('parameters');
+    		if (is_array($parameters)) {
+    			foreach ($parameters as $key => $value) {
+    				$replace['#' . $key . '#'] = $value;
+    			}
+    		}
+
+    		$replace['#IsMultiple#'] = $this->getConfiguration('is_multiple');
+
+
+    		$_version = jeedom::versionAlias($_version);
+    		return template_replace($replace, getTemplate('core', $_version, 'synovideo', 'synovideo'));
+    	}
+
+    }
 }
