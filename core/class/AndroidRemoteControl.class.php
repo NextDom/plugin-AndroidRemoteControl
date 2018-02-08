@@ -50,6 +50,8 @@ class AndroidRemoteControl extends eqLogic {
     }
 
     public function postSave() {
+      
+/*Info*/
         $cmd = $this->getCmd(null, 'power_state');
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
@@ -62,43 +64,7 @@ class AndroidRemoteControl extends eqLogic {
         $cmd->setEqLogic_id($this->getId());
         $cmd->setDisplay('generic_type', 'ENERGY_STATE');
         $cmd->save();
-
-        $cmd = $this->getCmd(null, 'power_set');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('power_set');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('Veille', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'home');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('home');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('home', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'play');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('play');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('play', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
+        
         $cmd = $this->getCmd(null, 'encours');
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
@@ -137,7 +103,180 @@ class AndroidRemoteControl extends eqLogic {
         $cmd->setEqLogic_id($this->getId());
         $cmd->setDisplay('generic_type', 'LIGHT_STATE');
         $cmd->save();
-
+      
+        $cmd = $this->getCmd(null, 'type');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('type');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('type', __FILE__));
+        }
+        $cmd->setType('info');
+        $cmd->setSubType('string');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->setDisplay('generic_type', 'LIGHT_STATE');
+        $cmd->save();
+      
+        $cmd = $this->getCmd(null, 'resolution');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('resolution');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('resolution', __FILE__));
+        }
+        $cmd->setType('info');
+        $cmd->setSubType('string');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->setDisplay('generic_type', 'LIGHT_STATE');
+        $cmd->save();
+      
+ /*Action*/
+        $cmd = $this->getCmd(null, 'power_set');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('power_set');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('power', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+                       
+        $cmd = $this->getCmd(null, 'home');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('home');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('home', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+      
+        $cmd = $this->getCmd(null, 'back');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('back');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('back', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+      
+        $cmd = $this->getCmd(null, 'enter');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('enter');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('enter', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+      
+        $cmd = $this->getCmd(null, 'play');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('play');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('play', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setDisplay('icon','<i class=\"fa fa-play\"><\/i>');
+        $cmd->setSubType('other');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+      
+        $cmd = $this->getCmd(null, 'stop');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('stop');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('stop', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+      
+        $cmd = $this->getCmd(null, 'up');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('up');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('up', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+      
+        $cmd = $this->getCmd(null, 'left');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('left');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('left', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+      
+        $cmd = $this->getCmd(null, 'right');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('right');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('right', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+      
+        $cmd = $this->getCmd(null, 'down');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('down');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('down', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+      
+        $cmd = $this->getCmd(null, 'volume-');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('volume-');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('volume-', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+      
+        $cmd = $this->getCmd(null, 'volume+');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('volume+');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('volume+', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+      
+      
         $infos = $this->getInfo();
         $this->updateInfo();
     }
@@ -184,10 +323,12 @@ class AndroidRemoteControl extends eqLogic {
 
         $power_state=substr(shell_exec("sudo adb shell dumpsys power -h | grep \"Display Power\" | cut -c22-"),0 , -1);
         $encours=substr(shell_exec("sudo adb shell dumpsys window windows | grep -E 'mFocusedApp'| cut -d / -f 1 | cut -d \" \" -f 7"), 0, -1);
-      	$version=substr(shell_exec("sudo adb shell getprop ro.build.version.release"),0, -1);
-        $name=substr(shell_exec("sudo adb shell dumpsys bluetooth_manager -h | grep \"name\" | cut -c9-"), 0, -1);
+      	$version=substr(shell_exec("sudo adb shell getprop ro.build.version.release"), 0, -1);
+        $name=substr(shell_exec("sudo adb shell getprop ro.product.model"), 0, -1);
+        $type=substr(shell_exec("sudo adb shell getprop ro.build.characteristics"), 0, -1);
+        $resolution=substr(shell_exec("sudo adb shell getprop persist.sys.display.resolution"), 0, -1);
 
-        return array('power_state' => $power_state, 'encours' => $encours, 'version' => $version, 'name' => $name);
+        return array('power_state' => $power_state, 'encours' => $encours, 'version' => $version, 'name' => $name, 'type' => $type, 'resolution' => $resolution);
     }
 
     public function updateInfo() {
@@ -204,7 +345,7 @@ class AndroidRemoteControl extends eqLogic {
         if (isset($infos['power_state'])) {
             $this->checkAndUpdateCmd('power_state', ($infos['power_state'] == "ON") ? 1:0 );
         }
-      if (isset($infos['encours'])) {
+      	if (isset($infos['encours'])) {
         	switch ($infos['encours']) {
             	case "com.netflix.ninja":
           			$this->checkAndUpdateCmd('encours', "netflix");
@@ -246,20 +387,26 @@ class AndroidRemoteControl extends eqLogic {
       if (isset($infos['name'])) {
             $this->checkAndUpdateCmd('name', $infos['name']);
         }
+      
+      if (isset($infos['type'])) {
+            $this->checkAndUpdateCmd('type', $infos['type']);
+        }
+      if (isset($infos['name'])) {
+            $this->checkAndUpdateCmd('resolution', $infos['resolution']);
+        }
 
-        throw new Exception(var_dump($infos), 1);
+        #throw new Exception(var_dump($infos), 1);
     }
 
     public function checkAndroidRemoteControlStatus() {
         $check=shell_exec("sudo adb devices | grep ".$this->getConfiguration('ip')." | cut -f2 | xargs");
       	echo $check;
         if(strstr($check, "offline"))
-            throw new Exception("Votre appareil est détectée 'offline' par ADB.", 1);
-        if(!strstr($check, "device")) {
-            #shell_exec("sudo adb kill-server");
-            #shell_exec("sudo adb start-server");
-            #shell_exec("sudo adb connect ".$eqLogic->getConfiguration('ip'));
-            throw new Exception("Votre appareil est non détectée par ADB.", 1);
+            throw new Exception("Votre appareil est détecté 'offline' par ADB.", 1);
+        elseif(!strstr($check, "device")) {
+            throw new Exception("Votre appareil n'est pas détecté par ADB.", 1);
+        }elseif(strstr($check, "unauthorized")) {
+            throw new Exception("Vous n'etes pas autorisé a vous connecter a cet appareil.", 1);
         }
     }
 
@@ -292,7 +439,23 @@ class AndroidRemoteControlCmd extends cmd {
         } elseif ($this->getLogicalId() == 'home') {
             shell_exec("sudo adb shell input keyevent 3");
         } elseif ($this->getLogicalId() == 'play') {
-            shell_exec("sudo adb shell input keyevent KEYCODE_BUTTON_MEDIA_PLAYPAUSE");
+            shell_exec("sudo adb shell input keyevent KEYCODE_BUTTON_MEDIA_PLAY_PAUSE");
+        } elseif ($this->getLogicalId() == 'up') {
+            shell_exec("sudo adb shell input keyevent 19");
+        } elseif ($this->getLogicalId() == 'down') {
+            shell_exec("sudo adb shell input keyevent 20");
+        } elseif ($this->getLogicalId() == 'left') {
+            shell_exec("sudo adb shell input keyevent 21");
+        } elseif ($this->getLogicalId() == 'right') {
+            shell_exec("sudo adb shell input keyevent 22");
+        } elseif ($this->getLogicalId() == 'back') {
+            shell_exec("sudo adb shell input keyevent KEYCODE_BACK");
+        } elseif ($this->getLogicalId() == 'enter') {
+            shell_exec("sudo adb shell input keyevent KEYCODE_ENTER");
+        } elseif ($this->getLogicalId() == 'volume+') {
+            shell_exec("sudo adb shell input keyevent 24");
+        } elseif ($this->getLogicalId() == 'volume-') {
+            shell_exec("sudo adb shell input keyevent 25");
         }
 
         $eqLogic->updateInfo();
