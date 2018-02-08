@@ -187,7 +187,7 @@ class AndroidRemoteControl extends eqLogic {
             $cmd->setName(__('play', __FILE__));
         }
         $cmd->setType('action');
-        $cmd->setDisplay('icon','<i class=\"fa fa-play\"><\/i>');
+        $cmd->setDisplay('icon','<i class="fa fa-play"></i>');
         $cmd->setSubType('other');
         $cmd->setEqLogic_id($this->getId());
         $cmd->save();
