@@ -17,6 +17,9 @@ Vous trouverez la documentation [ici](https://github.com/Jeedom-Plugins-Extra/An
 <img src="doc/images/AndroidRemoteControl_screenshot1.png" align="center">
 
 
+### Forum
+Lien vers le forum: [ici](https://www.jeedom.com/forum/viewtopic.php?f=142&t=34154)
+
 ### Fonctions disponibles
 
 Infos:
