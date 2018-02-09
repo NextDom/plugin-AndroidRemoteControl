@@ -369,6 +369,76 @@ class AndroidRemoteControl extends eqLogic {
         $cmd->setEqLogic_id($this->getId());
         $cmd->save();
 
+        $cmd = $this->getCmd(null, 'youtube');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('youtube');
+            $cmd->setOrder(30);
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('youtube', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/youtube.png height="15" width="15">');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+
+        $cmd = $this->getCmd(null, 'molotov');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('molotov');
+            $cmd->setOrder(31);
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('molotov', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/molotov.png height="15" width="15">');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+
+        $cmd = $this->getCmd(null, 'plex');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('plex');
+            $cmd->setOrder(32);
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('plex', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/plex.png height="15" width="15">');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+
+        $cmd = $this->getCmd(null, 'kodi');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('kodi');
+            $cmd->setOrder(33);
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('kodi', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/kodi.png height="15" width="15">');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+
+        $cmd = $this->getCmd(null, 'netflix');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('netflix');
+            $cmd->setOrder(34);
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('netflix', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/netflix.png height="15" width="15">');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+
 
         $infos = $this->getInfo();
         $this->updateInfo();
