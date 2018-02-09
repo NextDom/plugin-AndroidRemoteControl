@@ -22,3 +22,36 @@ if (!isConnect()) {
     die();
 }
 ?>
+
+
+
+<form class="form-horizontal">
+
+  <div class="panel-body">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">{{Réparer :}}</label>
+			<div class="col-sm-4">
+				<a class="btn btn-danger" id="bt_resetAndroidRemoteControl"><i class="fa fa-check"></i> {{Forcer l'arrêt de tous les services AndroidRemoteControl}}</a>
+			</div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label"></label>
+      <div class="col-sm-4">
+      </div>
+      <label class="col-sm-2 control-label">{{Informations :}}</label>
+      <div class="col-sm-4">
+        <a class="btn btn-success" href="https://jeedom-plugins-extra.github.io/Jeedom-Plugins-Extra/"><i class="fa fa-question-circle"></i> {{Jeedom-Plugins-Extra}}</a>
+      </div>
+    </div>
+  </div>
+</form>
+<script>
+  $('#bt_resetAndroidRemoteControl').on('click',function(){
+  		bootbox.confirm('{{Etes-vous sûr de vouloir forcer l\'arrêt la totalité des services AndroidRemoteControl ?}}', function (result) {
+  			if (result) {
+  				$('#md_modal').dialog({title: "{{Reset}}"});
+  				$('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=reset.AndroidRemoteControl').dialog('open');
+  			}
+  		});
+  	});
+</script>

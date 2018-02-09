@@ -6,9 +6,9 @@
 	"author" : "Byackee",
 	"require" : "3.0",
 	"category" : "multimedia",
-	"hasDependency" : false,
+	"hasDependency" : true,
 	"hasOwnDeamon" : false,
-	"maxDependancyInstallTime" : 0,
+	"maxDependancyInstallTime" : 30,
 	"changelog" : "",
 	"documentation" : ""
 }

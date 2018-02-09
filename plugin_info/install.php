@@ -19,16 +19,17 @@
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 function template_install() {
-    
+
 }
 
 function template_update() {
-    
+    exec('../3rdparty/reset.sh');
 }
 
 
 function template_remove() {
-    
+    exec('../3rdparty/reset.sh');
+    exec('../3rdparty/remove.sh');
 }
 
 ?>

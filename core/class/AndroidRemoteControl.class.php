@@ -34,6 +34,45 @@ class AndroidRemoteControl extends eqLogic {
             $eqLogic->updateInfo();
         }
     }
+    public static function dependancy_info() {
+      $return = array();
+      $return['log'] = 'AndroidRemoteControl_dep';
+      $return['progress_file'] = '/tmp/AndroidRemoteControl_dep';
+      $adb = '/usr/bin/adb';
+      if (is_file($adb)) {
+        $return['state'] = 'ok';
+      } else {
+  			exec('echo AndroidRemoteControl dependency not found : '. $adb . ' > ' . log::getPathToLog('AndroidRemoteControl_log') . ' 2>&1 &');
+        $return['state'] = 'nok';
+      }
+      return $return;
+    }
+
+    public static function dependancy_install() {
+      log::add('AndroidRemoteControl','info','Installation des dépéndances android-tools-adb');
+      $resource_path = realpath(dirname(__FILE__) . '/../../3rdparty');
+      passthru('/bin/bash ' . $resource_path . '/install.sh ' . $resource_path . ' > ' . log::getPathToLog('AndroidRemoteControl_dep') . ' 2>&1 &');
+    }
+  	/*     * ***********************Methode static*************************** */
+  	public static function updateAndroidRemoteControl() {
+  		log::remove('AndroidRemoteControl_update');
+  		$cmd = '/bin/bash ' .dirname(__FILE__) . '/../../3rdparty/install.sh';
+  		$cmd .= ' >> ' . log::getPathToLog('AndroidRemoteControl_update') . ' 2>&1 &';
+  		exec($cmd);
+  	}
+  	public static function resetAndroidRemoteControl() {
+  		log::remove('AndroidRemoteControl_reset');
+  		$cmd = '/bin/bash ' .dirname(__FILE__) . '/../../3rdparty/reset.sh';
+  		$cmd .= ' >> ' . log::getPathToLog('AndroidRemoteControl_reset') . ' 2>&1 &';
+  		exec($cmd);
+  	}
+  	public static function statusAndroidRemoteControl($serviceName) {
+  		log::remove('AndroidRemoteControl_status');
+  		$cmd = '/bin/bash ' .dirname(__FILE__) . '/../../3rdparty/status.sh ' . $serviceName;
+  		$cmd .= ' >> ' . log::getPathToLog('AndroidRemoteControl_status') . ' 2>&1 &';
+  		exec($cmd);
+  	}
+
 
     /*     * *********************Méthodes d'instance************************* */
 
@@ -46,10 +85,37 @@ class AndroidRemoteControl extends eqLogic {
     }
 
     public function preSave() {
+      if (!$this->getConfiguration('lastName') == ''){
+  			if ($this->getConfiguration('name') !== $this->getConfiguration('lastName')) {
+  				exec('echo Remove Service Name : ' . $this->getConfiguration('lastName') . ' >> ' . log::getPathToLog('AndroidRemoteControl_delete') . ' 2>&1 &');
+  				$cmd = '/bin/bash ' .dirname(__FILE__) . '/../../3rdparty/delete.sh ' . $this->getConfiguration('lastName');
+  				$cmd .= ' >> ' . log::getPathToLog('AndroidRemoteControl_delete') . ' 2>&1 &';
+  				exec($cmd);
+  				sleep(2);
+  				$this->setConfiguration('lastName',$this->getConfiguration('name'));
+  				exec('echo Setting Last Service Name : ' . $this->getConfiguration('lastName') . ' >> ' . log::getPathToLog('AndroidRemoteControl_delete') . ' 2>&1 &');
+  			}
+  		}
+  		$this->setConfiguration('serviceName',$this->getConfiguration('name'));
 
     }
 
     public function postSave() {
+
+      // foreach (eqLogic::byType('AndroidRemoteControl') as $AndroidRemoteControl) {
+      //     $AndroidRemoteControl->getInformations();
+      // }
+      if ($this->getIsEnable()) {
+
+  			$cmd = '/bin/bash ' .dirname(__FILE__) . '/../../3rdparty/create.sh ' . $this->getConfiguration('name') . ' ' . $this->getConfiguration('ip');
+  			$cmd .= ' >> ' . log::getPathToLog('AndroidRemoteControl_create') . ' 2>&1 &';
+  			exec('echo Create/Update Service Name : ' . $this->getConfiguration('name') . ' IP : ' . $this->getConfiguration('ip') . ' >> ' . log::getPathToLog('AndroidRemoteControl_create') . ' 2>&1 &');
+  			exec($cmd);
+  		} else {
+  			$cmd = '/bin/bash ' .dirname(__FILE__) . '/../../3rdparty/stop.sh ' . $this->getConfiguration('name');
+  			$cmd .= ' >> ' . log::getPathToLog('AndroidRemoteControl_status') . ' 2>&1 &';
+  			exec($cmd);
+  		}
 
 /********************************Info***************************/
         $cmd = $this->getCmd(null, 'power_state');
@@ -312,15 +378,29 @@ class AndroidRemoteControl extends eqLogic {
         if ($this->getConfiguration('ip') == '') {
             throw new Exception(__('L\'adresse IP doit être renseignée', __FILE__));
         }
+    		if ($this->getConfiguration('name') === '') {
+    			throw new Exception(__('Le champs Nom ne peut être vide', __FILE__));
+    		}
+    		// Si la chaîne contient des caractères spéciaux
+    		if (!preg_match("#[a-zA-Z0-9_-]$#", $this->getConfiguration('name'))) {
+        	throw new Exception(__('Le champs Nom ne peut contenir de caractères spéciaux', __FILE__));
+    		}
+    		// Si la chaîne contient des caractères spéciaux
+    		if (preg_match("/\\s/", $this->getConfiguration('name'))) {
+    			throw new Exception(__('Le champs Nom ne peut contenir d\'espaces', __FILE__));
+    		}
     }
 
     public function postUpdate() {
 
     }
 
-    public function preRemove() {
-
-    }
+  	public function preRemove() {
+  		$cmd = '/bin/bash ' .dirname(__FILE__) . '/../../3rdparty/delete.sh ' . $this->getConfiguration('name');
+  		$cmd .= ' >> ' . log::getPathToLog('AndroidRemoteControl_delete') . ' 2>&1 &';
+  		exec('echo Delete Service Name : ' . $this->getConfiguration('name') . ' >> ' . log::getPathToLog('AndroidRemoteControl_delete') . ' 2>&1 &');
+  		exec($cmd);
+  	}
 
     public function postRemove() {
 
@@ -344,7 +424,27 @@ class AndroidRemoteControl extends eqLogic {
     public static function preConfig_<Variable>() {
     }
      */
+     public function getInformations() {
 
+       foreach ($this->getCmd() as $cmd) {
+           $ip = $this->getConfiguration('ip');
+           $name = $this->getConfiguration('name');
+           $sudo = exec("\$EUID");
+
+           if ($sudo == "0") {
+             $state = exec("/etc/init.d/AndroidRemoteControl-service-$name status");
+           } else {
+             $state = exec("sudo /etc/init.d/AndroidRemoteControl-service-$name status");
+           }
+
+           $cmd->event($state);
+       }
+       if (is_object($state)) {
+               return $state;
+       } else {
+         return '';
+       }
+     }
     public function getInfo() {
         $this->checkAndroidRemoteControlStatus();
 
