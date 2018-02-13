@@ -19,7 +19,7 @@ Vous trouverez la documentation [ici](https://github.com/Jeedom-Plugins-Extra/An
 
 ### Prévisualisation
 
-<img src="docs/images/AndroidRemoteControl_screenshot1.png" align="center">
+<img src="docs/assets/images/AndroidRemoteControl_screenshot1.png" align="center">
 
 
 ### Forum
