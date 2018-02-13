@@ -7,7 +7,7 @@ Piloter les terminaux android (TV, Shield, freebox mini 4k, etc..)
 
 ### Market
 
-Retrouvez le [Market page](https://www.jeedom.com/market/index.php?v=d&p=market&type=plugin&&name=AndroidRemoteControl)
+Retrouvez le sur le Market Jeedom [ici](https://www.jeedom.com/market/index.php?v=d&p=market&type=plugin&&name=AndroidRemoteControl)
 
 
 ### Documentation
