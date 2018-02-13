@@ -20,15 +20,7 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class AndroidRemoteControl extends eqLogic {
-    /*     * *************************Attributs****************************** */
 
-
-
-    /*     * ***********************Methode static*************************** */
-
-    /*
-     * Fonction exécutée automatiquement toutes les minutes par Jeedom
-     */
     public static function cron() {
         foreach (eqLogic::byType('AndroidRemoteControl', true) as $eqLogic) {
             $eqLogic->updateInfo();
@@ -105,6 +97,11 @@ class AndroidRemoteControl extends eqLogic {
       // foreach (eqLogic::byType('AndroidRemoteControl') as $AndroidRemoteControl) {
       //     $AndroidRemoteControl->getInformations();
       // }
+
+      if (substr(shell_exec("sudo adb shell 'pm list packages -f' | sed -e 's/.*=//' |grep rja"),0 , -1) != "com.rja.utility") {
+        shell_exec("sudo adb install /var/www/html/plugins/AndroidRemoteControl/3rdparty/ShowToastMessage_NoDrawerIcon.apk");
+      }
+
       if ($this->getIsEnable()) {
 
   			$cmd = '/bin/bash ' .dirname(__FILE__) . '/../../3rdparty/create.sh ' . $this->getConfiguration('name') . ' ' . $this->getConfiguration('ip');
@@ -129,7 +126,6 @@ class AndroidRemoteControl extends eqLogic {
         $cmd->setType('info');
         $cmd->setSubType('binary');
         $cmd->setEqLogic_id($this->getId());
-        $cmd->setDisplay('generic_type', 'ENERGY_STATE');
         $cmd->save();
 
         $cmd = $this->getCmd(null, 'encours');
@@ -141,10 +137,10 @@ class AndroidRemoteControl extends eqLogic {
             $cmd->setName(__('encours', __FILE__));
         }
         $cmd->setType('info');
+      	$cmd->setTemplate('dashboard', 'encours');
         $cmd->setSubType('string');
         $cmd->setEqLogic_id($this->getId());
         $cmd->setDisplay('title_disable', 1);
-        $cmd->setDisplay('generic_type', 'LIGHT_STATE');
         $cmd->save();
 
         $cmd = $this->getCmd(null, 'name');
@@ -158,49 +154,45 @@ class AndroidRemoteControl extends eqLogic {
         $cmd->setSubType('string');
         $cmd->setOrder(0);
         $cmd->setEqLogic_id($this->getId());
-        $cmd->setDisplay('generic_type', 'LIGHT_STATE');
         $cmd->save();
 
       	$cmd = $this->getCmd(null, 'version');
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
             $cmd->setLogicalId('version');
-            $cmd->setOrder(20);
+            $cmd->setOrder(32);
             $cmd->setIsVisible(1);
             $cmd->setName(__('version', __FILE__));
         }
         $cmd->setType('info');
         $cmd->setSubType('string');
         $cmd->setEqLogic_id($this->getId());
-        $cmd->setDisplay('generic_type', 'LIGHT_STATE');
         $cmd->save();
 
         $cmd = $this->getCmd(null, 'type');
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
             $cmd->setLogicalId('type');
-            $cmd->setOrder(18);
+            $cmd->setOrder(30);
             $cmd->setIsVisible(1);
             $cmd->setName(__('type', __FILE__));
         }
         $cmd->setType('info');
         $cmd->setSubType('string');
         $cmd->setEqLogic_id($this->getId());
-        $cmd->setDisplay('generic_type', 'LIGHT_STATE');
         $cmd->save();
 
         $cmd = $this->getCmd(null, 'resolution');
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
             $cmd->setLogicalId('resolution');
-            $cmd->setOrder(19);
+            $cmd->setOrder(31);
             $cmd->setIsVisible(1);
             $cmd->setName(__('resolution', __FILE__));
         }
         $cmd->setType('info');
         $cmd->setSubType('string');
         $cmd->setEqLogic_id($this->getId());
-        $cmd->setDisplay('generic_type', 'LIGHT_STATE');
         $cmd->save();
 
  /*************************Action***************************/
@@ -373,7 +365,7 @@ class AndroidRemoteControl extends eqLogic {
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
             $cmd->setLogicalId('youtube');
-            $cmd->setOrder(30);
+            $cmd->setOrder(21);
             $cmd->setIsVisible(1);
             $cmd->setName(__('youtube', __FILE__));
         }
@@ -387,7 +379,7 @@ class AndroidRemoteControl extends eqLogic {
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
             $cmd->setLogicalId('molotov');
-            $cmd->setOrder(31);
+            $cmd->setOrder(22);
             $cmd->setIsVisible(1);
             $cmd->setName(__('molotov', __FILE__));
         }
@@ -401,7 +393,7 @@ class AndroidRemoteControl extends eqLogic {
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
             $cmd->setLogicalId('plex');
-            $cmd->setOrder(32);
+            $cmd->setOrder(23);
             $cmd->setIsVisible(1);
             $cmd->setName(__('plex', __FILE__));
         }
@@ -415,7 +407,7 @@ class AndroidRemoteControl extends eqLogic {
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
             $cmd->setLogicalId('kodi');
-            $cmd->setOrder(33);
+            $cmd->setOrder(24);
             $cmd->setIsVisible(1);
             $cmd->setName(__('kodi', __FILE__));
         }
@@ -429,7 +421,7 @@ class AndroidRemoteControl extends eqLogic {
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
             $cmd->setLogicalId('netflix');
-            $cmd->setOrder(34);
+            $cmd->setOrder(25);
             $cmd->setIsVisible(1);
             $cmd->setName(__('netflix', __FILE__));
         }
@@ -439,6 +431,19 @@ class AndroidRemoteControl extends eqLogic {
         $cmd->setEqLogic_id($this->getId());
         $cmd->save();
 
+      	$cmd = $this->getCmd(null, 'toast');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('toast');
+            $cmd->setOrder(40);
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('toast', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('message');
+      	$cmd->setDisplay('title_disable', 1);
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
 
         $infos = $this->getInfo();
         $this->updateInfo();
@@ -594,7 +599,7 @@ class AndroidRemoteControl extends eqLogic {
             $this->checkAndUpdateCmd('resolution', $infos['resolution']);
         }
 
-        throw new Exception(var_dump($infos), 1);
+        #throw new Exception(var_dump($infos), 1);
     }
 
     public function checkAndroidRemoteControlStatus() {
@@ -609,25 +614,9 @@ class AndroidRemoteControl extends eqLogic {
         }
     }
 
-    /*     * **********************Getteur Setteur*************************** */
 }
 
 class AndroidRemoteControlCmd extends cmd {
-    /*     * *************************Attributs****************************** */
-
-
-    /*     * ***********************Methode static*************************** */
-
-
-    /*     * *********************Methode d'instance************************* */
-
-    /*
-     * Non obligatoire permet de demander de ne pas supprimer les commandes même si elles ne sont pas dans la nouvelle configuration de l'équipement envoyé en JS
-      public function dontRemoveCmd() {
-      return true;
-      }
-     */
-
     public function execute($_options = array()) {
         $eqLogic = $this->getEqLogic();
 
@@ -667,10 +656,13 @@ class AndroidRemoteControlCmd extends cmd {
             shell_exec("sudo adb shell am start tv.molotov.app/tv.molotov.android.tv.SplashActivity");
         } elseif ($this->getLogicalId() == 'spotify') {
             shell_exec("sudo adb shell monkey -p com.plexapp.android -c android.intent.category.LAUNCHER 1");
+        } elseif ($this->getLogicalId() == 'toast') {
+            shell_exec("sudo adb shell am start -a android.intent.action.MAIN -e message " . $_options['message'] . " -n com.rja.utility/.ShowToast");
         }
 
         $eqLogic->updateInfo();
     }
 
-    /*     * **********************Getteur Setteur*************************** */
+
+
 }
