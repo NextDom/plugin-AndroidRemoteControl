@@ -20,6 +20,11 @@ Vous trouverez la documentation [ici](https://github.com/Jeedom-Plugins-Extra/An
 ### Forum
 Lien vers le forum: [ici](https://www.jeedom.com/forum/viewtopic.php?f=142&t=34154)
 
+
+### Chatroom
+Lien vers le chat: [ici](https://gitter.im/Jeedom-Plugins-Extra/plugin-AndroidRemoteControl)
+
+
 ### Fonctions disponibles
 
 Infos:
