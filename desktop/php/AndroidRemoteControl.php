@@ -110,7 +110,12 @@ foreach (object::all() as $object) {
         <div class="col-sm-3">
             <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="ip" />
         </div>
+				<label class="col-sm-3 control-label">{{Nom du service adb}}</label>
+				<div class="col-sm-3">
+					<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="name"/>
+				</div>
     </div>
+		<span id="serviceName" class="eqLogicAttr" data-l1key="configuration" data-l2key="serviceName" style="display:none;"></span>
 </fieldset>
 </form>
 </div>

@@ -1,0 +1,274 @@
+<div class="eqLogic eqLogic-widget noresize AndroidRemoteControl"
+	data-eqLogic_id="#id#"
+	data-eqLogic_uid="#uid#"
+	data-version="#version#"
+	style="border:#border#;
+		border-radius:#border-radius#;
+		background-color: #background-color#;
+		color: #color#;
+		width: #width#;
+		height: #height#;
+		text-align:center;
+		#style#"
+	data-category="#category#"
+	data-syno-id="#synoid#" >
+
+<style type="text/css">
+
+		div.eqLogic.eqLogic-widget.noresize.AndroidRemoteControl {
+			width: 240px !important;
+			height:380px !important;
+			position:relative;
+		}
+		div.eqLogic.eqLogic-widget.noresize.AndroidRemoteControl.light{
+			height:162px !important;
+		}
+		.griser {
+			pointer-events: none;
+			-moz-opacity:0.38;
+			opacity:0.38;
+			filter:alpha(opacity=38);
+			-khtml-opacity:0.38;"
+		}
+		.AndroidRemoteControl .cmd a {
+			width: 30px;
+			height:30px;
+			font-size: 1em;
+		}
+		@font-face {
+			font-family: linkinpark;
+			src:   url("plugins/AndroidRemoteControl/core/template/fonts/LinkinPark.ttf") format("truetype");
+			font-weight:normal;
+			font-style:normal;
+		}
+		.AndroidRemoteControl span.statusspSyno {
+			font-family: linkinpark;
+			font-size:10px;
+			color: #text-color#;
+			letter-spacing: 1px;
+		}
+		.AndroidRemoteControl span.titlespSyno {
+			font-family: linkinpark;
+			font-size:14px;
+			color:  #text-color#;
+			letter-spacing: 1px;
+		}
+
+		.AndroidRemoteControl .thumbnailAlbumArt{
+			height: 230px
+		}
+
+		.AndroidRemoteControl .arrondie {
+			-moz-border-radius:5px;
+			-webkit-border-radius:5px;
+			border-radius:5px;
+		}
+
+		.AndroidRemoteControl .infoduree{
+			font-size:9px;
+			width: 30px;
+			height:7px;
+		}
+		.AndroidRemoteControl .infoduree.infoposition{
+			display: inline;
+			float: left;
+			margin: 1px 0 0 5px;
+		}
+		.AndroidRemoteControl .infoduree.infoduration{
+			display: inline;
+			float: right;
+			margin: 1px 5px 0 0;
+		}
+	</style>
+	<center class="widget-name">
+		<a href="#eqLink#" style="font-size : 1.5em;#hideEqLogicName#">#name_display# <span style="font-size: 0.85em;">#object_name#</span></a>
+	</center>
+
+	<div style="position:relative;top:2px">
+		<span class="titlespSyno">
+			#title#
+		</span>
+	</div>
+	<div class="thumbnailAlbumArt arrondie">
+		<img style="width:67%;" src="#thumbnail#" />
+	</div>
+	<div style="position:relative;top:2px">
+	     <span class="statusspSyno">#state#</span>
+	</div>
+	<div style="position:relative;top:2px" align="center">
+		<div class="position100" data-cmd_id="#position_id#" style="width: 220px;" value="#position100#" ></div>
+	</div>
+
+	<div style="position:relative;top:2px">
+		<span class="infoduree infoposition" id="position"></span>
+		<span class="infoduree infoduration" id="duration"></span>
+	</div>
+
+	<div style="position:relative;top:4px">
+		<a class="btn btn-xs cmd mute" data-cmd_id="#cmd_mute_id#"><i class="fa fa-volume-off"></i></a>&nbsp;
+		<a class="btn btn-black btn-xs cmd unmute" data-cmd_id="#cmd_unmute_id#"><i class="fa fa-times"></i></a>&nbsp;
+		<a class="btn btn-xs cmd stop" data-cmd_id="#cmd_stop_id#"><i class="fa fa-stop"></i></a>&nbsp;
+		<a class="btn btn-xs cmd play" data-cmd_id="#cmd_play_id#"><i class="fa fa-play"></i></a>&nbsp;
+		<a class="btn btn-xs cmd pause" data-cmd_id="#cmd_pause_id#"><i class="fa fa-pause"></i></a>&nbsp;
+		<a class="btn btn-xs bt_volume_down" data-cmd_id="#volume_id#" ><i class="fa fa-volume-down"></i></a>&nbsp;
+		<a class="btn btn-xs bt_volume_up" data-cmd_id="#volume_id#" ><i class="fa fa-volume-up"></i></a>&nbsp;
+	</div>
+
+    <div style="position:relative;top:4px">
+		<i class="fa fa-film cursor movie tooltips" title="Films"></i>&nbsp;
+		<i class="fa fa-list-alt cursor tvshow tooltips" title="Séries"></i>&nbsp;
+   		<i class="fa fa-info-circle cursor movieinfo tooltips" title="Info lecture"></i>&nbsp;
+		<i class="fa fa-search cursor search tooltips" title="Recherche"></i>
+	</div>
+
+	<script>
+		var position_#id# = #position#;
+		//var position = 437000;
+		var phours = Math.floor((position_#id# % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		var pminutes = Math.floor((position_#id# % (1000 * 60 * 60)) / (1000 * 60));
+		var pseconds = Math.floor((position_#id# % (1000 * 60)) / 1000);
+		$(".AndroidRemoteControl[data-eqLogic_id=#id#] .infoposition").text(phours + ":"+ pminutes + ":" + pseconds);
+
+		var duration_#id# = #duration#;
+		//var duration = 5739000;
+		var dhours = Math.floor((duration_#id# % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		var dminutes = Math.floor((duration_#id# % (1000 * 60 * 60)) / (1000 * 60));
+		var dseconds = Math.floor((duration_#id# % (1000 * 60)) / 1000);
+		$(".AndroidRemoteControl[data-eqLogic_id=#id#] .infoduration").text(dhours + ":"+ dminutes + ":" + dseconds);
+
+
+
+
+/*		var mytimer = setInterval(function() {
+			var phours = Math.floor((position_#id# % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var pminutes = Math.floor((position_#id# % (1000 * 60 * 60)) / (1000 * 60));
+			var pseconds = Math.floor((position_#id# % (1000 * 60)) / 1000);
+			$(".AndroidRemoteControl[data-eqLogic_id=#id#] .infoposition").text(phours + ":"+ pminutes + ":" + pseconds);
+			if('#state#' == 'Lecture'){
+				pseconds++;
+				if(pseconds==60){
+					pseconds=0;
+					pminutes++;
+				}
+				if(pminutes==60){
+					pminutes=0;
+					phours++;
+				}
+
+				position_#id#=position_#id#+1000;
+			}
+
+			var dhours = Math.floor((duration_#id# % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var dminutes = Math.floor((duration_#id# % (1000 * 60 * 60)) / (1000 * 60));
+			var dseconds = Math.floor((duration_#id# % (1000 * 60)) / 1000);
+			$(".AndroidRemoteControl[data-eqLogic_id=#id#] .infoduration").text(dhours + ":"+ dminutes + ":" + dseconds);
+		}, 1000);
+
+		function myStopFunction() {
+			clearInterval(mytimer);
+		} */
+
+	</script>
+
+	<script>
+		$(".AndroidRemoteControl[data-eqLogic_id=#id#] .position100").slider({
+			min: 0,
+			max: 100,
+			range: "min",
+			value: ('#position100#' == '') ? 0 : parseInt('#position100#'),
+		});
+
+		$(".AndroidRemoteControl[data-eqLogic_id=#id#] .slider.slider-horizontal").css('z-index',1);
+		$(".AndroidRemoteControl[data-eqLogic_id=#id#] .position100").on('slidestop', function (event,ui) {
+			if(#seekable# == 1){
+				jeedom.cmd.execute({id: '#position_id#', value: {slider: ui.value}});
+			}
+		});
+
+
+		if('#blockVolume#' == 0){
+			$('.AndroidRemoteControl[data-eqLogic_id=#id#] .bt_volume_down').hide();
+			$('.AndroidRemoteControl[data-eqLogic_id=#id#] .bt_volume_up').hide();
+		}
+		$('.AndroidRemoteControl[data-eqLogic_id=#id#] .bt_volume_down').on('click', function() {
+			var volume = ('#volume#' == '') ? 0 : parseInt('#volume#');
+			var new_volume =  volume-3;
+			jeedom.cmd.execute({id: '#volume_id#', value: {volume: new_volume}});
+		});
+		$('.AndroidRemoteControl[data-eqLogic_id=#id#] .bt_volume_up').on('click', function() {
+			var volume = ('#volume#' == '') ? 0 : parseInt('#volume#');
+			var new_volume =  volume+3;
+			jeedom.cmd.execute({id: '#volume_id#', value: {volume: new_volume} });
+		});
+
+	</script>
+
+	<script>
+		if('#state#' == 'Player hors ligne'){
+			$('.AndroidRemoteControl[data-eqLogic_id=#id#]').addClass('griser');
+		}
+
+		if('#hideThumbnail#' == 1){
+			$('.AndroidRemoteControl[data-eqLogic_id=#id#] .thumbnailAlbumArt').hide();
+			$('.AndroidRemoteControl[data-eqLogic_id=#id#]').addClass('light');
+		}
+
+		if('#repeat_state#' == "all"){
+			$('.AndroidRemoteControl[data-eqLogic_id=#id#] .cmd.repeat').addClass('btn-success');
+		}
+
+		if('#repeat_state#' == "one"){
+			$('.AndroidRemoteControl[data-eqLogic_id=#id#] .cmd.repeat').addClass('btn-black');
+		}
+
+		if('#shuffle_state#' == 1){
+			$('.AndroidRemoteControl[data-eqLogic_id=#id#] .cmd.shuffle').addClass('btn-success');
+		}
+
+		if('#volume#' == 0 && '#onmute#' == 1){
+			$('.AndroidRemoteControl[data-eqLogic_id=#id#] .cmd.mute').hide();
+		}else{
+			$('.AndroidRemoteControl[data-eqLogic_id=#id#] .cmd.unmute').hide();
+		}
+
+
+		if('#state_nb#' == 1){
+			$('.AndroidRemoteControl[data-eqLogic_id=#id#] .cmd.play').hide();
+		}else{
+			$('.AndroidRemoteControl[data-eqLogic_id=#id#] .cmd.pause').hide();
+		}
+
+		$('.AndroidRemoteControl[data-eqLogic_id=#id#] .cmd').on('click', function() {
+			jeedom.cmd.execute({id: $(this).data('cmd_id')});
+		});
+
+		$('.AndroidRemoteControl[data-eqLogic_id=#id#] .movie').on('click', function() {
+			$('#md_modal2').dialog({title: "Films"});
+			$('#md_modal2').load('index.php?v=d&plugin=AndroidRemoteControl&modal=movie.syno&id=#id#').dialog('open');
+		});
+
+		$('.AndroidRemoteControl[data-eqLogic_id=#id#] .tvshow').on('click', function() {
+			$('#md_modal2').dialog({title: "Series"});
+			$('#md_modal2').load('index.php?v=d&plugin=AndroidRemoteControl&modal=tvshow.syno&id=#id#').dialog('open');
+		});
+
+		$('.AndroidRemoteControl[data-eqLogic_id=#id#] .movieinfo').on('click', function() {
+			$('#md_modal').dialog({title: "Infos lecture"});
+			$('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=movieinfo.syno&id=#id#').dialog('open');
+		});
+
+		$('.AndroidRemoteControl[data-eqLogic_id=#id#] .search').on('click', function() {
+			$('#md_modal2').dialog({title: "Recherche"});
+			$('#md_modal2').load('index.php?v=d&plugin=AndroidRemoteControl&modal=search.syno&id=#id#').dialog('open');
+		});
+
+		if('#IsMultiple#' != 1){
+			$('.AndroidRemoteControl[data-eqLogic_id=#id#] .player').hide();
+		}
+		$('.AndroidRemoteControl[data-eqLogic_id=#id#] .player').on('click', function() {
+			$('#md_modal2').dialog({title: "Player"});
+			$('#md_modal2').load('index.php?v=d&plugin=AndroidRemoteControl&modal=player.syno&id=#id#').dialog('open');
+		});
+
+	</script>
+</div>
