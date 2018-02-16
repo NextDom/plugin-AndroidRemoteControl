@@ -5,29 +5,34 @@ Plugin permattant de piloter les terminaux android (TV, Shield, freebox mini 4k,
 
 Market
 ===
+
 Retrouvez le sur le Market Jeedom [ici](https://www.jeedom.com/market/index.php?v=d&p=market&type=plugin&&name=AndroidRemoteControl)
 
 Prévisualisation 
 ===
+
 <img src="../assets/images/AndroidRemoteControl_screenshot1.png" align="center">
 
 Forum
 ===
+
 Lien vers le forum [ici](https://www.jeedom.com/forum/viewtopic.php?f=142&t=34154)
 
 Chatroom
 ===
+
 Lien vers le chat [ici](https://gitter.im/Jeedom-Plugins-Extra/plugin-AndroidRemoteControl)
 
 Fonction disponibles
 ===
-Infos :
+
+### Infos :
 * Etat (allumé/Eteint)
 * App encours
 * résolution
 * nom de l'appareil
 
-Actions :
+### Actions :
 * home, back
 * power on, power off
 * volume+, volume-, volume xx
