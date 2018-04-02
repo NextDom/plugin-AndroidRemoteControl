@@ -435,7 +435,7 @@ class AndroidRemoteControl extends eqLogic {
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
             $cmd->setLogicalId('smartiptv');
-            $cmd->setOrder(25);
+            $cmd->setOrder(26);
             $cmd->setIsVisible(1);
             $cmd->setName(__('smartiptv', __FILE__));
         }
