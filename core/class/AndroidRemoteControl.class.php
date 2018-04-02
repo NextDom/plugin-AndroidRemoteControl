@@ -430,6 +430,20 @@ class AndroidRemoteControl extends eqLogic {
         $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/netflix.png height="15" width="15">');
         $cmd->setEqLogic_id($this->getId());
         $cmd->save();
+        
+        $cmd = $this->getCmd(null, 'smartiptv');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('smartiptv');
+            $cmd->setOrder(25);
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('smartiptv', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/smartiptv.png height="15" width="15">');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
 
       	$cmd = $this->getCmd(null, 'toast');
         if (!is_object($cmd)) {
@@ -577,6 +591,9 @@ class AndroidRemoteControl extends eqLogic {
             case "com.plexapp.android":
           			$cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/plex.png height="80" width="80">');
           	break;
+            case "eu.siptv.video":
+                    $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/smartiptv.png height="80" width="80">');
+          	break;
             case "com.spotify.tv.android":
           			$cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/spotify.png height="80" width="80">');
           	break;
@@ -646,8 +663,10 @@ class AndroidRemoteControlCmd extends cmd {
             shell_exec("sudo adb shell input keyevent 25");
         } elseif ($this->getLogicalId() == 'netflix') {
             shell_exec("sudo adb shell am start com.netflix.ninja/.MainActivity");
-        } elseif ($this->getLogicalId() == 'youtube') {
+        } elseif ($this->getLogicalId() == 'youtube') 
             shell_exec("sudo adb shell monkey -p com.google.android.youtube.tv -c android.intent.category.LAUNCHER 1");
+        } elseif ($this->getLogicalId() == 'smartiptv') {
+            shell_exec("sudo adb shell monkey -p eu.siptv.video -c android.intent.category.LAUNCHER 1");
         } elseif ($this->getLogicalId() == 'plex') {
             shell_exec("sudo adb shell monkey -p com.plexapp.android -c android.intent.category.LAUNCHER 1");
         } elseif ($this->getLogicalId() == 'kodi') {
