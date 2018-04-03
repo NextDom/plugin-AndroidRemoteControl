@@ -375,17 +375,17 @@ class AndroidRemoteControl extends eqLogic {
         $cmd->setEqLogic_id($this->getId());
         $cmd->save();
 
-        $cmd = $this->getCmd(null, 'molotov');
+        $cmd = $this->getCmd(null, 'smartiptv');
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('molotov');
+            $cmd->setLogicalId('smartiptv');
             $cmd->setOrder(22);
             $cmd->setIsVisible(1);
-            $cmd->setName(__('molotov', __FILE__));
+            $cmd->setName(__('smartiptv', __FILE__));
         }
         $cmd->setType('action');
         $cmd->setSubType('other');
-        $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/molotov.png height="15" width="15">');
+        $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/smartiptv.png height="15" width="15">');
         $cmd->setEqLogic_id($this->getId());
         $cmd->save();
 
@@ -428,20 +428,6 @@ class AndroidRemoteControl extends eqLogic {
         $cmd->setType('action');
         $cmd->setSubType('other');
         $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/netflix.png height="15" width="15">');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-        
-        $cmd = $this->getCmd(null, 'smartiptv');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('smartiptv');
-            $cmd->setOrder(26);
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('smartiptv', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/smartiptv.png height="15" width="15">');
         $cmd->setEqLogic_id($this->getId());
         $cmd->save();
 
@@ -567,9 +553,7 @@ class AndroidRemoteControl extends eqLogic {
             	case "com.netflix.ninja":
                     $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/netflix.png height="80" width="80">');
         	break;
-            	case "tv.molotov.app":
-                    $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/molotov.png height="80" width="80">');
-          	break;
+            	
             case "com.google.android.youtube.tv":
                     $cmd->setDisplay('icon','<img src=plugins/AndroidRemoteControl/desktop/images/youtube.png height="80" width="80">');
           	break;
@@ -671,8 +655,6 @@ class AndroidRemoteControlCmd extends cmd {
             shell_exec("sudo adb shell monkey -p com.plexapp.android -c android.intent.category.LAUNCHER 1");
         } elseif ($this->getLogicalId() == 'kodi') {
             shell_exec("sudo adb shell monkey -p org.xbmc.kodi -c android.intent.category.LAUNCHER 1");
-        } elseif ($this->getLogicalId() == 'molotov') {
-            shell_exec("sudo adb shell am start tv.molotov.app/tv.molotov.android.tv.SplashActivity");
         } elseif ($this->getLogicalId() == 'spotify') {
             shell_exec("sudo adb shell monkey -p com.plexapp.android -c android.intent.category.LAUNCHER 1");
         } elseif ($this->getLogicalId() == 'toast') {
