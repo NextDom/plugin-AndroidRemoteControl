@@ -647,7 +647,7 @@ class AndroidRemoteControlCmd extends cmd {
             shell_exec("sudo adb shell input keyevent 25");
         } elseif ($this->getLogicalId() == 'netflix') {
             shell_exec("sudo adb shell am start com.netflix.ninja/.MainActivity");
-        } elseif ($this->getLogicalId() == 'youtube') 
+        } elseif ($this->getLogicalId() == 'youtube') {
             shell_exec("sudo adb shell monkey -p com.google.android.youtube.tv -c android.intent.category.LAUNCHER 1");
         } elseif ($this->getLogicalId() == 'smartiptv') {
             shell_exec("sudo adb shell monkey -p eu.siptv.video -c android.intent.category.LAUNCHER 1");
