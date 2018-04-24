@@ -9,6 +9,6 @@
 	"hasDependency" : true,
 	"hasOwnDeamon" : false,
 	"maxDependancyInstallTime" : 30,
-	"changelog" : "",
-	"documentation" : ""
+	"changelog" : "https://jeedom-plugins-extra.github.io/plugin-AndroidRemoteControl/fr_FR/changelog.html",
+	"documentation" : "https://jeedom-plugins-extra.github.io/plugin-AndroidRemoteControl/"
 }

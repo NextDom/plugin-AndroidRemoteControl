@@ -21,28 +21,15 @@ try {
     include_file('core', 'authentification', 'php');
 
     if (!isConnect('admin')) {
-        throw new Exception(__('401 - Accès non autorisé', __FILE__));
+        throw new \Exception(__('401 - Accès non autorisé', __FILE__));
     }
-
-    //ajax::init();
-    if (init('action') == 'updateAndroidRemoteControl') {
-      AndroidRemoteControl::updateAndroidRemoteControl();
+  if (init('action') == 'resetAndroidRemoteControl') {
+        AndroidRemoteControl::resetAndroidRemoteControl(init('ip_address'));
         ajax::success();
     }
 
-    if (init('action') == 'resetAndroidRemoteControl') {
-      AndroidRemoteControl::resetAndroidRemoteControl();
-        ajax::success();
-    }
-
-    if (init('action') == 'statusAndroidRemoteControl') {
-      AndroidRemoteControl::statusAndroidRemoteControl(init('serviceName'));
-        ajax::success();
-    }
-
-    throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
-    /*     * *********Catch exeption*************** */
-} catch (Exception $e) {
+    throw new \Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+} catch (\Exception $e) {
     ajax::error(displayExeption($e), $e->getCode());
 }
-?>
+ 

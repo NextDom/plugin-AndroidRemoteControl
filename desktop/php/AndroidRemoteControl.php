@@ -66,11 +66,12 @@ foreach ($eqLogics as $eqLogic) {
       <br/>
     <form class="form-horizontal">
         <fieldset>
+					<legend>{{Général}}</legend>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{{Nom de l'équipement template}}</label>
+                <label class="col-sm-3 control-label">{{Nom de l'équipement}}</label>
                 <div class="col-sm-3">
                     <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
-                    <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement template}}"/>
+                    <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -98,25 +99,56 @@ foreach (object::all() as $object) {
                   ?>
                </div>
            </div>
-	<div class="form-group">
-		<label class="col-sm-3 control-label"></label>
-		<div class="col-sm-9">
-			<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
-			<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
-		</div>
-	</div>
-       <div class="form-group">
-        <label class="col-sm-3 control-label">{{Adresse IP}}</label>
-        <div class="col-sm-3">
-            <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="ip" />
-        </div>
-				<label class="col-sm-3 control-label">{{Nom du service adb}}</label>
-				<div class="col-sm-3">
-					<input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="name"/>
-				</div>
-    </div>
-		<span id="serviceName" class="eqLogicAttr" data-l1key="configuration" data-l2key="serviceName" style="display:none;"></span>
-</fieldset>
+					 <div class="form-group">
+				 		<label class="col-sm-3 control-label">{{Commentaire}}</label>
+				 		<div class="col-sm-3">
+				 			<textarea class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire" ></textarea>
+				 		</div>
+				 	</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label"></label>
+						<div class="col-md-8">
+							<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
+							<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
+						</div>
+					</div>
+
+				          </fieldset>
+				          <div class="col-sm-6">
+				              <form class="form-horizontal">
+				                  <fieldset>
+				                    <legend>{{Paramètres}}</legend>
+				                    <div class="form-group">
+				                      <label class="col-sm-3 control-label">{{Assistant}}</label>
+				                      <div class="col-sm-3">
+				                        <a class="btn btn-infos" id="bt_configureAdb"><i class="fa fa-android"></i> {{Connecter un appareil Android}}
+				                        </a>
+				                      </div>
+				                    </div>
+				                   <div class="form-group">
+				                    <label class="col-sm-3 control-label">{{Adresse IP}}</label>
+				                    <div class="col-sm-3">
+				                      <input id="ip_address" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="ip_address"/>
+				                    </div>
+				                  </div>
+				                  </fieldset>
+				              </form>
+				          </div>
+				          <span id="serviceName" class="eqLogicAttr" data-l1key="configuration" data-l2key="serviceName" style="display:none;"></span>
+				          <div class="col-sm-6">
+				              <form class="form-horizontal">
+				                  <fieldset>
+				                      <legend>{{Test}}</legend>
+				          						<div class="form-group">
+				          							<div class="col-sm-2">
+				          								<a class="btn btn-infos" id="bt_serviceStatus">
+				                            <i class="fa fa-check"></i> {{Status}}
+				                          </a>
+				          							</div>
+				          						</div>
+				                  </fieldset>
+				              </form>
+				          </div>
 </form>
 </div>
       <div role="tabpanel" class="tab-pane" id="commandtab">
@@ -138,3 +170,21 @@ foreach (object::all() as $object) {
 
 <?php include_file('desktop', 'AndroidRemoteControl', 'js', 'AndroidRemoteControl');?>
 <?php include_file('core', 'plugin.template', 'js');?>
+
+<script>
+	$("#bt_serviceStatus").click(function(){
+			$('#md_modal').dialog({title: "{{Service Status}}"});
+			$('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=status.AndroidRemoteControl').dialog('open');
+  });
+
+	$("#bt_serviceLog").click(function(){
+			$('#md_modal').dialog({title: "{{Logs}}"});
+			$('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=log.AndroidRemoteControl').dialog('open');
+  });
+
+	$("#bt_configureAdb").click(function(){
+			$('#md_modal').dialog({title: "{{Configuration de votre appareil Android}}"});
+					$('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=configureadb.AndroidRemoteControl').dialog('open');
+	});
+
+</script>
