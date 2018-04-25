@@ -26,6 +26,7 @@ class AndroidRemoteControl extends eqLogic
     {
         foreach (eqLogic::byType('AndroidRemoteControl', true) as $eqLogic) {
             $eqLogic->updateInfo();
+          	$eqLogic->refreshWidget();
         }
     }
 
@@ -55,7 +56,7 @@ class AndroidRemoteControl extends eqLogic
     public static function resetAndroidRemoteControl($ip_address)
     {
         log::remove('AndroidRemoteControl_reset'); 
-        $cmd = '/bin/bash ' . dirname(__FILE__) . '/../../3rdparty/reset.sh ' .  $ip_address;
+        $cmd = '/bin/bash ' . dirname(__FILE__) . '/../../3rdparty/reset.sh';
         $cmd .= ' >> ' . log::getPathToLog('AndroidRemoteControl_reset') . ' 2>&1 &';
         exec($cmd);
     }
@@ -156,6 +157,32 @@ class AndroidRemoteControl extends eqLogic
             $cmd->setOrder(31);
             $cmd->setIsVisible(1);
             $cmd->setName(__('resolution', __FILE__));
+        }
+        $cmd->setType('info');
+        $cmd->setSubType('string');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+      
+      	        $cmd = $this->getCmd(null, 'disk_total');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('disk_total');
+            $cmd->setOrder(32);
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('disk_total', __FILE__));
+        }
+        $cmd->setType('info');
+        $cmd->setSubType('string');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+      
+              $cmd = $this->getCmd(null, 'disk_free');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('disk_free');
+            $cmd->setOrder(33);
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('disk_free', __FILE__));
         }
         $cmd->setType('info');
         $cmd->setSubType('string');
@@ -426,6 +453,7 @@ class AndroidRemoteControl extends eqLogic
         $cmd->setEqLogic_id($this->getId());
         $cmd->save();
 }
+  
 
 public function preUpdate()
 {
@@ -433,26 +461,6 @@ public function preUpdate()
         throw new Exception(__('L\'adresse IP doit être renseignée', __FILE__));
     }
 
-}
-
-public function getInformations()
-{
-
-    foreach ($this->getCmd() as $cmd) {
-        $ip   = $this->getConfiguration('ip_address');
-        $name = $this->getConfiguration('name');
-        $sudo = exec("\$EUID");
-        if ($sudo != "0") {
-            $sudo_prefix = "sudo ";
-        }
-        $state = exec($sudo_prefix . "/etc/init.d/AndroidRemoteControl-service-$name status");
-        $cmd->event($state);
-    }
-    if (is_object($state)) {
-        return $state;
-    } else {
-        return '';
-    }
 }
 
 public function getInfo()
@@ -469,9 +477,11 @@ public function getInfo()
     $version     = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell getprop ro.build.version.release"), 0, -1);
     $name        = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell getprop ro.product.model"), 0, -1);
     $type        = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell getprop ro.build.characteristics"), 0, -1);
-    $resolution  = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys window displays | grep init | cut -c45-53"), 0, -1);
-
-    return array('power_state' => $power_state, 'encours' => $encours, 'version' => $version, 'name' => $name, 'type' => $type, 'resolution' => $resolution);
+  	$resolution  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555 shell dumpsys window displays | grep init | cut -c45-53"), 0, -1);
+    $disk_free = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys diskstats | grep Data-Free | cut -c44-46"), 0, -1);
+  	$disk_total = round(substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys diskstats | grep Data-Free | cut -c25-33"), 0, -1)/1000000, 1);
+  
+    return array('power_state' => $power_state, 'encours' => $encours, 'version' => $version, 'name' => $name, 'type' => $type, 'resolution' => $resolution, 'disk_total' => $disk_total, 'disk_free' => $disk_free);
 }
 
 public function updateInfo()
@@ -538,8 +548,14 @@ public function updateInfo()
         if (isset($infos['type'])) {
             $this->checkAndUpdateCmd('type', $infos['type']);
         }
-        if (isset($infos['name'])) {
+        if (isset($infos['resolution'])) {
             $this->checkAndUpdateCmd('resolution', $infos['resolution']);
+        }
+  		if (isset($infos['disk_free'])) {
+            $this->checkAndUpdateCmd('disk_free', $infos['disk_free']);
+        }
+  		if (isset($infos['disk_total'])) {
+            $this->checkAndUpdateCmd('disk_total', $infos['disk_total']);
         }
 
         #throw new Exception(var_dump($infos), 1);
@@ -557,7 +573,7 @@ public function updateInfo()
         if (strstr($check, "offline"))
         	throw new Exception("Votre appareil est détecté 'offline' par ADB.", 1);
         elseif (!strstr($check, "device")) {
-            $this->resetAndroidRemoteControl($ip_address);
+           shell_exec($sudo_prefix ."adb connect " . $ip_address);
             throw new Exception("Votre appareil n'est pas détecté par ADB. Tentative de reconnection, veuillez réessayer", 1);
         } elseif (strstr($check, "unauthorized")) {
             throw new Exception("Vous n'etes pas autorisé a vous connecter a cet appareil.", 1);
@@ -598,6 +614,7 @@ public function updateInfo()
 
 class AndroidRemoteControlCmd extends cmd
 {
+  
     public function execute($_options = array())
     {
         $ARC = $this->getEqLogic();

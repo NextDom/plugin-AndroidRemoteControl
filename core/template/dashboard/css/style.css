@@ -1,0 +1,89 @@
+.AndroidRemoteControl_widget {
+    width: 250px;
+    height: 330px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: black;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.AndroidRemoteControl_widget .uppart {
+    height: 280px;
+    width: 250px;
+    z-index: 2;
+}
+
+.AndroidRemoteControl_widget .power_set {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    cursor: pointer;
+    z-index: 0;
+}
+
+.AndroidRemoteControl_widget .title {
+    font-size: 1em;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.AndroidRemoteControl_widget .jaquette {
+    width: 250px;
+    height: 160px;
+}
+
+.AndroidRemoteControl_widget .affiche {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    margin-left: -95px;
+    z-index: 7;
+    border-radius: 10%;
+
+}
+
+.AndroidRemoteControl_widget .icons img{
+    border-radius: 10%;
+  	height: 30px;
+  	width: 30px;
+}
+
+.AndroidRemoteControl_widget .leftpanel {
+    text-align: left;
+    width: 200px;
+    height: 327px;
+    float: left;
+    position: absolute;
+    z-index: 10;
+    left: -200px;
+	background: rgba(0, 0, 0, 0.7);
+}
+
+.AndroidRemoteControl_widget .leftRafter {
+    width: 15px;
+    height: 40px;
+    position: absolute;
+    top: 143.5px;
+    left: 5px;
+    cursor: pointer;
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    z-index: 4;
+    opacity: 0.3;
+}
+
+.AndroidRemoteControl_widget .leftRafter:hover {
+    opacity: 1;
+}
+
+.AndroidRemoteControl_widget .leftpanel .leftRafter {
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+
+.AndroidRemoteControl_widget .info_data{
+    font-size: 1em;
+}
