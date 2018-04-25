@@ -135,20 +135,7 @@ foreach (object::all() as $object) {
 				              </form>
 				          </div>
 				          <span id="serviceName" class="eqLogicAttr" data-l1key="configuration" data-l2key="serviceName" style="display:none;"></span>
-				          <div class="col-sm-6">
-				              <form class="form-horizontal">
-				                  <fieldset>
-				                      <legend>{{Test}}</legend>
-				          						<div class="form-group">
-				          							<div class="col-sm-2">
-				          								<a class="btn btn-infos" id="bt_serviceStatus">
-				                            <i class="fa fa-check"></i> {{Status}}
-				                          </a>
-				          							</div>
-				          						</div>
-				                  </fieldset>
-				              </form>
-				          </div>
+				          
 </form>
 </div>
       <div role="tabpanel" class="tab-pane" id="commandtab">
@@ -172,11 +159,6 @@ foreach (object::all() as $object) {
 <?php include_file('core', 'plugin.template', 'js');?>
 
 <script>
-	$("#bt_serviceStatus").click(function(){
-			$('#md_modal').dialog({title: "{{Service Status}}"});
-			$('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=status.AndroidRemoteControl').dialog('open');
-  });
-
 	$("#bt_serviceLog").click(function(){
 			$('#md_modal').dialog({title: "{{Logs}}"});
 			$('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=log.AndroidRemoteControl').dialog('open');

@@ -26,7 +26,7 @@ class AndroidRemoteControl extends eqLogic
     {
         foreach (eqLogic::byType('AndroidRemoteControl', true) as $eqLogic) {
             $eqLogic->updateInfo();
-          	$eqLogic->refreshWidget();
+          	#$eqLogic->refreshWidget();
         }
     }
 
@@ -208,8 +208,8 @@ class AndroidRemoteControl extends eqLogic
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
             $cmd->setLogicalId('home');
+          $cmd->setIsVisible(0);
             $cmd->setOrder(6);
-            $cmd->setIsVisible(1);
             $cmd->setName(__('home', __FILE__));
         }
         $cmd->setType('action');
@@ -222,7 +222,6 @@ class AndroidRemoteControl extends eqLogic
             $cmd = new AndroidRemoteControlCmd();
             $cmd->setLogicalId('back');
             $cmd->setOrder(5);
-            $cmd->setIsVisible(1);
             $cmd->setName(__('back', __FILE__));
         }
         $cmd->setType('action');
@@ -595,7 +594,8 @@ public function updateInfo()
             $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
             $replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
             $replace['#' . $cmd->getLogicalId() . '_collect#'] = $cmd->getCollectDate();
-            if ($cmd->getLogicalId() == 'encours'){
+            
+          if ($cmd->getLogicalId() == 'encours'){
                 $replace['#thumbnail#'] = $cmd->getDisplay('icon');
             }
             if ($cmd->getIsHistorized() == 1) {
@@ -604,7 +604,9 @@ public function updateInfo()
         }
 
         foreach ($this->getCmd('action') as $cmd) {
-            $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
+        	   $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
+          	 $replace['#' . $cmd->getLogicalId() . '_id_display#'] = ($cmd->getIsVisible()) ? '#' . $cmd->getId() . "_display#" : '';
+            
         }
 
         return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'AndroidRemoteControl', 'AndroidRemoteControl')));

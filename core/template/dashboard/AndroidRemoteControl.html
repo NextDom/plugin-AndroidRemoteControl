@@ -3,10 +3,10 @@
      data-eqLogic_id="#id#" data-eqLogic_uid="#uid#"> 
   <link rel="stylesheet" href="plugins/AndroidRemoteControl/core/template/dashboard/css/style.css"/>	
   	<span class="statusCmd" style="position : absolute;left : 5px;bottom : 5px; width : 30px;z-index: 1030;"></span>
-	<a class="power_set cmd pull-right" id="power_set" data-cmd_id="#power_set_id#" title="Allumer/Eteindre" onclick="jeedom.cmd.execute({id: #power_set_id#});"><i class="fa fa-power-off"></i></a>
+	<a class="power_set cmd pull-right noRefresh" id="power_set" data-cmd_id="#power_set_id#" title="Allumer/Eteindre" onclick="jeedom.cmd.execute({id: #power_set_id#});"><i class="fa fa-power-off"></i></a>
 <script>
 if (#power_state# == 1) {
-	document.getElementById('power_set').style.color = '#f00';
+	document.getElementById(".AndroidRemoteControl[data-eqLogic_uid=#uid#] .power_set").style.color = '#f00';
 }
 </script>
   <div class="leftpanel">
@@ -18,60 +18,59 @@ if (#power_state# == 1) {
   			<a class="info_data" style="text-decoration: none; cursor:default;"><b>disk:</b> #disk_total#Gb  #disk_free# free</a>
 
         </div>
-        <img class="leftRafter" style="display:none;" src="plugins/AndroidRemoteControl/core/template/dashboard/img/chevron.png"
-             title="Listes" onClick="panelLeftClose()"/>
+        <img class="leftRafter" style="display:none;" src="plugins/AndroidRemoteControl/core/template/dashboard/img/chevron.png" title="Infos" onClick="panelLeftClose#uid#()"/>
     </div>
-  		<img class="leftRafter" src="plugins/AndroidRemoteControl/core/template/dashboard/img/chevron.png" onclick="panelLeft()"/>
+  		<img class="leftRafter" src="plugins/AndroidRemoteControl/core/template/dashboard/img/chevron.png" onclick="panelLeft#uid#()"/>
   
 	<div class="uppart">
 		<a href="#eqLink#" class="title" style="#hideEqLogicName#">#name_display# <span style="font-size: 0.85em;">#object_name#</span></a>
 
 
 		<div class="jaquette">
-  				<a class="btn cmd volume_down pull-left" data-cmd_id="#volume-_id#" title="Volume-" onclick="jeedom.cmd.execute({id: #volume-_id#});"><i class="fa fa-volume-down fa-lg"></i></a>
+  				<a class="btn cmd volume_down pull-left noRefresh" data-cmd_id="#volume-_id#" title="Volume-" onclick="jeedom.cmd.execute({id: #volume-_id#});"><i class="fa fa-volume-down fa-lg"></i></a>
 				<img class="affiche" src="#thumbnail#">
-  				<a class="btn cmd volume_up pull-right" data-cmd_id="#volume+_id#"  title="Volume+" onclick="jeedom.cmd.execute({id: #volume+_id#});"> <i class="fa fa-volume-up fa-lg"></i></a>
+  				<a class="btn cmd volume_up pull-right noRefresh" data-cmd_id="#volume+_id#"  title="Volume+" onclick="jeedom.cmd.execute({id: #volume+_id#});"> <i class="fa fa-volume-up fa-lg"></i></a>
 		</div>
 		<div style="white-space:nowrap;text-align: center; padding-top:10px">
-			<a class="btn cmd" style="display:inline" data-cmd_id="#home_id#" title="Home" onclick="jeedom.cmd.execute({id: #home_id#});"><i class="fa fa-home fa-lg"></i></a>
-			<a class="btn cmd" style="display:inline" data-cmd_id="#back_id#" title="Back" onclick="jeedom.cmd.execute({id: #back_id#});"><i class="fa fa-undo fa-lg"></i></a>
-			<a class="btn cmd" style="display:inline" data-cmd_id="#home_id#" title="Play" onclick="jeedom.cmd.execute({id: #hplay_id#});"><i class="fa fa-play fa-lg"></i></a>
-			<a class="btn cmd" style="display:inline" data-cmd_id="#home_id#" title="Stop" onclick="jeedom.cmd.execute({id: #stop_id#});"><i class="fa fa-stop fa-lg"></i></a>
+			<a class="btn cmd noRefresh" style="display:inline" data-cmd_id="#home_id#" style="display: #home_id_display#;" title="Home" onclick="jeedom.cmd.execute({id: #home_id#});"><i class="fa fa-home fa-lg"></i></a>
+			<a class="btn cmd noRefresh" style="display:inline" data-cmd_id="#back_id#" title="Back" onclick="jeedom.cmd.execute({id: #back_id#});"><i class="fa fa-undo fa-lg"></i></a>
+			<a class="btn cmd noRefresh" style="display:inline" data-cmd_id="#home_id#" title="Play" onclick="jeedom.cmd.execute({id: #hplay_id#});"><i class="fa fa-play fa-lg"></i></a>
+			<a class="btn cmd noRefresh" style="display:inline" data-cmd_id="#home_id#" title="Stop" onclick="jeedom.cmd.execute({id: #stop_id#});"><i class="fa fa-stop fa-lg"></i></a>
 		</div>
 		<div style="white-space:nowrap;text-align: center">
 			<a class="btn cmd" style="display:inline" data-cmd_id="#up_id#" title="Up" onclick="jeedom.cmd.execute({id: #up_id#});"><i class="fa fa-chevron-up"></i></a>
 		</div>
 		<div style="white-space:nowrap;text-align: center">
-			<a class="btn cmd" style="display:inline" data-cmd_id="#left_id#" title="Left" onclick="jeedom.cmd.execute({id: #left_id#});"><i class="fa fa-chevron-left"></i></a>
-			<a class="btn cmd" style="display:inline" data-cmd_id="#enter_id#" title="Enter" onclick="jeedom.cmd.execute({id: #enter_id#});"><i class="fa fa-square-o"></i></a>
-			<a class="btn cmd" style="display:inline" data-cmd_id="#right_id#" title="Right" onclick="jeedom.cmd.execute({id: #right_id#});"><i class="fa fa-chevron-right"></i></a>
+			<a class="btn cmd noRefresh" style="display:inline" data-cmd_id="#left_id#" title="Left" onclick="jeedom.cmd.execute({id: #left_id#});"><i class="fa fa-chevron-left"></i></a>
+			<a class="btn cmd noRefresh" style="display:inline" data-cmd_id="#enter_id#" title="Enter" onclick="jeedom.cmd.execute({id: #enter_id#});"><i class="fa fa-square-o"></i></a>
+			<a class="btn cmd noRefresh" style="display:inline" data-cmd_id="#right_id#" title="Right" onclick="jeedom.cmd.execute({id: #right_id#});"><i class="fa fa-chevron-right"></i></a>
 		</div>
 		<div style="white-space:nowrap;text-align: center">
 			<a class="btn cmd" style="display:inline" data-cmd_id="#down_id#" title="Down" onclick="jeedom.cmd.execute({id: #down_id#});"><i class="fa fa-chevron-down"></i></a>
 		</div>
   	</div>
 		<div style="white-space:nowrap;text-align: center">
-			<a class="btn cmd icons" style="display:inline;padding:3px" data-cmd_id="#netflix_id#" title="Netflix" onclick="jeedom.cmd.execute({id: #netflix_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/netflix.png"></a>
-			<a class="btn cmd icons" style="display:inline;padding:3px" data-cmd_id="#molotov_id#" title="Molotov" onclick="jeedom.cmd.execute({id: #molotov_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/molotov.png"></a>
-			<a class="btn cmd icons" style="display:inline;padding:3px" data-cmd_id="#youtube_id#" title="Youtube" onclick="jeedom.cmd.execute({id: #youtube_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/youtube.png"></a>
-			<a class="btn cmd icons" style="display:inline;padding:3px" data-cmd_id="#kodi_id#" title="Kodi" onclick="jeedom.cmd.execute({id: #kodi_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/kodi.png"></a>
-			<a class="btn cmd icons" style="display:inline;padding:3px" data-cmd_id="#vevo_id#" title="Vevo" onclick="jeedom.cmd.execute({id: #vevo_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/vevo.jpg"></a>
-			<a class="btn cmd icons" style="display:inline;padding:3px" data-cmd_id="#spotify_id#" title="Spotify" onclick="jeedom.cmd.execute({id: #spotify_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/spotify.png"></a>
+			<a class="btn cmd icons noRefresh" style="display:inline;padding:3px" data-cmd_id="#netflix_id#" title="Netflix" onclick="jeedom.cmd.execute({id: #netflix_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/netflix.png"></a>
+			<a class="btn cmd icons noRefresh" style="display:inline;padding:3px" data-cmd_id="#molotov_id#" title="Molotov" onclick="jeedom.cmd.execute({id: #molotov_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/molotov.png"></a>
+			<a class="btn cmd icons noRefresh" style="display:inline;padding:3px" data-cmd_id="#youtube_id#" title="Youtube" onclick="jeedom.cmd.execute({id: #youtube_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/youtube.png"></a>
+			<a class="btn cmd icons noRefresh" style="display:inline;padding:3px" data-cmd_id="#kodi_id#" title="Kodi" onclick="jeedom.cmd.execute({id: #kodi_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/kodi.png"></a>
+			<a class="btn cmd icons noRefresh" style="display:inline;padding:3px" data-cmd_id="#vevo_id#" title="Vevo" onclick="jeedom.cmd.execute({id: #vevo_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/vevo.jpg"></a>
+			<a class="btn cmd icons noRefresh" style="display:inline;padding:3px" data-cmd_id="#spotify_id#" title="Spotify" onclick="jeedom.cmd.execute({id: #spotify_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/spotify.png"></a>
 		</div>
 
 </div>
 
   <script>
-  function panelLeft()
+  function panelLeft#uid#()
         {
-            $(".AndroidRemoteControl .leftpanel").animate({left: "0px"});
-            $(".AndroidRemoteControl .leftpanel .leftRafter").show();
+            $(".AndroidRemoteControl[data-eqLogic_uid=#uid#] .leftpanel").animate({left: "0px"});
+            $(".AndroidRemoteControl[data-eqLogic_uid=#uid#] .leftpanel .leftRafter").show();
         }
   
-   function panelLeftClose()
+   function panelLeftClose#uid#()
         {
-            $(".AndroidRemoteControl .leftpanel").animate({left: "-200px"});
-            $(".AndroidRemoteControl .leftpanel .leftRafter").hide();
+            $(".AndroidRemoteControl[data-eqLogic_uid=#uid#] .leftpanel").animate({left: "-200px"});
+            $(".AndroidRemoteControl[data-eqLogic_uid=#uid#] .leftpanel .leftRafter").hide();
         }
   </script>
 
