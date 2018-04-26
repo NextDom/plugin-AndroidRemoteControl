@@ -411,6 +411,19 @@ class AndroidRemoteControl extends eqLogic
         $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/netflix.png height="15" width="15">');
         $cmd->setEqLogic_id($this->getId());
         $cmd->save();
+        
+        $cmd = $this->getCmd(null, 'spotify');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('spotify');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('spotify', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/spotify.png height="15" width="15">');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
 
         $cmd = $this->getCmd(null, 'amazonvideo');
         if (!is_object($cmd)) {
