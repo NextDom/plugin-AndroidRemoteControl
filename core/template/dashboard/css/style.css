@@ -9,7 +9,7 @@
 }
 
 .AndroidRemoteControl_widget .uppart {
-    height: 280px;
+    height: 275px;
     width: 250px;
     z-index: 2;
 }
@@ -35,7 +35,7 @@
 
 .AndroidRemoteControl_widget .affiche {
     width: 150px;
-    height: 150px;
+    height: auto;
     position: absolute;
     margin-left: -95px;
     z-index: 7;
@@ -44,9 +44,11 @@
 }
 
 .AndroidRemoteControl_widget .icons img{
+  	margin-top: 7px;
     border-radius: 10%;
-  	height: 30px;
-  	width: 30px;
+   	width: 30px;
+	height: auto;
+    z-index: 7;
 }
 
 .AndroidRemoteControl_widget .leftpanel {
@@ -86,4 +88,9 @@
 
 .AndroidRemoteControl_widget .info_data{
     font-size: 1em;
+}
+
+.AndroidRemoteControl_widget .downpart {
+    height: 70px;
+    width: 250px;
 }
