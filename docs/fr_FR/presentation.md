@@ -44,7 +44,7 @@ Retrouvez le sur le [Market](https://www.jeedom.com/market/index.php?v=d&p=marke
 
 # Prévisualisation
 
-![Screenshot1](../images/Screenshot1.png)
+![screenshot1](../images/screenshot1.png)
 
 ![Screenshot2](../images/Screenshot2.png)
 
