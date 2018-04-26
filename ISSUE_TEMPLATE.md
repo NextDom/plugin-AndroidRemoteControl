@@ -1,4 +1,7 @@
-## Etapes a reproduire (pour les bugs)
+## Description
+
+## Etapes à reproduire (pour les bugs)
+
 1.
 2.
 3.
@@ -9,6 +12,7 @@
 ## Proposition de solution (optionnel):
 
 ## Environnement:
-* **Version**: 
-* **Platform**: 
-* **Subsystem**: 
+
+* **Version Jeedom**:
+* **Plateforme**:
+* **Version du Plugin**:
