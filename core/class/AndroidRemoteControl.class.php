@@ -415,7 +415,7 @@ class AndroidRemoteControl extends eqLogic
         $cmd = $this->getCmd(null, 'spotify');
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('spotify);
+            $cmd->setLogicalId('spotify');
             $cmd->setIsVisible(1);
             $cmd->setName(__('spotify', __FILE__));
         }
