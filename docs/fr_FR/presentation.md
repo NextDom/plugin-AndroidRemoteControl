@@ -42,13 +42,11 @@ Vous pouvez également changer la couleur du bandeau du bas ou le rendre transpa
 
 Retrouvez le sur le [Market](https://www.jeedom.com/market/index.php?v=d&p=market&type=plugin&&name=Plugin) Jeedom
 
-~~Changer **_Plugin_** par le nom du plugin dans l'adresse https du lien~~
-
 # Prévisualisation
 
-![screenshot1](../images/Screenshot1.png)
+![Screenshot1](../images/Screenshot1.png)
 
-![screenshot2](../images/Screenshot2.png)
+![Screenshot2](../images/Screenshot2.png)
 
 # Forum
 
