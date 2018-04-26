@@ -212,7 +212,7 @@ class AndroidRemoteControl extends eqLogic
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
             $cmd->setLogicalId('home');
-          $cmd->setIsVisible(0);
+          $cmd->setIsVisible(1);
             $cmd->setName(__('home', __FILE__));
         }
         $cmd->setType('action');
