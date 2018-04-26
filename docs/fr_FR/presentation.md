@@ -1,35 +1,35 @@
 ![icon](../images/AndroidRemoteControl_icon.png)
 # Description
 
-Plugin permettant de piloter les terminaux android (TV, Shield, freebox mini 4k, etc..)
+Plugin permettant de piloter les terminaux Android (TV, Shield, Freebox mini 4k, etc.)
 
 ### Fonctions disponibles
 Infos :
 * nom de l'appareil
-* Etat (allumé/Eteint) (buggé pour l'instant)
-* App encours
+* état (allumé/Eteint) (buggé pour l'instant)
+* application en cours
 * résolution
-* Version Android
-* Espace disque disponible
+* version Android
+* espace disque disponible
 
 Actions :
-* home, back
-* power on, power off
+* accueil, retour
+* allumage, extinction
 * volume+, volume-
-* up, down, left, right
-* click, enter
-* start, play, pause, stop
-* previous, next
-* lancement des appli: youtube, francetv, plex, spotify, vlc, tf1, google, facebook, molotov, netflix, etc...
+* haut, bas, gauche, droite
+* clic, entrer
+* démarrage, lecture, pause, arrêt
+* précédent, suivant
+* lancement des applications : Youtube, FranceTV, Plex, Spotify, VLC, TF1, Google, Facebook, Molotov, Netflix, etc.
 
 
 Scénarios possible :
-* Allumer la box -> lancer molotov -> play avec commande vocale google home/ifttt (ex: "ok google, met la télé en route").
-* Commander l'allumage de l'ampli (Yamaha dans mon cas) lorsque la box est allumé (car parfois le HDMI CEC).
-* Si netflix lancé -> lumière salon a 50%
+* Allumer la box -> lancer Molotov -> lecture avec commande vocale Google Home/ifttt (ex: "ok google, met la télé en route").
+* Commander l'allumage de l'ampli (Yamaha dans mon cas) lorsque la box est allumée (car parfois le HDMI CEC).
+* Si Netflix lancé -> lumière salon à 50%
 
-### Parametrage avancé
-Vous pouvez afficher ou non la liste des applications dans le bandeau du bas (limité a 6) en cochant/décochant l'option afficher sur chanque commande (voir capture ci-dessous)
+### Paramétrage avancé
+Vous pouvez afficher ou non la liste des applications dans le bandeau du bas (limité a 6) en cochant/décochant l'option afficher sur chaque commande (voir capture ci-dessous)
 
 ![Screenshot3](../images/Screenshot3.png)
 
@@ -50,6 +50,6 @@ Retrouvez le sur le [Market](https://www.jeedom.com/market/index.php?v=d&p=marke
 
 # Forum
 
-Lien vers le [Forum](https://www.jeedom.com/forum/viewtopic.php?t=xxxx)
+Lien vers le [Forum](https://www.jeedom.com/forum/viewtopic.php?t=34154)
 
 ~~Remplacer `t=xxxx` par le bon numéro de forum~~

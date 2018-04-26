@@ -1,19 +1,19 @@
 #Idées pour les versions suivantes :
 
-- Généré dynamiquement la liste des applications disponibles en fonction des applications installées sur l'équipement.
+- Générer dynamiquement la liste des applications disponibles en fonction des applications installées sur l'équipement.
 
-# Prochaine release
+# Prochaine version
 
 Ajout des fonctionnalités suivantes:
-    - Affichage capture d'écrans en cliquant sur l'icone du programme encours
+    - Affichage capture d'écran en cliquant sur l'icône du programme encours
     - Prise en charge de l'envoi de SMS sur les appareils compatibles
     - Envoi d'une notification (Toast)
 
 # Changelog
 
-### Version 0.9.1:  (26/04/2018- Version en cours sur le market)
+### Version 0.9.1 :  (26/04/2018- Version en cours sur le market)
 
-* 1ere BETA
+* 1ere BÊTA
 
 ### Détail des changements
 
