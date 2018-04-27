@@ -212,7 +212,7 @@ class AndroidRemoteControl extends eqLogic
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
             $cmd->setLogicalId('home');
-          $cmd->setIsVisible(0);
+          $cmd->setIsVisible(1);
             $cmd->setName(__('home', __FILE__));
         }
         $cmd->setType('action');
@@ -409,6 +409,19 @@ class AndroidRemoteControl extends eqLogic
         $cmd->setType('action');
         $cmd->setSubType('other');
         $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/netflix.png height="15" width="15">');
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
+        
+        $cmd = $this->getCmd(null, 'spotify');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('spotify');
+            $cmd->setIsVisible(1);
+            $cmd->setName(__('spotify', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('other');
+        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/spotify.png height="15" width="15">');
         $cmd->setEqLogic_id($this->getId());
         $cmd->save();
 
@@ -620,13 +633,20 @@ public function updateInfo()
         $ip_address = $this->getConfiguration('ip_address');
         $check = shell_exec($sudo_prefix . "adb devices | grep " . $ip_address . " | cut -f2 | xargs");
         echo $check;
-        if (strstr($check, "offline"))
-        	throw new Exception("Votre appareil est détecté 'offline' par ADB.", 1);
-        elseif (!strstr($check, "device")) {
-           shell_exec($sudo_prefix ."adb connect " . $ip_address);
-            throw new Exception("Votre appareil n'est pas détecté par ADB. Tentative de reconnection, veuillez réessayer", 1);
+      	if (strstr($check, "offline")) {
+          log::add('AndroidRemoteControl', 'info', 'Votre appareil est offline');
+            log::add('AndroidRemoteControl', 'info', 'Relance du service ADB');
+      		exec('../3rdparty/reset.sh');
+      		log::add('AndroidRemoteControl', 'info', 'Connection a Android');
+    		shell_exec($sudo_prefix . "adb connect " . $ip_address);
+        }elseif (!strstr($check, "device")) {
+          log::add('AndroidRemoteControl', 'info', 'Votre appareil n\'est pas détecté par ADB. Tentative de reconnection, veuillez réessayer');
+            log::add('AndroidRemoteControl', 'info', 'Relance du service ADB');
+      		exec('../3rdparty/reset.sh');
+      		log::add('AndroidRemoteControl', 'info', 'Connection a Android');
+    		shell_exec($sudo_prefix . "adb connect " . $ip_address);
         } elseif (strstr($check, "unauthorized")) {
-            throw new Exception("Vous n'etes pas autorisé a vous connecter a cet appareil.", 1);
+          	log::add('AndroidRemoteControl', 'info', 'Votre connection n\'est pas autorisé');
         }
     }
 
