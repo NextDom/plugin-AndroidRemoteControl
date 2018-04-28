@@ -77,5 +77,11 @@
       	"type": "action",
     	"subtype": "other",
     	"commande": "shell input keyevent 3"
-	}  
+	},{
+		"name": "zapster",
+		"icon": "television.png",
+      	"type": "action",
+    	"subtype": "other",
+    	"commande": "shell am start org.droidtv.zapster/.playtv.activity.PlayTvActivity"
+	}
 ]
