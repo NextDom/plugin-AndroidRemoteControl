@@ -11,7 +11,15 @@ Ajout des fonctionnalités suivantes:
 
 # Changelog
 
-### Version 0.9.1:  (26/04/2018- Version en cours sur le market)
+### Version 0.9.2:  (28/04/2018- Version en cours sur le market)
+
+* Correction bug sur coloration de l'icon power lorsque l'appareil est allumé
+* Refonte du core pour la gestion des commandes et applications
+    - Les commandes sont gérées par le fichier commandes.json
+    - Les applications sont gérées par le fichier appli.json
+Cela permet d'ajouter des commandes et applications sans modifier le core du plugin.
+
+### Version 0.9.1:  (26/04/2018)
 
 * 1ere BETA
 
