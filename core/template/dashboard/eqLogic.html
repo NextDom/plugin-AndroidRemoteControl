@@ -6,7 +6,7 @@
 	<a class="power_set cmd pull-right noRefresh" id="power_set" data-cmd_id="#power_set_id#" title="Allumer/Eteindre" onclick="jeedom.cmd.execute({id: #power_set_id#});"><i class="fa fa-power-off"></i></a>
 <script>
 if (#power_state# == 1) {
-	document.getElementById(".AndroidRemoteControl[data-eqLogic_id=#id#] .power_set").style.color = '#f00';
+	$(".AndroidRemoteControl[data-eqLogic_id=#id#] .power_set").css('color','red');
 }
 </script>
   <div class="leftpanel">
@@ -33,9 +33,9 @@ if (#power_state# == 1) {
   				<a class="btn cmd volume_up pull-right noRefresh" data-cmd_id="#volume+_id#"  title="Volume+" onclick="jeedom.cmd.execute({id: #volume+_id#});"> <i class="fa fa-volume-up fa-lg"></i></a>
 		</div>
 		<div style="white-space:nowrap;text-align: center">
-			<a class="btn cmd noRefresh" style="display:#home_id_display#" data-cmd_id="#home_id#" title="Home" onclick="jeedom.cmd.execute({id: #home_id#});"><i class="fa fa-home fa-lg"></i></a>
-			<a class="btn cmd noRefresh" style="display:#back_id_display#" data-cmd_id="#back_id#" title="Back" onclick="jeedom.cmd.execute({id: #back_id#});"><i class="fa fa-undo fa-lg"></i></a>
-			<a class="btn cmd noRefresh" style="display:#play_id_display#" data-cmd_id="#play_id#" title="Play" onclick="jeedom.cmd.execute({id: #hplay_id#});"><i class="fa fa-play fa-lg"></i></a>
+			<a class="btn cmd noRefresh" style="display:#mainmenu_id_display#" data-cmd_id="#mainmenu_id#" title="Home" onclick="jeedom.cmd.execute({id: #mainmenu_id#});"><i class="fa fa-home fa-lg"></i></a>
+			<a class="btn cmd noRefresh" style="display:#return_id_display#" data-cmd_id="#return_id#" title="Back" onclick="jeedom.cmd.execute({id: #return_id#});"><i class="fa fa-undo fa-lg"></i></a>
+			<a class="btn cmd noRefresh" style="display:#play_id_display#" data-cmd_id="#play_id#" title="Play" onclick="jeedom.cmd.execute({id: #play_id#});"><i class="fa fa-play fa-lg"></i></a>
 			<a class="btn cmd noRefresh" style="display:#stop_id_display#" data-cmd_id="#stop_id#" title="Stop" onclick="jeedom.cmd.execute({id: #stop_id#});"><i class="fa fa-stop fa-lg"></i></a>
 		</div>
 		<div style="white-space:nowrap;text-align: center">

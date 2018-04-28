@@ -1,0 +1,81 @@
+[
+	{
+		"name": "netflix",
+      	"icon":"netflix.png",
+      	"type": "action",
+    	"subtype": "other",
+		"commande": "shell am start com.netflix.ninja/.MainActivity"
+	},{
+		"name": "youtube",
+      	"icon":"youtube.png",
+      	"type": "action",
+    	"subtype": "other",
+		"commande": "shell monkey -p com.google.android.youtube.tv -c android.intent.category.LAUNCHER 1"
+	},{
+		"name": "plex",
+   	 	"icon":"plex.png",
+      	"type": "action",
+    	"subtype": "other",
+		"commande": "shell monkey -p com.plexapp.android -c android.intent.category.LAUNCHER 1"
+	},{
+		"name": "kodi",
+    	"icon":"kodi.png",
+      	"type": "action",
+    	"subtype": "other",
+		"commande": "shell monkey -p org.xbmc.kodi -c android.intent.category.LAUNCHER 1"
+	},{
+		"name": "molotov",
+     	"icon":"molotov.png",
+      	"type": "action",
+    	"subtype": "other",
+		"commande": "shell am start tv.molotov.app/tv.molotov.android.tv.SplashActivity"
+	},{
+		"name": "spotify",
+     	"icon":"spotify.png",
+      	"type": "action",
+    	"subtype": "other",
+		"commande": "shell monkey -p com.spotify.tv.android -c android.intent.category.LAUNCHER 1"
+	},{
+		"name": "amazon",
+     	"icon":"amazon.png",
+      	"type": "action",
+    	"subtype": "other",
+		"commande": "shell monkey -p com.amazon.amazonvideo.livingroom.nvidia -c android.intent.category.LAUNCHER 1"
+	},{
+		"name": "vevo",
+       	"icon":"vevo.png",
+      	"type": "action",
+    	"subtype": "other",
+		"commande": "shell monkey -p com.vevo -c android.intent.category.LAUNCHER 1"
+	},{
+		"name": "tf1",
+       	"icon":"tf1.png",
+      	"type": "action",
+    	"subtype": "other",
+		"commande": "shell monkey -p fr.tf1.mytf1 -c android.intent.category.LAUNCHER 1"
+	},{
+		"name": "m6",
+      	"icon":"m6replay.png",
+      	"type": "action",
+    	"subtype": "other",
+		"commande": "shell monkey -p fr.m6.m6replay.by -c android.intent.category.LAUNCHER 1"
+	},{
+		"name": "dsvideo",
+       	"icon":"dsvideo.png",
+      	"type": "action",
+    	"subtype": "other",
+		"commande": "shell monkey -p com.synology.dsvideo -c android.intent.category.LAUNCHER 1"
+	},{
+		"name": "ted",
+    	"icon":"ted.png",
+      	"type": "action",
+    	"subtype": "other",
+		"commande": "shell monkey -p com.ted.android.tv -c android.intent.category.LAUNCHER 1"
+	},{
+		"name": "leanback",
+		"icon": "home.png",
+      	"type": "action",
+    	"subtype": "other",
+    	"commande": "shell input keyevent 3"
+	}  
+]

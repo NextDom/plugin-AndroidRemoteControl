@@ -18,6 +18,9 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+$url = dirname(__FILE__)  . '/../../3rdparty/appli.json'; // path to your JSON file
+        $data = file_get_contents($url); // put the contents of the file into a variable
+        $json_a = json_decode($data); // decode the JSON feed
 
 class AndroidRemoteControl extends eqLogic
 {
@@ -40,7 +43,7 @@ class AndroidRemoteControl extends eqLogic
     {
         foreach (eqLogic::byType('AndroidRemoteControl', true) as $eqLogic) {
             $eqLogic->updateInfo();
-          	$eqLogic->refreshWidget();
+          	#$eqLogic->refreshWidget();
         }
     }
 
@@ -77,433 +80,24 @@ class AndroidRemoteControl extends eqLogic
 
     /*     * *********************Méthodes d'instance************************* */
 
-    public function preInsert()
-    {
-
-    }
-
-    public function postInsert()
-    {
-
-    }
-
-    public function preSave()
-    {
-
-    }
-
     public function postSave()
-    {
-
-        /*         * ******************************Info************************** */
-        $cmd = $this->getCmd(null, 'power_state');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('power_state');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('État', __FILE__));
+    {     
+      	$data = file_get_contents(dirname(__FILE__)  . '/../../3rdparty/appli.json');
+     	$data2 = file_get_contents(dirname(__FILE__)  . '/../../3rdparty/commandes.json');
+      	$json= json_encode(array_merge(json_decode($data, true),json_decode($data2, true)));
+        $json_a = json_decode($json);
+        foreach ($json_a as $json_cmd) {
+          $cmd = $this->getCmd(null, $json_cmd->name);
+        	if (!is_object($cmd)) {
+              $cmd = new AndroidRemoteControlCmd();
+              $cmd->setLogicalId($json_cmd->name);
+              $cmd->setName(__($json_cmd->name, __FILE__));
+            }
+		  $cmd->setType($json_cmd->type);
+          $cmd->setSubType($json_cmd->subtype);
+          $cmd->setEqLogic_id($this->getId());
+          $cmd->save();
         }
-        $cmd->setType('info');
-        $cmd->setSubType('binary');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'encours');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('encours');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('encours', __FILE__));
-        }
-        $cmd->setType('info');
-        $cmd->setTemplate('dashboard', 'encours');
-        $cmd->setSubType('string');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->setDisplay('title_disable', 1);
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'name');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('name');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('name', __FILE__));
-        }
-        $cmd->setType('info');
-        $cmd->setSubType('string');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'version_android');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('version_android');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('version_android', __FILE__));
-        }
-        $cmd->setType('info');
-        $cmd->setSubType('string');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'type');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('type');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('type', __FILE__));
-        }
-        $cmd->setType('info');
-        $cmd->setSubType('string');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'resolution');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('resolution');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('resolution', __FILE__));
-        }
-        $cmd->setType('info');
-        $cmd->setSubType('string');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-      
-      	        $cmd = $this->getCmd(null, 'disk_total');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('disk_total');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('disk_total', __FILE__));
-        }
-        $cmd->setType('info');
-        $cmd->setSubType('string');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-      
-              $cmd = $this->getCmd(null, 'disk_free');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('disk_free');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('disk_free', __FILE__));
-        }
-        $cmd->setType('info');
-        $cmd->setSubType('string');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        /*         * ***********************Action************************** */
-        $cmd = $this->getCmd(null, 'power_set');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('power_set');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('power', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<i class="fa fa-power-off"></i>');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'home');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('home');
-          $cmd->setIsVisible(1);
-            $cmd->setName(__('home', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'back');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('back');
-            $cmd->setName(__('back', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'enter');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('enter');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('enter', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'play');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('play');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('play', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<i class="fa fa-play"></i>');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'stop');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('stop');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('stop', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<i class="fa fa-stop"></i>');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'up');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('up');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('up', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<i class="fa fa-chevron-up"></i>');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'left');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('left');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('left', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<i class="fa fa-chevron-left"></i>');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'right');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('right');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('right', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<i class="fa fa-chevron-right"></i>');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'down');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('down');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('down', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<i class="fa fa-chevron-down"></i>');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'volume-');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('volume-');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('volume-', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<i class="fa fa-volume-down"></i>');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'volume+');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('volume+');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('volume+', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<i class="fa fa-volume-up"></i>');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'youtube');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('youtube');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('youtube', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/youtube.png height="15" width="15">');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'molotov');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('molotov');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('molotov', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/molotov.png height="15" width="15">');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'plex');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('plex');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('plex', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/plex.png height="15" width="15">');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'kodi');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('kodi');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('kodi', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/kodi.png height="15" width="15">');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'netflix');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('netflix');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('netflix', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/netflix.png height="15" width="15">');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-        
-        $cmd = $this->getCmd(null, 'spotify');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('spotify');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('spotify', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/spotify.png height="15" width="15">');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'amazonvideo');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('amazonvideo');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('amazonvideo', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/amazonvideo.png height="15" width="15">');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-
-        $cmd = $this->getCmd(null, 'vevo');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('vevo');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('vevo', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/vevo.png height="15" width="15">');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-      
-       $cmd = $this->getCmd(null, 'ted');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('ted');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('ted', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/ted.png height="15" width="15">');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-		
-  
-  		 $cmd = $this->getCmd(null, 'mytf1');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('mytf1');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('mytf1', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/tf1.png height="15" width="15">');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-      
-       $cmd = $this->getCmd(null, 'm6replay');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('m6replay');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('m6replay', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/m6replay.png height="15" width="15">');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
-      
-       $cmd = $this->getCmd(null, 'dsvideo');
-        if (!is_object($cmd)) {
-            $cmd = new AndroidRemoteControlCmd();
-            $cmd->setLogicalId('dsvideo');
-            $cmd->setIsVisible(1);
-            $cmd->setName(__('dsvideo', __FILE__));
-        }
-        $cmd->setType('action');
-        $cmd->setSubType('other');
-        $cmd->setDisplay('icon', '<img src=plugins/AndroidRemoteControl/desktop/images/vevo.png height="15" width="15">');
-        $cmd->setEqLogic_id($this->getId());
-        $cmd->save();
- 
 }
 
 public function preUpdate()
@@ -511,7 +105,6 @@ public function preUpdate()
     if ($this->getConfiguration('ip_address') == '') {
         throw new Exception(__('L\'adresse IP doit être renseignée', __FILE__));
     }
-
 }
 
 public function getInfo()
@@ -546,59 +139,20 @@ public function updateInfo()
     if (!is_array($infos)) {
         return;
     }
-
+	log::add('AndroidRemoteControl', 'info', 'Rafraichissement des informations');
     if (isset($infos['power_state'])) {
         $this->checkAndUpdateCmd('power_state', ($infos['power_state'] == "ON") ? 1 : 0 );
     }
     if (isset($infos['encours'])) {
-        $cmd = $this->getCmd(null, 'encours');
-        switch (true) {
-            case stristr($infos['encours'], "netflix"):
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/netflix.png" ');
-            break;
-            case stristr($infos['encours'], "molotov"):
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/molotov.png" ');
-            $cmd->toHtml('dashboard');
-            break;
-            case stristr($infos['encours'], "youtube"):
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/youtube.png" ');
-            break;
-            case stristr($infos['encours'], "launcher"):
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/home.png" ');
-            break;
-            case stristr($infos['encours'], "kodi"):
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/kodi.png" ');
-            break;
-            case stristr($infos['encours'], "amazon"):
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/amazonvideo.png" ');
-            break;
-            case stristr($infos['encours'], "vlc") :
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/vlc.png" ');
-            break;
-            case stristr($infos['encours'], "vevo"):
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/vevo.jpg" ');
-            break;
-            case stristr($infos['encours'], "plex"):
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/plex.png" ');
-            break;
-            case stristr($infos['encours'], "spotify"):
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/spotify.png" ');
-            break;
-            case stristr($infos['encours'], "ted"):
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/ted.png" ');
-            break;
-            case stristr($infos['encours'], "mytf1"):
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/tf1.png" ');
-            break;
-            case stristr($infos['encours'], "m6replay"):
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/m6replay.png" ');
-            break;
-            case stristr($infos['encours'], "dsvideo"):
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/dsvideo.png" ');
-            break;
-          	default:
-            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/inconnu.png" ');
-            }
+      	$cmd = $this->getCmd(null, 'encours');
+      	$url = dirname(__FILE__)  . '/../../3rdparty/appli.json';
+        $data = file_get_contents($url);
+        $json_a = json_decode($data);
+        foreach ($json_a as $json_b) {
+          if (stristr($infos['encours'], $json_b->name)){
+            $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/'.$json_b->icon);
+          }
+        }
             $cmd->save();
         }
         if (isset($infos['version_android'])) {
@@ -620,8 +174,6 @@ public function updateInfo()
   		if (isset($infos['disk_total'])) {
             $this->checkAndUpdateCmd('disk_total', $infos['disk_total']);
         }
-
-        #throw new Exception(var_dump($infos), 1);
     }
 
     public function checkAndroidRemoteControlStatus()
@@ -699,54 +251,19 @@ class AndroidRemoteControlCmd extends cmd
             $sudo_prefix = "sudo ";
         }
         $ip_address = $ARC->getConfiguration('ip_address');
-        log::add('AndroidRemoteControl', 'info', 'Command sent to android device at ip address : ' . $ip_address);
-        if ($this->getLogicalId() == 'power_set') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell input keyevent 26");
-        } elseif ($this->getLogicalId() == 'home') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell input keyevent 3");
-        } elseif ($this->getLogicalId() == 'play') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell input keyevent KEYCODE_BUTTON_MEDIA_PLAY_PAUSE");
-        } elseif ($this->getLogicalId() == 'up') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell input keyevent 19");
-        } elseif ($this->getLogicalId() == 'down') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell input keyevent 20");
-        } elseif ($this->getLogicalId() == 'left') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell input keyevent 21");
-        } elseif ($this->getLogicalId() == 'right') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell input keyevent 22");
-        } elseif ($this->getLogicalId() == 'back') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell input keyevent KEYCODE_BACK");
-        } elseif ($this->getLogicalId() == 'enter') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell input keyevent KEYCODE_ENTER");
-        } elseif ($this->getLogicalId() == 'volume+') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell input keyevent 24");
-        } elseif ($this->getLogicalId() == 'volume-') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell input keyevent 25");
-        } elseif ($this->getLogicalId() == 'netflix') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell am start com.netflix.ninja/.MainActivity");
-        } elseif ($this->getLogicalId() == 'youtube') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell monkey -p com.google.android.youtube.tv -c android.intent.category.LAUNCHER 1");
-        } elseif ($this->getLogicalId() == 'plex') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell monkey -p com.plexapp.android -c android.intent.category.LAUNCHER 1");
-        } elseif ($this->getLogicalId() == 'kodi') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell monkey -p org.xbmc.kodi -c android.intent.category.LAUNCHER 1");
-        } elseif ($this->getLogicalId() == 'molotov') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell am start tv.molotov.app/tv.molotov.android.tv.SplashActivity");
-        } elseif ($this->getLogicalId() == 'spotify') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell monkey -p com.spotify.tv.android -c android.intent.category.LAUNCHER 1");
-        } elseif ($this->getLogicalId() == 'amazonvideo') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell monkey -p com.amazon.amazonvideo.livingroom.nvidia -c android.intent.category.LAUNCHER 1");
-        } elseif ($this->getLogicalId() == 'vevo') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell monkey -p com.vevo -c android.intent.category.LAUNCHER 1");
-        }elseif ($this->getLogicalId() == 'mytf1') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell monkey -p fr.tf1.mytf1 -c android.intent.category.LAUNCHER 1");
-        }elseif ($this->getLogicalId() == 'm6replay') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell monkey -p fr.m6.m6replay.by -c android.intent.category.LAUNCHER 1");
-        }elseif ($this->getLogicalId() == 'dsvideo') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell monkey -p com.synology.dsvideo -c android.intent.category.LAUNCHER 1");
-        }elseif ($this->getLogicalId() == 'ted') {
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell monkey -p com.ted.android.tv -c android.intent.category.LAUNCHER 1");
-        }
+             
+     
+      	$data = file_get_contents(dirname(__FILE__)  . '/../../3rdparty/appli.json');
+     	$data2 = file_get_contents(dirname(__FILE__)  . '/../../3rdparty/commandes.json');
+      	$json= json_encode(array_merge(json_decode($data, true),json_decode($data2, true)));
+        $json_a = json_decode($json);
+        foreach ($json_a as $json_b) {
+          if (stristr($this->getLogicalId(), $json_b->name)){
+             log::add('AndroidRemoteControl', 'info', 'Command '. $json_b->commande. ' sent to android device at ip address : ' . $ip_address);
+            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 " . $json_b->commande);
+          }
+        } 	
+       
         $ARC->updateInfo();
     }
 
