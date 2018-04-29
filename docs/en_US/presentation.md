@@ -28,6 +28,16 @@ Scénarios possible :
 * Commander l'allumage de l'ampli (Yamaha dans mon cas) lorsque la box est allumé (car parfois le HDMI CEC).
 * Si netflix lancé -> lumière salon a 50%
 
+### Equipements testés
+Actuellement le plugin a été vérifié sur les matériels suivants:
+* Nvidia Shield (pas de configurations supplémentaires a effectuer).
+* Oneplus 5t (pas de configurations supplémentaires a effectuer).
+* Xiaomi mibox TV (Le port 5555 servant a ADB n'est pas ouvert par défaut), il faut connecter la box en USB et lancer les commandes suivantes:
+    - adb connect
+    - adb tcpip 5555
+    - adb conncect 192.168.x.x:5555
+    - debrancher le cable
+
 ### Parametrage avancé
 Vous pouvez afficher ou non la liste des applications dans le bandeau du bas (limité a 6) en cochant/décochant l'option afficher sur chanque commande (voir capture ci-dessous)
 
