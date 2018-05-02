@@ -36,5 +36,5 @@ $sudo_prefix cat /etc/os-release
 echo 100 > /tmp/AndroidRemoteControl_dep
 rm /tmp/AndroidRemoteControl_dep
 echo "############################################################################"
-echo "# Installation finnished"
+echo "# Installation finished"
 echo "############################################################################"
