@@ -637,16 +637,16 @@ public function updateInfo()
           log::add('AndroidRemoteControl', 'info', 'Votre appareil est offline');
             log::add('AndroidRemoteControl', 'info', 'Relance du service ADB');
       		exec('../3rdparty/reset.sh');
-      		log::add('AndroidRemoteControl', 'info', 'Connection a Android');
+      		log::add('AndroidRemoteControl', 'info', 'Connection à Android');
     		shell_exec($sudo_prefix . "adb connect " . $ip_address);
         }elseif (!strstr($check, "device")) {
-          log::add('AndroidRemoteControl', 'info', 'Votre appareil n\'est pas détecté par ADB. Tentative de reconnection, veuillez réessayer');
+          log::add('AndroidRemoteControl', 'info', 'Votre appareil n\'est pas détecté par ADB. Tentative de reconnexion, veuillez réessayer');
             log::add('AndroidRemoteControl', 'info', 'Relance du service ADB');
       		exec('../3rdparty/reset.sh');
-      		log::add('AndroidRemoteControl', 'info', 'Connection a Android');
+      		log::add('AndroidRemoteControl', 'info', 'Connection à Android');
     		shell_exec($sudo_prefix . "adb connect " . $ip_address);
         } elseif (strstr($check, "unauthorized")) {
-          	log::add('AndroidRemoteControl', 'info', 'Votre connection n\'est pas autorisé');
+          	log::add('AndroidRemoteControl', 'info', 'Votre connexion n\'est pas autorisée');
         }
     }
 
