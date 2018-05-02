@@ -7,7 +7,7 @@
 
 # Présentation:
 
-Template de permettant de céér des plugins pour Jeedom
+Template permettant de créér des plugins pour Jeedom
 
 # Documentation du plugin:
 [![Read the Docs](https://img.shields.io/readthedocs/pip.svg)](docs/fr_FR/presentation.md)
