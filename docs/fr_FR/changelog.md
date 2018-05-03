@@ -1,11 +1,11 @@
 #Idées pour les versions suivantes :
 
-- Généré dynamiquement la liste des applications disponibles en fonction des applications installées sur l'équipement.
+- Générer dynamiquement la liste des applications disponibles en fonction des applications installées sur l'équipement.
 
 # Prochaine release
 
 Ajout des fonctionnalités suivantes:
-    - Affichage capture d'écrans en cliquant sur l'icone du programme encours
+    - Affichage capture d'écrans en cliquant sur l'icone du programme en cours
     - Prise en charge de l'envoi de SMS sur les appareils compatibles
     - Envoi d'une notification (Toast)
 
@@ -37,6 +37,6 @@ Détail complet des mises à jour sur [Historique Commit](https://github.com/Jee
 
 # Bug
 
-En cas de problèmes avec ce plugin il est possible d'ouvrir un ticket pour demander une correction :
+En cas de problèmes avec ce plugin, il est possible d'ouvrir un ticket pour demander une correction :
 
 [https://github.com/Jeedom-Plugins-Extra/plugin-AndroidRemoteControl/issues](https://github.com/Jeedom-Plugins-Extra/plugin-AndroidRemoteControl/issues)

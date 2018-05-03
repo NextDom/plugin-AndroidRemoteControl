@@ -5,10 +5,10 @@ Plugin permettant de piloter les terminaux android (TV, Shield, freebox mini 4k,
 
 ### Fonctions disponibles
 Infos :
-* nom de l'appareil
-* Etat (allumé/Eteint) (buggé pour l'instant)
-* App encours
-* résolution
+* Nom de l'appareil
+* Etat (Allumé/Eteint) (buggé pour l'instant)
+* App en cours
+* Résolution
 * Version Android
 * Espace disque disponible
 
@@ -20,13 +20,13 @@ Actions :
 * click, enter
 * start, play, pause, stop
 * previous, next
-* lancement des appli: youtube, francetv, plex, spotify, vlc, tf1, google, facebook, molotov, netflix, etc...
+* lancement des applis: youtube, francetv, plex, spotify, vlc, tf1, google, facebook, molotov, netflix, etc...
 
 
-Scénarios possible :
+Scénarios possibles :
 * Allumer la box -> lancer molotov -> play avec commande vocale google home/ifttt (ex: "ok google, met la télé en route").
-* Commander l'allumage de l'ampli (Yamaha dans mon cas) lorsque la box est allumé (car parfois le HDMI CEC).
-* Si netflix lancé -> lumière salon a 50%
+* Commander l'allumage de l'ampli (Yamaha dans mon cas) lorsque la box est allumée (car parfois le HDMI CEC).
+* Si netflix lancé -> lumière salon à 50%
 
 ### Equipements testés
 Actuellement le plugin a été vérifié sur les matériels suivants:
