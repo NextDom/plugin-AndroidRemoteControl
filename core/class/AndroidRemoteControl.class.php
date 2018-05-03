@@ -17,14 +17,13 @@
 */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
-$url = dirname(__FILE__)  . '/../../3rdparty/appli.json'; // path to your JSON file
+require_once __DIR__ . '/../../../../core/php/core.inc.php';
+$url = __DIR__ . '/../../3rdparty/appli.json'; // path to your JSON file
         $data = file_get_contents($url); // put the contents of the file into a variable
         $json_a = json_decode($data); // decode the JSON feed
 
 class AndroidRemoteControl extends eqLogic
 {
-      /*     * *************************Attributs****************************** */
       public static $_widgetPossibility = array(
         'custom' => true,
         'custom::layout' => false,
@@ -65,20 +64,17 @@ class AndroidRemoteControl extends eqLogic
     public static function dependancy_install()
     {
         log::add('AndroidRemoteControl', 'info', 'Installation des dépéndances android-tools-adb');
-        $resource_path = realpath(dirname(__FILE__) . '/../../3rdparty');
+        $resource_path = realpath(__DIR__ . '/../../3rdparty');
         passthru('/bin/bash ' . $resource_path . '/install.sh ' . $resource_path . ' > ' . log::getPathToLog('AndroidRemoteControl_dep') . ' 2>&1 &');
     }
 
-    /*     * ***********************Methode static*************************** */
     public static function resetAndroidRemoteControl($ip_address)
     {
         log::remove('AndroidRemoteControl_reset'); 
-        $cmd = '/bin/bash ' . dirname(__FILE__) . '/../../3rdparty/reset.sh';
+        $cmd = '/bin/bash ' . __DIR__ . '/../../3rdparty/reset.sh';
         $cmd .= ' >> ' . log::getPathToLog('AndroidRemoteControl_reset') . ' 2>&1 &';
         exec($cmd);
     }
-
-    /*     * *********************Méthodes d'instance************************* */
 
     public function postSave()
     {     
@@ -159,7 +155,7 @@ public function updateInfo()
 {
     try {
         $infos = $this->getInfo();
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
         return;
     }
 
@@ -172,7 +168,7 @@ public function updateInfo()
     }
     if (isset($infos['encours'])) {
       	$cmd = $this->getCmd(null, 'encours');
-      	$url = dirname(__FILE__)  . '/../../3rdparty/appli.json';
+      	$url = __DIR__ . '/../../3rdparty/appli.json';
         $data = file_get_contents($url);
         $json_a = json_decode($data);
         foreach ($json_a as $json_b) {
@@ -227,7 +223,7 @@ public function updateInfo()
           exec('../3rdparty/reset.sh');
           log::add('AndroidRemoteControl', 'info', 'Connection a Android');
           shell_exec($sudo_prefix . "adb connect " . $ip_address);
-        }elseif (!strstr($check, "device")) {
+        } elseif (!strstr($check, "device")) {
           $cmd = $this->getCmd(null, 'encours');
           $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/erreur.png');
           $cmd->save();
@@ -283,7 +279,7 @@ public function updateInfo()
 class AndroidRemoteControlCmd extends cmd
 {
   
-    public function execute($_options = array())
+    public function execute(array $_options = array())
     {
         $ARC = $this->getEqLogic();
         $ARC->checkAndroidRemoteControlStatus();
@@ -295,8 +291,8 @@ class AndroidRemoteControlCmd extends cmd
         $ip_address = $ARC->getConfiguration('ip_address');
              
      
-      	$data = file_get_contents(dirname(__FILE__)  . '/../../3rdparty/appli.json');
-     	$data2 = file_get_contents(dirname(__FILE__)  . '/../../3rdparty/commandes.json');
+      	$data = file_get_contents(__DIR__ . '/../../3rdparty/appli.json');
+     	$data2 = file_get_contents(__DIR__ . '/../../3rdparty/commandes.json');
       	$json= json_encode(array_merge(json_decode($data, true),json_decode($data2, true)));
         $json_a = json_decode($json);
         foreach ($json_a as $json_b) {
