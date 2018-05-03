@@ -28,19 +28,6 @@ Scénarios possible :
 * Commander l'allumage de l'ampli (Yamaha dans mon cas) lorsque la box est allumée (car parfois le HDMI CEC).
 * Si Netflix lancé -> lumière salon à 50%
 
-### Paramétrage avancé
-Vous pouvez afficher ou non la liste des applications dans le bandeau du bas (limité a 6) en cochant/décochant l'option afficher sur chaque commande (voir capture ci-dessous)
-
-![Screenshot5](../images/Screenshot3.png)
-
-Vous pouvez également changer la couleur du bandeau du bas ou le rendre transparent.
-
-![Screenshot6](../images/Screenshot4.png)
-
-# Market
-
-Retrouvez le sur le [Market](https://www.jeedom.com/market/index.php?v=d&p=market&type=plugin&&name=Plugin) Jeedom
-
 # Prévisualisation
 
 ![Screenshot1](../images/Screenshot1.png)
@@ -50,6 +37,19 @@ Retrouvez le sur le [Market](https://www.jeedom.com/market/index.php?v=d&p=marke
 ![Screenshot3](../images/Screenshot3.png)
 
 ![Screenshot4](../images/Screenshot4.png)
+
+### Paramétrage avancé
+Vous pouvez afficher ou non la liste des applications dans le bandeau du bas (limité a 6) en cochant/décochant l'option afficher sur chaque commande (voir capture ci-dessous)
+
+![Screenshot5](../images/Screenshot5.png)
+
+Vous pouvez également changer la couleur du bandeau du bas ou le rendre transparent.
+
+![Screenshot6](../images/Screenshot6.png)
+
+# Market
+
+Retrouvez le sur le [Market](https://www.jeedom.com/market/index.php?v=d&p=market&type=plugin&&name=Plugin) Jeedom
 
 # Forum
 
