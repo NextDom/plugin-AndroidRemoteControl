@@ -11,7 +11,15 @@ Ajout des fonctionnalités suivantes:
 
 # Changelog
 
-### Version 0.9.2:  (28/04/2018- Version en cours sur le market)
+### Version 0.9.3:  (03/05/2018- Version en cours sur le market)
+
+* Changement de design
+* Ajout d'un slider pour le reglage du volume
+* Ajout du titre de la lecture encours
+* Ajout d'un paneau latéral droit pour les applications
+
+
+### Version 0.9.2:  (28/04/2018)
 
 * Correction bug sur coloration de l'icon power lorsque l'appareil est allumé
 * Refonte du core pour la gestion des commandes et applications

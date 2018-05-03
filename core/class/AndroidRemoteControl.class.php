@@ -98,6 +98,31 @@ class AndroidRemoteControl extends eqLogic
           $cmd->setEqLogic_id($this->getId());
           $cmd->save();
         }
+      
+      $volume = $this->getCmd(null, 'volume');
+        if (!is_object($volume)) {
+            $volume = new AndroidRemoteControlCmd();
+            $volume->setLogicalId('volume');
+            $volume->setName(__('Volume', __FILE__));
+        }
+        $volume->setUnite('%');
+        $volume->setType('info');
+        $volume->setSubType('numeric');
+        $volume->setConfiguration('repeatEventManagement', 'never');
+        $volume->setEqLogic_id($this->getId());
+        $volume->save();
+      
+      $cmd = $this->getCmd(null, 'setVolume');
+        if (!is_object($cmd)) {
+            $cmd = new AndroidRemoteControlCmd();
+            $cmd->setLogicalId('setVolume');
+            $cmd->setName(__('setVolume', __FILE__));
+        }
+        $cmd->setType('action');
+        $cmd->setSubType('slider');
+        $cmd->setValue($volume->getId());
+        $cmd->setEqLogic_id($this->getId());
+        $cmd->save();
 }
 
 public function preUpdate()
@@ -124,8 +149,10 @@ public function getInfo()
   	$resolution  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555 shell dumpsys window displays | grep init | cut -c45-53"), 0, -1);
     $disk_free = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys diskstats | grep Data-Free | cut -c44-46"), 0, -1);
   	$disk_total = round(substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys diskstats | grep Data-Free | cut -c25-33"), 0, -1)/1000000, 1);
-  
-    return array('power_state' => $power_state, 'encours' => $encours, 'version_android' => $version_android, 'name' => $name, 'type' => $type, 'resolution' => $resolution, 'disk_total' => $disk_total, 'disk_free' => $disk_free);
+  	$title        = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys bluetooth_manager | grep MediaAttributes | cut -d: -f3"), 0, -2);
+  	$volume       = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys audio | grep -A 4 STREAM_MUSIC |grep Current | cut -c26-27"), 0, -1);;
+  	
+    return array('power_state' => $power_state, 'encours' => $encours, 'version_android' => $version_android, 'name' => $name, 'type' => $type, 'resolution' => $resolution, 'disk_total' => $disk_total, 'disk_free' => $disk_free, 'title' => $title, 'volume' => $volume);
 }
 
 public function updateInfo()
@@ -174,6 +201,12 @@ public function updateInfo()
   		if (isset($infos['disk_total'])) {
             $this->checkAndUpdateCmd('disk_total', $infos['disk_total']);
         }
+  		if (isset($infos['title'])) {
+            $this->checkAndUpdateCmd('title', $infos['title']);
+        }
+  		if (isset($infos['volume'])) {
+            $this->checkAndUpdateCmd('volume', $infos['volume']);
+        }
     }
 
     public function checkAndroidRemoteControlStatus()
@@ -186,19 +219,28 @@ public function updateInfo()
         $check = shell_exec($sudo_prefix . "adb devices | grep " . $ip_address . " | cut -f2 | xargs");
         echo $check;
       	if (strstr($check, "offline")) {
+          $cmd = $this->getCmd(null, 'encours');
           log::add('AndroidRemoteControl', 'info', 'Votre appareil est offline');
-            log::add('AndroidRemoteControl', 'info', 'Relance du service ADB');
-      		exec('../3rdparty/reset.sh');
-      		log::add('AndroidRemoteControl', 'info', 'Connection a Android');
-    		shell_exec($sudo_prefix . "adb connect " . $ip_address);
+          log::add('AndroidRemoteControl', 'info', 'Relance du service ADB');
+          $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/erreur.png');
+          $cmd->save();
+          exec('../3rdparty/reset.sh');
+          log::add('AndroidRemoteControl', 'info', 'Connection a Android');
+          shell_exec($sudo_prefix . "adb connect " . $ip_address);
         }elseif (!strstr($check, "device")) {
+          $cmd = $this->getCmd(null, 'encours');
+          $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/erreur.png');
+          $cmd->save();
           log::add('AndroidRemoteControl', 'info', 'Votre appareil n\'est pas détecté par ADB. Tentative de reconnection, veuillez réessayer');
-            log::add('AndroidRemoteControl', 'info', 'Relance du service ADB');
-      		exec('../3rdparty/reset.sh');
-      		log::add('AndroidRemoteControl', 'info', 'Connection a Android');
-    		shell_exec($sudo_prefix . "adb connect " . $ip_address);
+          log::add('AndroidRemoteControl', 'info', 'Relance du service ADB');
+          exec('../3rdparty/reset.sh');
+          log::add('AndroidRemoteControl', 'info', 'Connection a Android');
+          shell_exec($sudo_prefix . "adb connect " . $ip_address);
         } elseif (strstr($check, "unauthorized")) {
-          	log::add('AndroidRemoteControl', 'info', 'Votre connection n\'est pas autorisé');
+          $cmd = $this->getCmd(null, 'encours');
+          $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/erreur.png');
+          $cmd->save();
+          log::add('AndroidRemoteControl', 'info', 'Votre connection n\'est pas autorisé');
         }
     }
 
@@ -259,10 +301,13 @@ class AndroidRemoteControlCmd extends cmd
         $json_a = json_decode($json);
         foreach ($json_a as $json_b) {
           if (stristr($this->getLogicalId(), $json_b->name)){
-             log::add('AndroidRemoteControl', 'info', 'Command '. $json_b->commande. ' sent to android device at ip address : ' . $ip_address);
+            log::add('AndroidRemoteControl', 'info', 'Command '. $json_b->commande. ' sent to android device at ip address : ' . $ip_address);
             shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 " . $json_b->commande);
           }
         } 	
+      	if (stristr($this->getLogicalId(), 'setVolume')){
+          shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell service call audio 3 i32 3 i32 " . $_options['slider']);
+        }
        
         $ARC->updateInfo();
     }
