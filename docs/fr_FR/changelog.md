@@ -1,11 +1,11 @@
-#Idées pour les versions suivantes :
+# Idées pour les versions suivantes :
 
 - Générer dynamiquement la liste des applications disponibles en fonction des applications installées sur l'équipement.
 
-# Prochaine release
+# Prochaine version
 
 Ajout des fonctionnalités suivantes:
-    - Affichage capture d'écrans en cliquant sur l'icone du programme en cours
+    - Affichage capture d'écran en cliquant sur l'icône du programme encours
     - Prise en charge de l'envoi de SMS sur les appareils compatibles
     - Envoi d'une notification (Toast)
 
@@ -29,7 +29,7 @@ Cela permet d'ajouter des commandes et applications sans modifier le core du plu
 
 ### Version 0.9.1:  (26/04/2018)
 
-* 1ere BETA
+* 1ere BÊTA
 
 ### Détail des changements
 

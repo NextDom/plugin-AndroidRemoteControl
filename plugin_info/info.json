@@ -1,7 +1,7 @@
 {
 	"id" : "AndroidRemoteControl",
 	"name" : "AndroidRemoteControl",
-	"description" : "Plugin pour piloter les android TV et autres équipements android",
+	"description" : "Plugin pour piloter les Android TV et autres équipements Android",
 	"licence" : "AGPL",
 	"author" : "Jeedom-Plugins-Extra [Byackee, Slobberbone]",
 	"require" : "3.0",
