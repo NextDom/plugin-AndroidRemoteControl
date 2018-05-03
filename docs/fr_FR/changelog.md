@@ -28,10 +28,7 @@ Cela permet d'ajouter des commandes et applications sans modifier le core du plu
 
 ### Version 0.9.1:  (26/04/2018)
 
-* Changement de design
-* Ajout d'un slider pour le reglage du volume
-* Ajout du titre de la lecture encours
-* Ajout d'un paneau latéral droit pour les applications
+* 1ere beta
 
 ### Détail des changements
 
