@@ -1,6 +1,6 @@
 .AndroidRemoteControl_widget {
     width: 250px;
-    height: 330px;
+    height: 340px;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background-color: black;
     overflow: hidden;
@@ -9,7 +9,7 @@
 }
 
 .AndroidRemoteControl_widget .uppart {
-    height: 275px;
+    height: 280px;
     width: 250px;
     z-index: 2;
 }
@@ -23,7 +23,7 @@
 }
 
 .AndroidRemoteControl_widget .title {
-    font-size: 1em;
+    font-size: 1.5em;
     font-weight: bold;
     z-index: 2;
 }
@@ -44,11 +44,15 @@
 }
 
 .AndroidRemoteControl_widget .icons img{
-  	margin-top: 7px;
+  	margin-top: 2px;
     border-radius: 10%;
    	width: 30px;
 	height: auto;
     z-index: 7;
+}
+
+.AndroidRemoteControl_widget .commandes{
+  	padding-top:5px;
 }
 
 .AndroidRemoteControl_widget .leftpanel {
@@ -60,6 +64,16 @@
     z-index: 10;
     left: -200px;
 	background: rgba(0, 0, 0, 0.7);
+}
+
+.AndroidRemoteControl_widget .rightpanel {
+    width: 200px;
+    height: 327px;
+    float: left;
+    position: absolute;
+    z-index: 10;
+    right: -200px;
+    background: rgba(0, 0, 0, 0.9);
 }
 
 .AndroidRemoteControl_widget .leftRafter {
@@ -86,11 +100,87 @@
     transform: rotate(0deg);
 }
 
+.AndroidRemoteControl_widget .rightRafter {
+    width: 15px;
+    height: 40px;
+    position: absolute;
+    top: 143.5px;
+    right: 5px;
+    cursor: pointer;
+    z-index: 4;
+    opacity: 0.3;
+}
+
+.AndroidRemoteControl_widget .rightRafter:hover {
+    opacity: 1;
+}
+
+.AndroidRemoteControl_widget .rightpanel .rightRafter {
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
 .AndroidRemoteControl_widget .info_data{
     font-size: 1em;
 }
 
 .AndroidRemoteControl_widget .downpart {
-    height: 70px;
+    height: 40px;
     width: 250px;
+}
+
+.AndroidRemoteControl_widget .content {
+	display: block;
+	margin-left: 30px;
+	overflow: hidden;
+	position: relative;
+	table-layout: fixed;
+	width: 200px;
+	height: 20px;
+}
+.AndroidRemoteControl_widget .message {
+	display: block;
+	margin-left: -10%;
+	font-size: 1.2rem;
+	text-align: left;
+	animation: defilement 20s infinite linear;
+}
+.AndroidRemoteControl_widget .message:after {
+	content: attr(data-text);
+	position: absolute;
+	white-space: nowrap;
+	padding-left: 10px;
+}
+ @keyframes defilement {
+ 0%, 100% {
+margin-left:0;
+}
+ 99.99% {
+margin-left:-100%;
+}
+}
+
+.AndroidRemoteControl_widget .volume_musiccast_widget {
+    position: absolute;
+    width: 250px;
+    bottom: 15px;
+}
+
+.AndroidRemoteControl_widget .bouton_sup_volume {
+    opacity: 0.5;
+    cursor: pointer;
+    position: absolute;
+    bottom: 55px;
+    left: 5px;
+}
+
+.AndroidRemoteControl_widget .volumeDownpart {
+    height: 40px;
+    width: 250px;
+    z-index: 7;
+}
+
+.AndroidRemoteControl_widget .slider.slider-horizontal{
+  margin-top: 10px;
 }

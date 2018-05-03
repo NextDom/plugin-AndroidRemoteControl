@@ -1,28 +1,47 @@
 <div class="eqLogic eqLogic-widget noResize AndroidRemoteControl_widget AndroidRemoteControl" data-version="#version#"
      style="text-align:center; width: 250px;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;#style#;height:320px;"
-     data-eqLogic_id="#id#" data-eqLogic_uid="#uid#"> 
-  <link rel="stylesheet" href="plugins/AndroidRemoteControl/core/template/dashboard/css/style.css"/>	
+     data-eqLogic_id="#id#" data-eqLogic_uid="#uid#">
+  <link rel="stylesheet" href="plugins/AndroidRemoteControl/core/template/dashboard/css/style.css"/>
   	<span class="statusCmd" style="position : absolute;left : 5px;bottom : 5px; width : 30px;z-index: 1030;"></span>
 	<a class="power_set cmd pull-right noRefresh" id="power_set" data-cmd_id="#power_set_id#" title="Allumer/Eteindre" onclick="jeedom.cmd.execute({id: #power_set_id#});"><i class="fa fa-power-off"></i></a>
-<script>
-if (#power_state# == 1) {
-	document.getElementById(".AndroidRemoteControl[data-eqLogic_id=#id#] .power_set").style.color = '#f00';
-}
-</script>
+
   <div class="leftpanel">
-        <div style="margin-left : 24px;overflow: auto;height: 327px;">
+        <div style="margin-left : 7px;overflow: auto;height: 327px;">
             <legend style="color : white;margin-bottom:2px;"><b>Informations:</b></legend>
   			<a class="info_data" style="text-decoration: none; cursor:default;"><b>nom:</b> #name#</a><br>
     		<a class="info_data" style="text-decoration: none; cursor:default;"><b>type:</b> #type#</a><br>
   			<a class="info_data" style="text-decoration: none; cursor:default;"><b>version:</b> #version_android#</a><br>
-			<a class="info_data" style="text-decoration: none; cursor:default;"><b>résolution:</b> #resolution#</a>
+			<a class="info_data" style="text-decoration: none; cursor:default;"><b>résolution:</b> #resolution#</a><br>
   			<a class="info_data" style="text-decoration: none; cursor:default;"><b>disk:</b> #disk_total#Gb  #disk_free# free</a>
 
         </div>
         <img class="leftRafter" style="display:none;" src="plugins/AndroidRemoteControl/core/template/dashboard/img/chevron.png" title="Infos" onClick="panelLeftClose#id#()"/>
     </div>
-  		<img class="leftRafter" src="plugins/AndroidRemoteControl/core/template/dashboard/img/chevron.png" onclick="panelLeft#id#()"/>
-  
+
+
+    <div class="rightpanel">
+        <div style="margin-right : 7px;overflow: auto;height: 327px;">
+            <legend style="color : white;margin-bottom:2px;">Applications</legend>
+            <a class="btn cmd icons noRefresh" style="display:#amazonvideo_id_display#;padding:3px" data-cmd_id="#amazonvideo_id#" title="amazon video" onclick="jeedom.cmd.execute({id: #amazonvideo_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/amazonvideo.png"></a>
+ 			<a class="btn cmd icons noRefresh" style="display:#netflix_id_display#;padding:3px" data-cmd_id="#netflix_id#" title="Netflix" onclick="jeedom.cmd.execute({id: #netflix_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/netflix.png"></a>
+			<a class="btn cmd icons noRefresh" style="display:#molotov_id_display#;padding:3px" data-cmd_id="#molotov_id#" title="Molotov" onclick="jeedom.cmd.execute({id: #molotov_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/molotov.png"></a>
+			<a class="btn cmd icons noRefresh" style="display:#youtube_id_display#;padding:3px" data-cmd_id="#youtube_id#" title="Youtube" onclick="jeedom.cmd.execute({id: #youtube_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/youtube.png"></a>
+			<a class="btn cmd icons noRefresh" style="display:#kodi_id_display#;padding:3px" data-cmd_id="#kodi_id#" title="Kodi" onclick="jeedom.cmd.execute({id: #kodi_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/kodi.png"></a>
+  			<a class="btn cmd icons noRefresh" style="display:#plex_id_display#;padding:3px" data-cmd_id="#plex_id#" title="Plex" onclick="jeedom.cmd.execute({id: #plex_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/plex.png"></a>
+			<a class="btn cmd icons noRefresh" style="display:#vevo_id_display#;padding:3px" data-cmd_id="#vevo_id#" title="Vevo" onclick="jeedom.cmd.execute({id: #vevo_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/vevo.jpg"></a>
+			<a class="btn cmd icons noRefresh" style="display:#spotify_id_display#;padding:3px" data-cmd_id="#spotify_id#" title="Spotify" onclick="jeedom.cmd.execute({id: #spotify_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/spotify.png"></a>
+  			<a class="btn cmd icons noRefresh" style="display:#ted_id_display#;padding:3px" data-cmd_id="#ted_id#" title="TED" onclick="jeedom.cmd.execute({id: #ted_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/ted.png"></a>
+  			<a class="btn cmd icons noRefresh" style="display:#mytf1_id_display#;padding:3px" data-cmd_id="#mytf1_id#" title="myTF1" onclick="jeedom.cmd.execute({id: #mytf1_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/tf1.png"></a>
+  			<a class="btn cmd icons noRefresh" style="display:#m6replay_id_display#;padding:3px" data-cmd_id="#m6replay_id#" title="M6Replay" onclick="jeedom.cmd.execute({id: #m6replay_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/m6replay.png"></a>
+  			<a class="btn cmd icons noRefresh" style="display:#dsvideo_id_display#;padding:3px" data-cmd_id="#dsvideo_id#" title="DSVideo" onclick="jeedom.cmd.execute({id: #dsvideo_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/dsvideo.png"></a>
+            <a class="btn cmd icons noRefresh" style="display:#zapster_id_display#;padding:3px" data-cmd_id="#zapster_id#" title="TV" onclick="jeedom.cmd.execute({id: #zapster_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/television.png"></a>
+        </div>
+        <img class="rightRafter" style="display:none;"
+             src="plugins/AndroidRemoteControl/core/template/dashboard/img/chevron.png" onClick="panelRightClose#id#()"/>
+    </div>
+              <img class="rightRafter" src="plugins/AndroidRemoteControl/core/template/dashboard/img/chevron.png" onClick="panelRight#id#()"/>
+              <img class="leftRafter" src="plugins/AndroidRemoteControl/core/template/dashboard/img/chevron.png" onclick="panelLeft#id#()"/>
+
 	<div class="uppart">
 		<a href="#eqLink#" class="title" style="#hideEqLogicName#">#name_display# <span style="font-size: 0.85em;">#object_name#</span></a>
 
@@ -32,12 +51,8 @@ if (#power_state# == 1) {
 				<img class="affiche" src="#thumbnail#">
   				<a class="btn cmd volume_up pull-right noRefresh" data-cmd_id="#volume+_id#"  title="Volume+" onclick="jeedom.cmd.execute({id: #volume+_id#});"> <i class="fa fa-volume-up fa-lg"></i></a>
 		</div>
-		<div style="white-space:nowrap;text-align: center">
-			<a class="btn cmd noRefresh" style="display:#home_id_display#" data-cmd_id="#home_id#" title="Home" onclick="jeedom.cmd.execute({id: #home_id#});"><i class="fa fa-home fa-lg"></i></a>
-			<a class="btn cmd noRefresh" style="display:#back_id_display#" data-cmd_id="#back_id#" title="Back" onclick="jeedom.cmd.execute({id: #back_id#});"><i class="fa fa-undo fa-lg"></i></a>
-			<a class="btn cmd noRefresh" style="display:#play_id_display#" data-cmd_id="#play_id#" title="Play" onclick="jeedom.cmd.execute({id: #hplay_id#});"><i class="fa fa-play fa-lg"></i></a>
-			<a class="btn cmd noRefresh" style="display:#stop_id_display#" data-cmd_id="#stop_id#" title="Stop" onclick="jeedom.cmd.execute({id: #stop_id#});"><i class="fa fa-stop fa-lg"></i></a>
-		</div>
+  		<div class="content"><span class="message">#title#</span> </div>
+
 		<div style="white-space:nowrap;text-align: center">
 			<a class="btn cmd" style="display:inline" data-cmd_id="#up_id#" title="Up" onclick="jeedom.cmd.execute({id: #up_id#});"><i class="fa fa-chevron-up"></i></a>
 		</div>
@@ -50,34 +65,79 @@ if (#power_state# == 1) {
 			<a class="btn cmd" style="display:inline" data-cmd_id="#down_id#" title="Down" onclick="jeedom.cmd.execute({id: #down_id#});"><i class="fa fa-chevron-down"></i></a>
 		</div>
   	</div>
+  	<img src="plugins/AndroidRemoteControl/core/template/dashboard/img/sound.png" height="15px" width="15px"
+             class="bouton_sup_volume" onclick="volume_AndroidRemoteControl#id#('bouton')"/>
  	 <div class="downpart" style="background: #sub-background-color#;">
-			<a class="btn cmd icons noRefresh" style="display:#amazonvideo_id_display#;padding:3px" data-cmd_id="#amazonvideo_id#" title="amazon video" onclick="jeedom.cmd.execute({id: #amazonvideo_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/amazonvideo.png"></a>
- 			<a class="btn cmd icons noRefresh" style="display:#netflix_id_display#;padding:3px" data-cmd_id="#netflix_id#" title="Netflix" onclick="jeedom.cmd.execute({id: #netflix_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/netflix.png"></a>
-			<a class="btn cmd icons noRefresh" style="display:#molotov_id_display#;padding:3px" data-cmd_id="#molotov_id#" title="Molotov" onclick="jeedom.cmd.execute({id: #molotov_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/molotov.png"></a>
-			<a class="btn cmd icons noRefresh" style="display:#youtube_id_display#;padding:3px" data-cmd_id="#youtube_id#" title="Youtube" onclick="jeedom.cmd.execute({id: #youtube_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/youtube.png"></a>
-			<a class="btn cmd icons noRefresh" style="display:#kodi_id_display#;padding:3px" data-cmd_id="#kodi_id#" title="Kodi" onclick="jeedom.cmd.execute({id: #kodi_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/kodi.png"></a>
-  			<a class="btn cmd icons noRefresh" style="display:#plex_id_display#;padding:3px" data-cmd_id="#plex_id#" title="Plex" onclick="jeedom.cmd.execute({id: #plex_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/plex.png"></a>
-			<a class="btn cmd icons noRefresh" style="display:#vevo_id_display#;padding:3px" data-cmd_id="#vevo_id#" title="Vevo" onclick="jeedom.cmd.execute({id: #vevo_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/vevo.jpg"></a>
-			<a class="btn cmd icons noRefresh" style="display:#spotify_id_display#;padding:3px" data-cmd_id="#spotify_id#" title="Spotify" onclick="jeedom.cmd.execute({id: #spotify_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/spotify.png"></a>
-  			<a class="btn cmd icons noRefresh" style="display:#ted_id_display#;padding:3px" data-cmd_id="#ted_id#" title="TED" onclick="jeedom.cmd.execute({id: #ted_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/ted.png"></a>
-  			<a class="btn cmd icons noRefresh" style="display:#mytf1_id_display#;padding:3px" data-cmd_id="#mytf1_id#" title="myTF1" onclick="jeedom.cmd.execute({id: #mytf1_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/tf1.png"></a>
-  			<a class="btn cmd icons noRefresh" style="display:#m6replay_id_display#;padding:3px" data-cmd_id="#m6replay_id#" title="M6Replay" onclick="jeedom.cmd.execute({id: #m6replay_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/m6replay.png"></a>
-  			<a class="btn cmd icons noRefresh" style="display:#dsvideo_id_display#;padding:3px" data-cmd_id="#dsvideo_id#" title="DSVideo" onclick="jeedom.cmd.execute({id: #dsvideo_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/dsvideo.png"></a>
-		</div>
+			<div class="commandes" style="white-space:nowrap;text-align: center">
+			<a class="btn cmd noRefresh" style="display:#mainmenu_id_display#" data-cmd_id="#mainmenu_id#" title="Home" onclick="jeedom.cmd.execute({id: #mainmenu_id#});"><i class="fa fa-home fa-lg"></i></a>
+			<a class="btn cmd noRefresh" style="display:#return_id_display#" data-cmd_id="#return_id#" title="Back" onclick="jeedom.cmd.execute({id: #return_id#});"><i class="fa fa-undo fa-lg"></i></a>
+			<a class="btn cmd noRefresh" style="display:#play_id_display#" data-cmd_id="#play_id#" title="Play" onclick="jeedom.cmd.execute({id: #play_id#});"><i class="fa fa-play fa-lg"></i></a>
+			<a class="btn cmd noRefresh" style="display:#stop_id_display#" data-cmd_id="#stop_id#" title="Stop" onclick="jeedom.cmd.execute({id: #stop_id#});"><i class="fa fa-stop fa-lg"></i></a>
+			</div>
+      </div>
+		<div class="volumeDownpart" style="display:none;background-color: #sub-background-color#;">
+        	<img src="plugins/AndroidRemoteControl/core/template/dashboard/img/working.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_AndroidRemoteControl#id#('volume')"/>
+        	<div class="volume_AndroidRemoteControl_widget" style="margin-left: 40px;">
+            	<div class="volume cmd noRefresh" data-cmd_id="#setVolume_id#" style="width: 180px;" value="#volume#"></div>
+        	</div>
+    	</div>
 
-</div>
 
   <script>
+  if (#power_state# == 1) {
+	$(".AndroidRemoteControl[data-eqLogic_id=#id#] .power_set").css('color','red');
+  }
+
   function panelLeft#id#()
         {
             $(".AndroidRemoteControl[data-eqLogic_id=#id#] .leftpanel").animate({left: "0px"});
             $(".AndroidRemoteControl[data-eqLogic_id=#id#] .leftpanel .leftRafter").show();
+          	panelRightClose#id#();
         }
-  
+
    function panelLeftClose#id#()
         {
             $(".AndroidRemoteControl[data-eqLogic_id=#id#] .leftpanel").animate({left: "-200px"});
             $(".AndroidRemoteControl[data-eqLogic_id=#id#] .leftpanel .leftRafter").hide();
         }
-  </script>
 
+    function panelRight#id#()
+        {
+            $(".AndroidRemoteControl[data-eqLogic_id=#id#] .rightpanel").animate({right: "0px"});
+            $(".AndroidRemoteControl[data-eqLogic_id=#id#] .rightpanel .rightRafter").show();
+            panelLeftClose#id#();
+        }
+    function panelRightClose#id#()
+        {
+            $(".AndroidRemoteControl[data-eqLogic_id=#id#] .rightpanel").animate({right: "-200px"});
+            $(".AndroidRemoteControl[data-eqLogic_id=#id#] .rightpanel .rightRafter").hide();
+        }
+
+  function volume_AndroidRemoteControl#id#(bouton)
+        {
+            if (bouton == 'bouton') {
+                $('.AndroidRemoteControl[data-eqLogic_id=#id#] .volumeDownpart').css('display', 'block');
+                $('.AndroidRemoteControl[data-eqLogic_id=#id#] .downpart').css('display', 'none');
+            } else if (bouton == 'volume') {
+                $('.AndroidRemoteControl[data-eqLogic_id=#id#] .volumeDownpart').css('display', 'none');
+                $('.AndroidRemoteControl[data-eqLogic_id=#id#] .downpart').css('display', 'block');
+            }
+        }
+
+  $(".AndroidRemoteControl[data-eqLogic_id=#id#] .volume").slider({
+            min: 0,
+            max: 15,
+            range: "min",
+            value: ('#volume#' == '') ? 0 : parseInt('#volume#')
+        });
+        $(".AndroidRemoteControl[data-eqLogic_id=#id#] .slider.slider-horizontal").css('z-index', 1);
+        $(".AndroidRemoteControl[data-eqLogic_id=#id#] .slider.slider-horizontal").css('padding-top', '20px');
+        $(".AndroidRemoteControl[data-eqLogic_id=#id#] .volume").on('slidestop', function (event, ui) {
+            jeedom.cmd.execute({id: '#setVolume_id#', value: {slider: ui.value}});
+        });
+        $(".AndroidRemoteControl[data-eqLogic_id=#id#] .ui-slider-handle").css("background", "transparent");
+        $(".AndroidRemoteControl[data-eqLogic_id=#id#] .ui-slider-handle").css("border-color", "transparent");
+        $(".AndroidRemoteControl[data-eqLogic_id=#id#] .ui-slider-handle").append('<i class="fa fa-volume-up" style="color:#253E5E;font-size:1.2em;margin-top:-5px;cursor:pointer" title="Volume"></i>');
+
+  </script>
+</div>

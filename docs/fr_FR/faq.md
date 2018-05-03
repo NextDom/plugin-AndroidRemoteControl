@@ -3,11 +3,11 @@
 ### Est-ce que ce plugin s'appuie sur des API tiers ?
 
 > Le plugin utilise le service ADB (Android Debug Bridge) pour récupérer les informations et envoyer les commandes de votre Android.
-Le plugin installe le paquet Debian 'adb-tools'
+Le plugin installe le paquet debian 'adb-tools'
 
-### Je souhaite contribuer à l'amélioration de ce plugin, est ce possible ?
+### Je souhaite contribuer à l'amélioration de ce plugin, est-ce possible ?
 
-> Bien sûr, le code est sur GitHub : pouvez soumettre des pull requests.
+> Bien sûr, le code est sur GitHub : vous pouvez soumettre des pull requests.
 
 ### Je ne vois pas mes applications dans le bandeau du bas ?
 

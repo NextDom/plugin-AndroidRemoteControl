@@ -1,0 +1,95 @@
+[
+  {
+    "name": "disk_total",
+    "type": "info",
+    "subtype": "string"
+  },{
+    "name": "disk_free",
+    "type": "info",
+    "subtype": "string"
+  },{
+    "name": "resolution",
+    "type": "info",
+    "subtype": "string"
+  },{
+    "name": "type",
+    "type": "info",
+    "subtype": "string"
+  },{
+    "name": "version_android",
+    "type": "info",
+    "subtype": "string"
+  },{
+    "name": "name",
+    "type": "info",
+    "subtype": "string"
+  },{
+    "name": "power_state",
+    "type": "info",
+    "subtype": "binary"
+  },{
+    "name": "encours",
+    "type": "info",
+    "subtype": "string"
+  },{
+    "name": "mainmenu",
+    "type": "action",
+    "subtype": "other",
+    "commande": "shell input keyevent 3"
+  },{
+    "name": "power_set",
+    "type": "action",
+    "subtype": "other",
+    "commande": "shell input keyevent 26"
+  },{
+    "name": "play",
+    "type": "action",
+    "subtype": "other",
+    "commande": "shell input keyevent KEYCODE_BUTTON_MEDIA_PLAY_PAUSE"
+  },{
+    "name": "stop",
+    "type": "action",
+    "subtype": "other",
+    "commande": "shell input keyevent KEYCODE_MEDIA_STOP"
+  },{
+    "name": "up",
+    "type": "action",
+    "subtype": "other",
+    "commande": "shell input keyevent 19"
+  },{
+    "name": "down",
+    "type": "action",
+    "subtype": "other",
+    "commande": "shell input keyevent 20"
+  },{
+    "name": "left",
+    "type": "action",
+    "subtype": "other",
+    "commande": "shell input keyevent 21"
+  },{
+    "name": "right",
+    "type": "action",
+    "subtype": "other",
+    "commande": "shell input keyevent 22"
+  },{
+    "name": "return",
+    "type": "action",
+    "subtype": "other",
+    "commande": "shell input keyevent KEYCODE_BACK"
+  },{
+    "name": "enter",
+    "type": "action",
+    "subtype": "other",
+    "commande": "sshell input keyevent KEYCODE_ENTER"
+  },{
+    "name": "volume+",
+    "type": "action",
+    "subtype": "other",
+    "commande": "shell input keyevent 24"
+  },{
+    "name": "volume-",
+    "type": "action",
+    "subtype": "other",
+    "commande": "shell input keyevent 25"
+  }
+]
