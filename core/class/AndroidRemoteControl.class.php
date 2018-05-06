@@ -70,14 +70,14 @@ class AndroidRemoteControl extends eqLogic
 
     public static function resetAndroidRemoteControl($ip_address)
     {
-        log::remove('AndroidRemoteControl_reset'); 
+        log::remove('AndroidRemoteControl_reset');
         $cmd = '/bin/bash ' . __DIR__ . '/../../3rdparty/reset.sh';
         $cmd .= ' >> ' . log::getPathToLog('AndroidRemoteControl_reset') . ' 2>&1 &';
         exec($cmd);
     }
 
     public function postSave()
-    {     
+    {
       	$data = file_get_contents(dirname(__FILE__)  . '/../../3rdparty/appli.json');
      	$data2 = file_get_contents(dirname(__FILE__)  . '/../../3rdparty/commandes.json');
       	$json= json_encode(array_merge(json_decode($data, true),json_decode($data2, true)));
@@ -94,7 +94,7 @@ class AndroidRemoteControl extends eqLogic
           $cmd->setEqLogic_id($this->getId());
           $cmd->save();
         }
-      
+
       $volume = $this->getCmd(null, 'volume');
         if (!is_object($volume)) {
             $volume = new AndroidRemoteControlCmd();
@@ -107,7 +107,7 @@ class AndroidRemoteControl extends eqLogic
         $volume->setConfiguration('repeatEventManagement', 'never');
         $volume->setEqLogic_id($this->getId());
         $volume->save();
-      
+
       $cmd = $this->getCmd(null, 'setVolume');
         if (!is_object($cmd)) {
             $cmd = new AndroidRemoteControlCmd();
@@ -147,8 +147,9 @@ public function getInfo()
   	$disk_total = round(substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys diskstats | grep Data-Free | cut -c25-33"), 0, -1)/1000000, 1);
   	$title        = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys bluetooth_manager | grep MediaAttributes | cut -d: -f3"), 0, -2);
   	$volume       = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys audio | grep -A 4 STREAM_MUSIC |grep Current | cut -c26-27"), 0, -1);;
-  	
-    return array('power_state' => $power_state, 'encours' => $encours, 'version_android' => $version_android, 'name' => $name, 'type' => $type, 'resolution' => $resolution, 'disk_total' => $disk_total, 'disk_free' => $disk_free, 'title' => $title, 'volume' => $volume);
+    $play_state  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555  shell dumpsys bluetooth_manager | grep MediaAttributes | cut -d: -f3"), 0, -2);
+
+    return array('power_state' => $power_state, 'encours' => $encours, 'version_android' => $version_android, 'name' => $name, 'type' => $type, 'resolution' => $resolution, 'disk_total' => $disk_total, 'disk_free' => $disk_free, 'title' => $title, 'volume' => $volume, 'play_state' => $play_state);
 }
 
 public function updateInfo()
@@ -256,7 +257,7 @@ public function updateInfo()
             $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
             $replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
             $replace['#' . $cmd->getLogicalId() . '_collect#'] = $cmd->getCollectDate();
-            
+
           if ($cmd->getLogicalId() == 'encours'){
                 $replace['#thumbnail#'] = $cmd->getDisplay('icon');
             }
@@ -268,7 +269,7 @@ public function updateInfo()
         foreach ($this->getCmd('action') as $cmd) {
         	   $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
           	   $replace['#' . $cmd->getLogicalId() . '_id_display#'] = (is_object($cmd) && $cmd->getIsVisible()) ? '#' . $cmd->getId() . "_id_display#" : 'none';
-            
+
         }
 
          return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'eqLogic', 'AndroidRemoteControl')));
@@ -278,7 +279,7 @@ public function updateInfo()
 
 class AndroidRemoteControlCmd extends cmd
 {
-  
+
     public function execute(array $_options = array())
     {
         $ARC = $this->getEqLogic();
@@ -289,8 +290,8 @@ class AndroidRemoteControlCmd extends cmd
             $sudo_prefix = "sudo ";
         }
         $ip_address = $ARC->getConfiguration('ip_address');
-             
-     
+
+
       	$data = file_get_contents(__DIR__ . '/../../3rdparty/appli.json');
      	$data2 = file_get_contents(__DIR__ . '/../../3rdparty/commandes.json');
       	$json= json_encode(array_merge(json_decode($data, true),json_decode($data2, true)));
@@ -300,11 +301,11 @@ class AndroidRemoteControlCmd extends cmd
             log::add('AndroidRemoteControl', 'info', 'Command '. $json_b->commande. ' sent to android device at ip address : ' . $ip_address);
             shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 " . $json_b->commande);
           }
-        } 	
+        }
       	if (stristr($this->getLogicalId(), 'setVolume')){
           shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell service call audio 3 i32 3 i32 " . $_options['slider']);
         }
-       
+
         $ARC->updateInfo();
     }
 

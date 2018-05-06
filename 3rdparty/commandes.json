@@ -32,6 +32,10 @@
     "type": "info",
     "subtype": "string"
   },{
+    "name": "play_state",
+    "type": "info",
+    "subtype": "string"
+  },{
     "name": "mainmenu",
     "type": "action",
     "subtype": "other",

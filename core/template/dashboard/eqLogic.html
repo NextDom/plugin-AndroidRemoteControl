@@ -13,9 +13,9 @@
   			<a class="info_data" style="text-decoration: none; cursor:default;"><b>version:</b> #version_android#</a><br>
 			<a class="info_data" style="text-decoration: none; cursor:default;"><b>résolution:</b> #resolution#</a><br>
   			<a class="info_data" style="text-decoration: none; cursor:default;"><b>disk:</b> #disk_total#Gb  #disk_free# free</a>
-
+            <a class="play_state" style="text-decoration: none; cursor:default;"><b>statut lecture:</b> #play_state#</a>
         </div>
-        <img class="leftRafter" style="display:none;" src="plugins/AndroidRemoteControl/core/template/dashboard/img/chevron.png" title="Infos" onClick="panelLeftClose#id#()"/>
+        <img class="leftRafter" style="display:none;" src="plugins/AndroidRemoteControl/core/template/img/chevron.png" title="Infos" onClick="panelLeftClose#id#()"/>
     </div>
 
 
@@ -37,10 +37,10 @@
             <a class="btn cmd icons noRefresh" style="display:#zapster_id_display#;padding:3px" data-cmd_id="#zapster_id#" title="TV" onclick="jeedom.cmd.execute({id: #zapster_id#});"><img src="plugins/AndroidRemoteControl/desktop/images/television.png"></a>
         </div>
         <img class="rightRafter" style="display:none;"
-             src="plugins/AndroidRemoteControl/core/template/dashboard/img/chevron.png" onClick="panelRightClose#id#()"/>
+             src="plugins/AndroidRemoteControl/core/template/img/chevron.png" onClick="panelRightClose#id#()"/>
     </div>
-              <img class="rightRafter" src="plugins/AndroidRemoteControl/core/template/dashboard/img/chevron.png" onClick="panelRight#id#()"/>
-              <img class="leftRafter" src="plugins/AndroidRemoteControl/core/template/dashboard/img/chevron.png" onclick="panelLeft#id#()"/>
+              <img class="rightRafter" src="plugins/AndroidRemoteControl/core/template/img/chevron.png" onClick="panelRight#id#()"/>
+              <img class="leftRafter" src="plugins/AndroidRemoteControl/core/template/img/chevron.png" onclick="panelLeft#id#()"/>
 
 	<div class="uppart">
 		<a href="#eqLink#" class="title" style="#hideEqLogicName#">#name_display# <span style="font-size: 0.85em;">#object_name#</span></a>
@@ -65,7 +65,7 @@
 			<a class="btn cmd" style="display:inline" data-cmd_id="#down_id#" title="Down" onclick="jeedom.cmd.execute({id: #down_id#});"><i class="fa fa-chevron-down"></i></a>
 		</div>
   	</div>
-  	<img src="plugins/AndroidRemoteControl/core/template/dashboard/img/sound.png" height="15px" width="15px"
+  	<img src="plugins/AndroidRemoteControl/core/template/img/sound.png" height="15px" width="15px"
              class="bouton_sup_volume" onclick="volume_AndroidRemoteControl#id#('bouton')"/>
  	 <div class="downpart" style="background: #sub-background-color#;">
 			<div class="commandes" style="white-space:nowrap;text-align: center">
@@ -76,7 +76,7 @@
 			</div>
       </div>
 		<div class="volumeDownpart" style="display:none;background-color: #sub-background-color#;">
-        	<img src="plugins/AndroidRemoteControl/core/template/dashboard/img/working.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_AndroidRemoteControl#id#('volume')"/>
+        	<img src="plugins/AndroidRemoteControl/core/template/img/working.png" height="15px" width="15px" class="bouton_sup_volume" onclick="volume_AndroidRemoteControl#id#('volume')"/>
         	<div class="volume_AndroidRemoteControl_widget" style="margin-left: 40px;">
             	<div class="volume cmd noRefresh" data-cmd_id="#setVolume_id#" style="width: 180px;" value="#volume#"></div>
         	</div>
