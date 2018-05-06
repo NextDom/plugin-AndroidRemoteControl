@@ -43,14 +43,14 @@
 		"commande": "shell monkey -p com.spotify.tv.android -c android.intent.category.LAUNCHER 1"
 	},{
 		"name": "amazonvideo",
-     	"icon":"amazon.png",
+     	"icon":"amazonvideo.png",
       	"type": "action",
     	"subtype": "other",
 		"categorie": "appli",
 		"commande": "shell monkey -p com.amazon.amazonvideo.livingroom.nvidia -c android.intent.category.LAUNCHER 1"
 	},{
 		"name": "vevo",
-       	"icon":"vevo.png",
+       	"icon":"vevo.jpg",
       	"type": "action",
     	"subtype": "other",
 		"categorie": "appli",
