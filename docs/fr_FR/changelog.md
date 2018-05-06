@@ -5,7 +5,8 @@
 # Prochaine version
 
 Ajout des fonctionnalités suivantes:
-    - Affichage capture d'écran en cliquant sur l'icône du programme encours
+    - Prise en charge du control de l'audio
+    - Affichage capture d'écrans en cliquant sur l'icone du programme encours
     - Prise en charge de l'envoi de SMS sur les appareils compatibles
     - Envoi d'une notification (Toast)
 
@@ -28,6 +29,9 @@ Ajout des fonctionnalités suivantes:
     - Les commandes sont gérées par le fichier commandes.json
     - Les applications sont gérées par le fichier appli.json
 Cela permet d'ajouter des commandes et applications sans modifier le core du plugin.
+* Ajout des appli suivantes:
+    - Freebox TV
+    - MyCanal
 
 ### Version 0.9.1:  (26/04/2018)
 >>>>>>> Stashed changes

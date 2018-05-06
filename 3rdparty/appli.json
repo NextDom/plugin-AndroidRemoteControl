@@ -36,7 +36,7 @@
     	"subtype": "other",
 		"commande": "shell monkey -p com.spotify.tv.android -c android.intent.category.LAUNCHER 1"
 	},{
-		"name": "amazon",
+		"name": "amazonvideo",
      	"icon":"amazon.png",
       	"type": "action",
     	"subtype": "other",
@@ -48,13 +48,13 @@
     	"subtype": "other",
 		"commande": "shell monkey -p com.vevo -c android.intent.category.LAUNCHER 1"
 	},{
-		"name": "tf1",
+		"name": "mytf1",
        	"icon":"tf1.png",
       	"type": "action",
     	"subtype": "other",
 		"commande": "shell monkey -p fr.tf1.mytf1 -c android.intent.category.LAUNCHER 1"
 	},{
-		"name": "m6",
+		"name": "m6replay",
       	"icon":"m6replay.png",
       	"type": "action",
     	"subtype": "other",
@@ -83,5 +83,17 @@
       	"type": "action",
     	"subtype": "other",
     	"commande": "shell am start org.droidtv.zapster/.playtv.activity.PlayTvActivity"
+	},{
+		"name": "freebox",
+		"icon": "television.png",
+      	"type": "action",
+    	"subtype": "other",
+    	"commande": "shell monkey -p fr.freebox.tv -c android.intent.category.LAUNCHER 1"
+	},{
+		"name": "canal",
+		"icon": "mycanal.jpg",
+      	"type": "action",
+    	"subtype": "other",
+    	"commande": "shell monkey -p com.canal.android.canal -c android.intent.category.LAUNCHER 1"
 	}
 ]
