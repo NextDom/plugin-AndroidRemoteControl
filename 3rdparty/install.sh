@@ -20,12 +20,6 @@ $sudo_prefix apt-get -y install android-tools-adb
 echo 75 > /tmp/AndroidRemoteControl_dep
 $sudoPrefix adb start-server
 
-echo "############################################################################"
-echo "# Linking scripts"
-echo "############################################################################"
-$sudo_prefix ln -s $(dirname "$0")/adbkeepconnection.sh /usr/sbin/adbkeepconnection.sh
-$sudo_prefix chmod 777 $(dirname "$0")/adbkeepconnection.sh
-
 echo 90 > /tmp/AndroidRemoteControl_dep
 
 echo "############################################################################"

@@ -12,11 +12,13 @@ Infos :
 * résolution
 * version Android
 * espace disque disponible
+* status de lecture (play, pause, arret)
+* nom du titre encours de lecture
 
 Actions :
 * accueil, retour
 * allumage, extinction
-* volume+, volume-
+* volume+, volume-, slider volume
 * haut, bas, gauche, droite
 * clic, entrer
 * démarrage, lecture, pause, arrêt

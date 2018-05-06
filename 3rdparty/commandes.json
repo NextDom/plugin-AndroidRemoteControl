@@ -32,6 +32,10 @@
     "type": "info",
     "subtype": "string"
   },{
+    "name": "title",
+    "type": "info",
+    "subtype": "string"
+  },{
     "name": "play_state",
     "type": "info",
     "subtype": "string"
