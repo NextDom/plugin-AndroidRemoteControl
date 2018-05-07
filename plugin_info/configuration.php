@@ -40,7 +40,7 @@ if (!isConnect()) {
       </div>
       <label class="col-sm-2 control-label">{{Informations :}}</label>
       <div class="col-sm-4">
-        <a class="btn btn-success" href="https://jeedom-plugins-extra.github.io/Jeedom-Plugins-Extra/"><i class="fa fa-question-circle"></i> {{Jeedom-Plugins-Extra}}</a>
+        <a class="btn btn-success" href="https://NextDom.github.io/NextDom/"><i class="fa fa-question-circle"></i> {{NextDom}}</a>
       </div>
     </div>
   </div>
