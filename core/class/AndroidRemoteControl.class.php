@@ -280,6 +280,8 @@ class AndroidRemoteControl extends eqLogic
                 $replace['#' . $cmd->getLogicalId() . '_id_display#'] = (is_object($cmd) && $cmd->getIsVisible()) ? '#' . $cmd->getId() . "_id_display#" : 'none';
             }
         }
+      
+      	$replace['#ip#'] = $this->getConfiguration('ip_address');
 
         return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'eqLogic', 'AndroidRemoteControl')));
     }
