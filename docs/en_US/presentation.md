@@ -2,7 +2,7 @@
 
 # Description
 
-Plugin permettant de piloter les terminaux Android (TV, Shield, Freebox mini 4k, etc.)
+Plugin permettant de piloter les terminaux android (TV, Shield, freebox mini 4k, Smartphone, etc..)
 
 ### Fonctions disponibles
 Infos :
@@ -12,11 +12,13 @@ Infos :
 * résolution
 * version Android
 * espace disque disponible
+* status de lecture (play, pause, arret)
+* nom du titre encours de lecture
 
 Actions :
 * accueil, retour
 * allumage, extinction
-* volume+, volume-
+* volume+, volume-, slider volume
 * haut, bas, gauche, droite
 * clic, entrer
 * démarrage, lecture, pause, arrêt
@@ -28,8 +30,16 @@ Scénarios possible :
 * Commander l'allumage de l'ampli (Yamaha dans mon cas) lorsque la box est allumée (car parfois le HDMI CEC).
 * Si Netflix lancé -> lumière salon à 50%
 
-### Paramétrage avancé
-Vous pouvez afficher ou non la liste des applications dans le bandeau du bas (limité a 6) en cochant/décochant l'option afficher sur chaque commande (voir capture ci-dessous)
+### Equipements testés
+Actuellement le plugin a été vérifié sur les matériels suivants:
+* Nvidia Shield (pas de configurations supplémentaires a effectuer).
+* Oneplus 5t (pas de configurations supplémentaires a effectuer).
+* Freebox mini 4k (pas de configurations supplémentaires a effectuer).
+* Xiaomi mibox TV (Le port 5555 servant a ADB n'est pas ouvert par défaut), il faut connecter la box en USB et lancer les commandes suivantes:
+    - adb connect
+    - adb tcpip 5555
+    - adb conncect 192.168.x.x:5555
+    - debrancher le cable
 
 ![Screenshot5](../images/Screenshot3.png)
 
@@ -48,9 +58,5 @@ Retrouvez le sur le [Market](https://www.jeedom.com/market/index.php?v=d&p=marke
 ![Screenshot2](../images/Screenshot2.png)
 
 ![Screenshot3](../images/Screenshot3.png)
-
-![Screenshot4](../images/Screenshot4.png)
-
-# Forum
 
 Lien vers le [Forum](https://www.jeedom.com/forum/viewtopic.php?t=34154)
