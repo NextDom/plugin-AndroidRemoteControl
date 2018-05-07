@@ -52,10 +52,10 @@ Cela permet d'ajouter des commandes et applications sans modifier le core du plu
 
 ### Détail des changements
 
-Détail complet des mises à jour sur [Historique Commit](https://github.com/Jeedom-Plugins-Extra/plugin-AndroidRemoteControl/commits/master)
+Détail complet des mises à jour sur [Historique Commit](https://github.com/NextDom/plugin-AndroidRemoteControl/commits/master)
 
 # Bug
 
 En cas de problèmes avec ce plugin, il est possible d'ouvrir un ticket pour demander une correction :
 
-[https://github.com/Jeedom-Plugins-Extra/plugin-AndroidRemoteControl/issues](https://github.com/Jeedom-Plugins-Extra/plugin-AndroidRemoteControl/issues)
+[https://github.com/NextDom/plugin-AndroidRemoteControl/issues](https://github.com/NextDom/plugin-AndroidRemoteControl/issues)

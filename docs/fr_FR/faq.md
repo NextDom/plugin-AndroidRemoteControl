@@ -15,7 +15,7 @@ Le plugin installe le paquet debian 'adb-tools'
 
 ### Je ne trouve pas l'application dans la liste des commandes disponibles, comment faire ?
 
-> Il faut simplement créer une issue sur github : [https://github.com/Jeedom-Plugins-Extra/plugin-AndroidRemoteControl/issues](https://github.com/Jeedom-Plugins-Extra/plugin-AndroidRemoteControl/issues)
+> Il faut simplement créer une issue sur github : [https://github.com/NextDom/plugin-AndroidRemoteControl/issues](https://github.com/NextDom/plugin-AndroidRemoteControl/issues)
 
 ### Le plugin est gratuit, le restera-t-il ?
 

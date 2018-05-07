@@ -3,12 +3,12 @@
 	"name" : "AndroidRemoteControl",
 	"description" : "Plugin pour piloter les Android TV et autres équipements Android",
 	"licence" : "AGPL",
-	"author" : "Jeedom-Plugins-Extra [Byackee, Slobberbone]",
+	"author" : "NextDom [Byackee, Slobberbone]",
 	"require" : "3.0",
 	"category" : "multimedia",
 	"hasDependency" : true,
 	"hasOwnDeamon" : false,
 	"maxDependancyInstallTime" : 30,
-	"changelog" : "https://jeedom-plugins-extra.github.io/plugin-AndroidRemoteControl/fr_FR/changelog.html",
-	"documentation" : "https://jeedom-plugins-extra.github.io/plugin-AndroidRemoteControl/"
+	"changelog" : "https://NextDom.github.io/plugin-AndroidRemoteControl/fr_FR/changelog.html",
+	"documentation" : "https://NextDom.github.io/plugin-AndroidRemoteControl/"
 }
