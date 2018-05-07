@@ -130,11 +130,13 @@
     function screencap#id#()
     {
     $('#md_modal').dialog({
-		width : 850,
-		height: 580,
+        width : 850,
+		height: 540,
 		autoOpen: false,
 		modal: true,
       	refresh: true,
+      	closeOnEscape: true,
+      	resizable: false,
 		title: '#name_display# - Capture d\'écran'
 	});
 	$('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=screencap.AndroidRemoteControl&id=#id#&ip=#ip#');
