@@ -7,6 +7,9 @@
     position: relative;
     z-index: 1;
 }
+.AndroidRemoteControl_widget .controles {
+padding-right: 20px;
+}
 
 .AndroidRemoteControl_widget .uppart {
     height: 280px;
@@ -45,8 +48,9 @@
 
 .AndroidRemoteControl_widget .icons img{
   	margin-top: 2px;
+  	padding-right: 5px;
     border-radius: 10%;
-   	width: 35px;
+   	width: 30px;
 	height: auto;
     z-index: 7;
 }

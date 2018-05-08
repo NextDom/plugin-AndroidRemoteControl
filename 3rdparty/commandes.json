@@ -2,94 +2,124 @@
   {
     "name": "disk_total",
     "type": "info",
+    "categorie": "commande",
     "subtype": "string"
   },{
     "name": "disk_free",
     "type": "info",
+    "categorie": "commande",
     "subtype": "string"
   },{
     "name": "resolution",
     "type": "info",
+    "categorie": "commande",
     "subtype": "string"
   },{
     "name": "type",
     "type": "info",
+    "categorie": "commande",
     "subtype": "string"
   },{
     "name": "version_android",
     "type": "info",
+    "categorie": "commande",
     "subtype": "string"
   },{
     "name": "name",
     "type": "info",
+    "categorie": "commande",
     "subtype": "string"
   },{
     "name": "power_state",
     "type": "info",
+    "categorie": "commande",
     "subtype": "binary"
   },{
     "name": "encours",
     "type": "info",
+    "categorie": "commande",
+    "subtype": "string"
+  },{
+    "name": "title",
+    "type": "info",
+    "categorie": "commande",
+    "subtype": "string"
+  },{
+    "name": "play_state",
+    "type": "info",
+    "categorie": "commande",
     "subtype": "string"
   },{
     "name": "mainmenu",
     "type": "action",
     "subtype": "other",
+    "categorie": "commande",
     "commande": "shell input keyevent 3"
   },{
     "name": "power_set",
     "type": "action",
     "subtype": "other",
+    "categorie": "commande",
     "commande": "shell input keyevent 26"
   },{
     "name": "play",
     "type": "action",
     "subtype": "other",
+    "categorie": "commande",
     "commande": "shell input keyevent KEYCODE_BUTTON_MEDIA_PLAY_PAUSE"
   },{
     "name": "stop",
     "type": "action",
     "subtype": "other",
+    "categorie": "commande",
     "commande": "shell input keyevent KEYCODE_MEDIA_STOP"
   },{
     "name": "up",
     "type": "action",
     "subtype": "other",
+    "categorie": "commande",
     "commande": "shell input keyevent 19"
   },{
     "name": "down",
     "type": "action",
     "subtype": "other",
+    "categorie": "commande",
     "commande": "shell input keyevent 20"
   },{
     "name": "left",
     "type": "action",
     "subtype": "other",
+    "categorie": "commande",
     "commande": "shell input keyevent 21"
   },{
     "name": "right",
     "type": "action",
     "subtype": "other",
+    "categorie": "commande",
     "commande": "shell input keyevent 22"
   },{
     "name": "return",
     "type": "action",
     "subtype": "other",
+    "categorie": "commande",
     "commande": "shell input keyevent KEYCODE_BACK"
   },{
     "name": "enter",
     "type": "action",
     "subtype": "other",
+    "categorie": "commande",
     "commande": "sshell input keyevent KEYCODE_ENTER"
   },{
     "name": "volume+",
     "type": "action",
     "subtype": "other",
+    "categorie": "commande",
     "commande": "shell input keyevent 24"
   },{
     "name": "volume-",
     "type": "action",
     "subtype": "other",
+    "categorie": "commande",
     "commande": "shell input keyevent 25"
   }
 ]

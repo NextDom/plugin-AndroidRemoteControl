@@ -36,7 +36,7 @@
 
 		<div class="jaquette">
   				<a class="btn cmd volume_down pull-left noRefresh" data-cmd_id="#volume-_id#" title="Volume-" onclick="jeedom.cmd.execute({id: #volume-_id#});"><i class="fa fa-volume-down fa-lg"></i></a>
-				<img class="affiche" src="#thumbnail#", onclick="screencap#id#()">
+				<img class="affiche" src="#thumbnail#">
   				<a class="btn cmd volume_up pull-right noRefresh" data-cmd_id="#volume+_id#"  title="Volume+" onclick="jeedom.cmd.execute({id: #volume+_id#});"> <i class="fa fa-volume-up fa-lg"></i></a>
 		</div>
   		<div class="content"><span class="message">#title#</span> </div>
@@ -126,22 +126,6 @@
         $(".AndroidRemoteControl[data-eqLogic_id=#id#] .ui-slider-handle").css("background", "transparent");
         $(".AndroidRemoteControl[data-eqLogic_id=#id#] .ui-slider-handle").css("border-color", "transparent");
         $(".AndroidRemoteControl[data-eqLogic_id=#id#] .ui-slider-handle").append('<i class="fa fa-volume-up" style="color:#253E5E;font-size:1.2em;margin-top:-5px;cursor:pointer" title="Volume"></i>');
-
-    function screencap#id#()
-    {
-    $('#md_modal').dialog({
-        width : 850,
-		height: 540,
-		autoOpen: false,
-		modal: true,
-      	refresh: true,
-      	closeOnEscape: true,
-      	resizable: false,
-		title: '#name_display# - Capture d\'écran'
-	});
-	$('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=screencap.AndroidRemoteControl&id=#id#&ip=#ip#');
-	$('#md_modal').dialog('open');
-    }
 
   </script>
 </div>

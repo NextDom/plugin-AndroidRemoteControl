@@ -16,20 +16,19 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-try {
-    require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
-    include_file('core', 'authentification', 'php');
+use PHPUnit\Framework\TestCase;
 
-    if (!isConnect('admin')) {
-        throw new \Exception(__('401 - Accès non autorisé', __FILE__));
+class AndroidRemoteControlTest extends TestCase
+{
+    public function testClassDeclaration()
+    {
+        include_once('core/class/AndroidRemoteControl.class.php');
+        $this->assertTrue(class_exists('AndroidRemoteControl'));
+        $methods = get_class_methods('AndroidRemoteControl');
+        $this->assertContains('cron', $methods);
+        $this->assertContains('toHtml', $methods);
+        $this->assertTrue(class_exists('AndroidRemoteControlCmd'));
+        $methodsCmd = get_class_methods('AndroidRemoteControlCmd');
+        $this->assertContains('execute', $methodsCmd);
     }
-  if (init('action') == 'resetAndroidRemoteControl') {
-        AndroidRemoteControl::resetAndroidRemoteControl(init('ip_address'));
-        ajax::success();
-    }
-
-    throw new \Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
-} catch (\Exception $e) {
-    ajax::error(displayException($e), $e->getCode());
 }
- 
