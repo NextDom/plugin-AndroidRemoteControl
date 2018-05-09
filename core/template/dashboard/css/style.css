@@ -48,7 +48,16 @@
     margin-left: -95px;
     z-index: 7;
     border-radius: 10%;
+}
 
+.AndroidRemoteControl_widget .affiche:hover {
+    width: 150px;
+    height: auto;
+    position: absolute;
+    margin-left: -95px;
+    z-index: 7;
+    border-radius: 10%;
+  	filter:blur(5px);
 }
 
 .AndroidRemoteControl_widget .icons img{
