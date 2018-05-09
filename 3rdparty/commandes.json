@@ -127,5 +127,11 @@
     "subtype": "other",
     "categorie": "commande",
     "commande": "shell input keyevent 164"
+  },{
+    "name": "reboot",
+    "type": "action",
+    "subtype": "other",
+    "categorie": "commande",
+    "commande": "shell reboot"
   }
 ]

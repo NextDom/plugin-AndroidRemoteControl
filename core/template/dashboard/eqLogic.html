@@ -3,7 +3,8 @@
      data-eqLogic_id="#id#" data-eqLogic_uid="#uid#">
   <link rel="stylesheet" href="plugins/AndroidRemoteControl/core/template/dashboard/css/style.css"/>
   	<span class="statusCmd" style="position : absolute;left : 5px;bottom : 5px; width : 30px;z-index: 1030;"></span>
-	<a class="power_set cmd pull-right noRefresh" id="power_set" data-cmd_id="#power_set_id#" title="Allumer/Eteindre" onclick="jeedom.cmd.execute({id: #power_set_id#});"><i class="fa fa-power-off"></i></a>
+    <a class="reboot cmd pull-left noRefresh" id="reboot" data-cmd_id="#reboot_id#" title="Reboot" onclick="jeedom.cmd.execute({id: #reboot_id#});"><i class="fa fa-ban"></i></a>
+    <a class="power_set cmd pull-right noRefresh" id="power_set" data-cmd_id="#power_set_id#" title="Allumer/Eteindre" onclick="jeedom.cmd.execute({id: #power_set_id#});"><i class="fa fa-power-off"></i></a>
 
   <div class="leftpanel">
         <div style="margin-left : 7px;overflow: auto;height: 327px;">
