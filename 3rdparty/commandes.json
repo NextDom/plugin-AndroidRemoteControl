@@ -66,13 +66,13 @@
     "type": "action",
     "subtype": "other",
     "categorie": "commande",
-    "commande": "shell input keyevent KEYCODE_BUTTON_MEDIA_PLAY_PAUSE"
+    "commande": "shell input keyevent 85"
   },{
     "name": "stop",
     "type": "action",
     "subtype": "other",
     "categorie": "commande",
-    "commande": "shell input keyevent KEYCODE_MEDIA_STOP"
+    "commande": "shell input keyevent 86"
   },{
     "name": "up",
     "type": "action",
@@ -102,13 +102,13 @@
     "type": "action",
     "subtype": "other",
     "categorie": "commande",
-    "commande": "shell input keyevent KEYCODE_BACK"
+    "commande": "shell input keyevent 4"
   },{
     "name": "enter",
     "type": "action",
     "subtype": "other",
     "categorie": "commande",
-    "commande": "sshell input keyevent KEYCODE_ENTER"
+    "commande": "sshell input keyevent 109"
   },{
     "name": "volume+",
     "type": "action",
@@ -121,5 +121,11 @@
     "subtype": "other",
     "categorie": "commande",
     "commande": "shell input keyevent 25"
+  },{
+    "name": "mute",
+    "type": "action",
+    "subtype": "other",
+    "categorie": "commande",
+    "commande": "shell input keyevent 164"
   }
 ]

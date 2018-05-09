@@ -267,12 +267,20 @@ class AndroidRemoteControl extends eqLogic
             if ($cmd->getLogicalId() == 'encours'){
                 $replace['#thumbnail#'] = $cmd->getDisplay('icon');
             }
+
+            if ($cmd->getLogicalId() == 'play_state'){
+                if($cmd->execCmd() <= 2){
+                    $replace['#play_pause#'] = '"fa fa-play  fa-lg"';
+                }else{
+                    $replace['#play_pause#'] = '"fa fa-pause  fa-lg"; style="color:green"';
+                }
+            }
+
             if ($cmd->getIsHistorized() == 1) {
                 $replace['#' . $cmd->getLogicalId() . '_history#'] = 'history cursor';
             }
             $replace['#' . $cmd->getLogicalId() . '_id_display#'] = ($cmd->getIsVisible()) ? '#' . $cmd->getLogicalId() . "_id_display#" : "none";
         }
-        
         foreach ($this->getCmd('action') as $cmd) {
             if ($cmd->getConfiguration('categorie') == 'appli'){
                 $replace['#applis#'] = $replace['#applis#'] . '<a class="btn cmd icons noRefresh" style="display:#'.$cmd->getLogicalId().'_id_display#; padding:3px" data-cmd_id="'.$cmd->getId().'" title="'.$cmd->getName().'" onclick="jeedom.cmd.execute({id: '.$cmd->getId().'});"><img src="plugins/AndroidRemoteControl/desktop/images/'.$cmd->getConfiguration('icon') .'"></a>';
