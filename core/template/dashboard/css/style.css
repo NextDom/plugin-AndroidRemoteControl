@@ -84,6 +84,7 @@
 }
 
 .AndroidRemoteControl_widget .rightpanel {
+  padding-left: 20px;
     width: 200px;
     height: 327px;
     float: left;
@@ -107,11 +108,27 @@
     opacity: 0.3;
 }
 
+.AndroidRemoteControl_widget .leftRafter2 {
+    width: 15px;
+    height: 40px;
+    position: absolute;
+    top: 143.5px;
+    right: 5px;
+    cursor: pointer;
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    z-index: 4;
+    opacity: 0.6;
+}
 .AndroidRemoteControl_widget .leftRafter:hover {
     opacity: 1;
 }
+.AndroidRemoteControl_widget .leftRafter2:hover {
+    opacity: 1;
+}
 
-.AndroidRemoteControl_widget .leftpanel .leftRafter {
+.AndroidRemoteControl_widget .leftpanel .leftRafter2 {
     -ms-transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
@@ -128,11 +145,31 @@
     opacity: 0.3;
 }
 
+.AndroidRemoteControl_widget .rightRafter2 {
+    width: 15px;
+    height: 40px;
+    position: absolute;
+    top: 143.5px;
+    left: 5px;
+    cursor: pointer;
+    z-index: 4;
+    opacity: 0.6;
+}
+
 .AndroidRemoteControl_widget .rightRafter:hover {
+    opacity: 1;
+}
+.AndroidRemoteControl_widget .rightRafter2:hover {
     opacity: 1;
 }
 
 .AndroidRemoteControl_widget .rightpanel .rightRafter {
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.AndroidRemoteControl_widget .rightpanel .rightRafter2 {
     -ms-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
