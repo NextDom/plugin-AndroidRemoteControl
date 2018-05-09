@@ -48,7 +48,12 @@
     "name": "play_state",
     "type": "info",
     "categorie": "commande",
-    "subtype": "string"
+    "subtype": "numeric"
+  },{
+    "name": "battery_level",
+    "type": "info",
+    "categorie": "commande",
+    "subtype": "numeric"
   },{
     "name": "mainmenu",
     "type": "action",

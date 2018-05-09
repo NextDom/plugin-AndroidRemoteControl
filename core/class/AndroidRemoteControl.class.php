@@ -150,7 +150,7 @@ class AndroidRemoteControl extends eqLogic
         $title        = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys bluetooth_manager | grep MediaAttributes | cut -d: -f3"), 0, -2);
         $volume       = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys audio | grep -A 4 STREAM_MUSIC |grep Current | cut -c26-27"), 0, -1);;
         $play_state  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555  shell dumpsys bluetooth_manager | grep mCurrentPlayState | cut -d,  -f1 | cut -c43-"), 0, -1);
-        $battery_level  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555 dumpsys battery | grep level | cut -d: -f2"), 0, -1);
+        $battery_level  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555 shell dumpsys battery | grep level | cut -d: -f2"), 0, -1);
 
         return array('power_state' => $power_state, 'encours' => $encours, 'version_android' => $version_android, 'name' => $name, 'type' => $type, 'resolution' => $resolution, 'disk_total' => $disk_total, 'disk_free' => $disk_free, 'title' => $title, 'volume' => $volume, 'play_state' => $play_state, 'battery_level' => $battery_level);
     }
