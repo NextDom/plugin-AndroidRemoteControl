@@ -22,6 +22,14 @@
     z-index: 0;
 }
 
+.AndroidRemoteControl_widget .reboot {
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    cursor: pointer;
+    z-index: 0;
+}
+
 .AndroidRemoteControl_widget .title {
     font-size: 1.5em;
     font-weight: bold;
