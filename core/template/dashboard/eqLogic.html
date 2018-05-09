@@ -16,7 +16,7 @@
   			<a class="info_data" style="text-decoration: none; cursor:default;"><b>disk:</b> #disk_total#Gb  #disk_free# free</a><br>
             <a class="info_data" style="text-decoration: none; cursor:default;"><b>Niveau batterie:</b> #battery_level#</a><br>
             <a class="play_state" style="text-decoration: none; cursor:default;"><b>statut lecture:</b> #play_state#</a><br>
-            <img class="leftRafter" src="plugins/AndroidRemoteControl/core/template/img/chevron.png" title="Infos" onClick="panelLeftClose#id#()"/>
+            <img class="leftRafter2" src="plugins/AndroidRemoteControl/core/template/img/chevron.png" title="Infos" onClick="panelLeftClose#id#()"/>
         </div>
     </div>
 
@@ -25,7 +25,7 @@
         <div style="margin-right : 7px;overflow: auto;height: 327px;">
             <legend style="color : white;margin-bottom:2px;">Applications</legend>
             #applis#
-            <img class="rightRafter" src="plugins/AndroidRemoteControl/core/template/img/chevron.png" onClick="panelRightClose#id#()"/>
+            <img class="rightRafter2" src="plugins/AndroidRemoteControl/core/template/img/chevron.png" onClick="panelRightClose#id#()"/>
         </div>
     </div>
               <img class="rightRafter" src="plugins/AndroidRemoteControl/core/template/img/chevron.png" onClick="panelRight#id#()"/>
@@ -86,7 +86,7 @@
 
    function panelLeftClose#id#()
         {
-            $(".AndroidRemoteControl[data-eqLogic_id=#id#] .leftpanel").animate({left: "-200px"});
+            $(".AndroidRemoteControl[data-eqLogic_id=#id#] .leftpanel").animate({left: "-250px"});
         }
 
     function panelRight#id#()
@@ -96,7 +96,7 @@
         }
     function panelRightClose#id#()
         {
-            $(".AndroidRemoteControl[data-eqLogic_id=#id#] .rightpanel").animate({right: "-200px"});
+            $(".AndroidRemoteControl[data-eqLogic_id=#id#] .rightpanel").animate({right: "-250px"});
         }
 
   function volume_AndroidRemoteControl#id#(bouton)

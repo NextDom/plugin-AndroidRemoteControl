@@ -74,23 +74,23 @@
 
 .AndroidRemoteControl_widget .leftpanel {
     text-align: left;
-    width: 200px;
+    width: 250px;
     height: 327px;
     float: left;
     position: absolute;
     z-index: 10;
-    left: -200px;
+    left: -250px;
 	background: rgba(0, 0, 0, 0.7);
 }
 
 .AndroidRemoteControl_widget .rightpanel {
   padding-left: 20px;
-    width: 200px;
+    width: 250px;
     height: 327px;
     float: left;
     position: absolute;
     z-index: 10;
-    right: -200px;
+    right: -250px;
     background: rgba(0, 0, 0, 0.9);
 }
 
