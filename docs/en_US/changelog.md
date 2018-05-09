@@ -12,7 +12,11 @@ Ajout des fonctionnalités suivantes:
 
 # Changelog
 
-### Version 0.9.4:  (06/05/2018- Version en cours sur le market)
+### Version 0.9.5:  (08/05/2018 - Version en cours sur le market)
+
+* Ajout de la fonction connect en fin d'assistant (afin d'obtenir le message d'authorisation d'adb)
+
+### Version 0.9.4:  (06/05/2018)
 
 * Mise a jour dynamique du template eqlogic.html lors de l'ajout d'une appli dans le json (plus besoin de modifier le dashboard.html)
 * Ajout d'une pré-version de template pour la version mobile
