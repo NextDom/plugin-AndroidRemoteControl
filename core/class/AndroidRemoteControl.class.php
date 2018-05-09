@@ -150,8 +150,9 @@ class AndroidRemoteControl extends eqLogic
         $title        = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys bluetooth_manager | grep MediaAttributes | cut -d: -f3"), 0, -2);
         $volume       = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys audio | grep -A 4 STREAM_MUSIC |grep Current | cut -c26-27"), 0, -1);;
         $play_state  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555  shell dumpsys bluetooth_manager | grep mCurrentPlayState | cut -d,  -f1 | cut -c43-"), 0, -1);
+        $battery_level  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555 shell dumpsys battery | grep level | cut -d: -f2"), 0, -1);
 
-        return array('power_state' => $power_state, 'encours' => $encours, 'version_android' => $version_android, 'name' => $name, 'type' => $type, 'resolution' => $resolution, 'disk_total' => $disk_total, 'disk_free' => $disk_free, 'title' => $title, 'volume' => $volume, 'play_state' => $play_state);
+        return array('power_state' => $power_state, 'encours' => $encours, 'version_android' => $version_android, 'name' => $name, 'type' => $type, 'resolution' => $resolution, 'disk_total' => $disk_total, 'disk_free' => $disk_free, 'title' => $title, 'volume' => $volume, 'play_state' => $play_state, 'battery_level' => $battery_level);
     }
 
     public function updateInfo()
@@ -210,6 +211,9 @@ class AndroidRemoteControl extends eqLogic
         if (isset($infos['play_state'])) {
             $this->checkAndUpdateCmd('play_state', $infos['play_state']);
         }
+        if (isset($infos['battery_level'])) {
+            $this->checkAndUpdateCmd('battery_level', $infos['battery_level']);
+        }
     }
 
     public function checkAndroidRemoteControlStatus()
@@ -267,21 +271,31 @@ class AndroidRemoteControl extends eqLogic
             if ($cmd->getLogicalId() == 'encours'){
                 $replace['#thumbnail#'] = $cmd->getDisplay('icon');
             }
+
+            if ($cmd->getLogicalId() == 'play_state'){
+                if($cmd->execCmd() <= 2){
+                    $replace['#play_pause#'] = '"fa fa-play  fa-lg"';
+                }else{
+                    $replace['#play_pause#'] = '"fa fa-pause  fa-lg"; style="color:green"';
+                }
+            }
+
             if ($cmd->getIsHistorized() == 1) {
                 $replace['#' . $cmd->getLogicalId() . '_history#'] = 'history cursor';
             }
+            $replace['#' . $cmd->getLogicalId() . '_id_display#'] = ($cmd->getIsVisible()) ? '#' . $cmd->getLogicalId() . "_id_display#" : "none";
         }
-
         foreach ($this->getCmd('action') as $cmd) {
             if ($cmd->getConfiguration('categorie') == 'appli'){
-                $replace['#applis#'] = $replace['#applis#'] . '<a class="btn cmd icons noRefresh" style="padding:3px" data-cmd_id="'.$cmd->getId().'" title="'.$cmd->getName().'" onclick="jeedom.cmd.execute({id: '.$cmd->getId().'});"><img src="plugins/AndroidRemoteControl/desktop/images/'.$cmd->getConfiguration('icon') .'"></a>';
+                $replace['#applis#'] = $replace['#applis#'] . '<a class="btn cmd icons noRefresh" style="display:#'.$cmd->getLogicalId().'_id_display#; padding:3px" data-cmd_id="'.$cmd->getId().'" title="'.$cmd->getName().'" onclick="jeedom.cmd.execute({id: '.$cmd->getId().'});"><img src="plugins/AndroidRemoteControl/desktop/images/'.$cmd->getConfiguration('icon') .'"></a>';
             }else{
                 $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
                 $replace['#' . $cmd->getLogicalId() . '_id_display#'] = (is_object($cmd) && $cmd->getIsVisible()) ? '#' . $cmd->getId() . "_id_display#" : 'none';
             }
+            $replace['#' . $cmd->getLogicalId() . '_id_display#'] = ($cmd->getIsVisible()) ? '#' . $cmd->getLogicalId() . "_id_display#" : "none";
         }
-      
-      	$replace['#ip#'] = $this->getConfiguration('ip_address');
+
+        $replace['#ip#'] = $this->getConfiguration('ip_address');
 
         return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'eqLogic', 'AndroidRemoteControl')));
     }
