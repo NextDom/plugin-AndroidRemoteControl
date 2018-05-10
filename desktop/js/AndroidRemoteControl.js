@@ -59,20 +59,20 @@ function addCmdToTable(_cmd) {
     }
     if (_cmd.configuration.categorie == "appli") {
         var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
-        tr += '<td>';
+        tr += '<td style="width: 60px;">';
         tr += '<img src="plugins/AndroidRemoteControl/desktop/images/'+ _cmd.configuration.icon +'" style="width:30px"; height:"30px"></a>';
         tr += '</td>';
-        tr += '<td>';
+        tr += '<td style="width: 400px;">';
         tr += '<span class="cmdAttr" data-l1key="id" style="display:none;"></span>';
-        tr += '<input class="cmdAttr form-control input-sm" data-l1key="name" style="width: 50%;display: inherit" placeholder="{{Nom}}">';
+        tr += '<input class="cmdAttr form-control input-sm" data-l1key="name" style="width: 90%;display: inherit" placeholder="{{Nom}}">';
         tr += '</td>';
         tr += '<td>';
-        tr += '<span><input class="cmdAttr eqLogicAttr form-control" data-l1key="configuration" data-l2key="commande" style="width: 70%;display: inherit" ></input></span>';
+        tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="commande" style="width: 90%;display: inherit" ></input>';
         tr += '</td>';
         tr += '<td style="width: 150px;">';
         tr += '<span><input type="checkbox" class="cmdAttr" data-size="mini" data-l1key="isVisible" checked/> {{Afficher}}<br/></span>';
         tr += '</td>';
-        tr += '<td>';
+        tr += '<td style="width: 150px;">';
         if (is_numeric(_cmd.id)) {
             tr += '<a class="btn btn-default btn-xs cmdAction" data-action="configure"><i class="fa fa-cogs"></i></a> ';
             tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss"></i> {{Tester}}</a>';
