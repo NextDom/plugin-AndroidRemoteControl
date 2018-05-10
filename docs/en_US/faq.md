@@ -9,9 +9,27 @@ Le plugin installe le paquet debian 'adb-tools'
 
 > Bien sûr, le code est sur GitHub : vous pouvez soumettre des pull requests.
 
-### Je ne vois pas mes applications dans le bandeau du bas ?
+### Je ne vois pas mes applications dans le panneau droit ?
 
 > La liste n'est pas générée dynamiquement en fonction les applications installées sur votre Android. Le nombre est limité à 6. Se reporter a la doc pour rendre visible ou non une application.
+
+### Lorsque je clique sur une application, rien ne ce passe pourquoi?
+
+> Entre les appareils équipés d'android TV, smartphone, box opérateurs, le nom des applications de sont pas les memes, il faut donc modifier le fichier /3rdparty/applis.json pour mettre le bon nom de l'application.
+> 1)Pour cela lancer la commande shell ```sudo adb shell "pm list packages"|cut -f 2 -d ":"```
+> 2)Repérer le nom de l'application, par exemple "com.google.android.youtube.tv"
+> 3) Remplacer l'ancier nom de l'application par le nouveau dans la partie commande
+> ex: ```
+{
+    "name": "youtube",
+    "icon":"youtube.png",
+    "type": "action",
+    "subtype": "other",
+    "categorie": "appli",
+    "commande": "shell monkey -p **com.google.android.youtube.tv** -c android.intent.category.LAUNCHER 1"
+}
+```
+
 
 ### Je ne trouve pas l'application dans la liste des commandes disponibles, comment faire ?
 
