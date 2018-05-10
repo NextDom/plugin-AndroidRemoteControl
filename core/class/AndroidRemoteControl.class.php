@@ -18,9 +18,6 @@
 
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../../../core/php/core.inc.php';
-$url = __DIR__ . '/../../3rdparty/appli.json'; // path to your JSON file
-$data = file_get_contents($url); // put the contents of the file into a variable
-$json_a = json_decode($data); // decode the JSON feed
 
 class AndroidRemoteControl extends eqLogic
 {
@@ -93,6 +90,7 @@ class AndroidRemoteControl extends eqLogic
             $cmd->setSubType($json_cmd->subtype);
             $cmd->setConfiguration('categorie', $json_cmd->categorie);
             $cmd->setConfiguration('icon', $json_cmd->icon);
+            $cmd->setConfiguration('commande', $json_cmd->commande);
             $cmd->setEqLogic_id($this->getId());
             $cmd->save();
         }
@@ -316,17 +314,9 @@ class AndroidRemoteControlCmd extends cmd
         }
         $ip_address = $ARC->getConfiguration('ip_address');
 
+        log::add('AndroidRemoteControl', 'info', 'Command ' . $this->getConfiguration('commande') . ' sent to android device at ip address : ' . $ip_address);
+        shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 " . $this->getConfiguration('commande'));
 
-        $data = file_get_contents(__DIR__ . '/../../3rdparty/appli.json');
-        $data2 = file_get_contents(__DIR__ . '/../../3rdparty/commandes.json');
-        $json= json_encode(array_merge(json_decode($data, true),json_decode($data2, true)));
-        $json_a = json_decode($json);
-        foreach ($json_a as $json_b) {
-            if (stristr($this->getLogicalId(), $json_b->name)){
-                log::add('AndroidRemoteControl', 'info', 'Command '. $json_b->commande. ' sent to android device at ip address : ' . $ip_address);
-                shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 " . $json_b->commande);
-            }
-        }
         if (stristr($this->getLogicalId(), 'setVolume')){
             shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell service call audio 3 i32 3 i32 " . $_options['slider']);
         }
