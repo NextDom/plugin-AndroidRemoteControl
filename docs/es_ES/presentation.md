@@ -64,4 +64,8 @@ Retrouvez le sur le [Market](https://www.jeedom.com/market/index.php?v=d&p=marke
 
 ![Screenshot3](../images/Screenshot3.png)
 
+![Screenshot4](../images/Screenshot4.png)
+
+![Screenshot7](../images/Screenshot7.png)
+
 Lien vers le [Forum](https://www.jeedom.com/forum/viewtopic.php?t=34154)
