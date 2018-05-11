@@ -75,8 +75,8 @@ class AndroidRemoteControl extends eqLogic
 
     public function postSave()
     {
-        $data = file_get_contents(dirname(__FILE__)  . '/../../3rdparty/appli.json');
-        $data2 = file_get_contents(dirname(__FILE__)  . '/../../3rdparty/commandes.json');
+        $data = file_get_contents(__DIR__ . '/../../3rdparty/appli.json');
+        $data2 = file_get_contents(__DIR__ . '/../../3rdparty/commandes.json');
         $json= json_encode(array_merge(json_decode($data, true),json_decode($data2, true)));
         $json_a = json_decode($json);
         foreach ($json_a as $json_cmd) {
@@ -124,7 +124,7 @@ class AndroidRemoteControl extends eqLogic
     public function preUpdate()
     {
         if ($this->getConfiguration('ip_address') == '') {
-            throw new Exception(__('L\'adresse IP doit être renseignée', __FILE__));
+            throw new \Exception(__('L\'adresse IP doit être renseignée', __FILE__));
         }
     }
 
