@@ -23,18 +23,22 @@ try {
     if (!isConnect('admin')) {
         throw new \Exception(__('401 - Accès non autorisé', __FILE__));
     }
-    if (init('action') == 'resetAndroidRemoteControl') {
-        AndroidRemoteControl::resetAndroidRemoteControl(init('ip_address'));
+    if (init('action') == 'resetADB') {
+      	$sudo = exec("\$EUID");
+        if ($sudo != "0") {
+            $sudo_prefix = "sudo ";
+        }
+      	log::add('AndroidRemoteControl', 'info', 'Kill du service ADB');
+       shell_exec($sudo_prefix . "adb kill-server");
         ajax::success();
     }
 
-    if (init('action') == 'connect') {
-        $deviceIp = init('params');
-        shell_exec("sudo adb connect $deviceIp");
-        ajax::success();
-    }
-
-    throw new \Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+   throw new \Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 } catch (\Exception $e) {
-    ajax::error(displayException($e), $e->getCode());
+    if (function_exists('displayException')) {
+        ajax::error(displayException($e), $e->getCode());
+    }
+    else {
+        ajax::error(displayExeption($e), $e->getCode());
+    }
 }

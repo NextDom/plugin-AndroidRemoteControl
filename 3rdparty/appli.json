@@ -99,7 +99,7 @@
     	"commande": "shell am start org.droidtv.zapster/.playtv.activity.PlayTvActivity"
 	},{
 		"name": "freebox",
-		"icon": "television.png",
+		"icon": "freeboxtv.jpg",
       	"type": "action",
     	"subtype": "other",
 		"categorie": "appli",
@@ -125,5 +125,19 @@
     	"subtype": "other",
 		"categorie": "appli",
     	"commande": "shell monkey -p  -c android.intent.category.LAUNCHER 1"
+	},{
+		"name": "tinycam free",
+		"icon": "tinycamfree.png",
+      	"type": "action",
+    	"subtype": "other",
+		"categorie": "appli",
+    	"commande": "shell monkey -p com.alexvas.dvr -c android.intent.category.LAUNCHER 1"
+	},{
+		"name": "tinycam pro",
+		"icon": "tinycampro.png",
+      	"type": "action",
+    	"subtype": "other",
+		"categorie": "appli",
+    	"commande": "shell monkey -p com.alexvas.dvr.pro -c android.intent.category.LAUNCHER 1"
 	}
 ]

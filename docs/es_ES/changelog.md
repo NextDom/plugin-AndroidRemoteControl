@@ -12,16 +12,9 @@ Ajout des fonctionnalités suivantes:
 
 # Changelog
 
-### Version 0.9.6:  (09/05/2018 - Version en cours sur le market)
+### Version 0.9.5:  (08/05/2018 - Version en cours sur le market)
 
-* Modification de l'icone play/stop en fonction de l'état de lecture.
-* Ajout d'un effet blur lors du survole de l'affiche (pour signaifier que le bouton est cliquable)
-* Ajout d'un icone reboot (en haut a gauche)
-* Modification des keyvent pour plus de compatibilité
-
-### Version 0.9.5:  (08/05/2018)
-
-* Ajout de la fonction connect en fin d'assistant (afin d'obtenir le message d'autorisation d'adb)
+* Ajout de la fonction connect en fin d'assistant (afin d'obtenir le message d'authorisation d'adb)
 
 ### Version 0.9.4:  (06/05/2018)
 

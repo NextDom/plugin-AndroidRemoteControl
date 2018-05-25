@@ -17,11 +17,11 @@ exclude:
 - vendor
 plugins:
 - jekyll-seo-tag
-title: "Documentation Jeedom-Plugins-Extra"
-description: "Ceci est la documentation du plugin de la team Jeedom-Plugins-Extra"
-author: "Jeedom-Plugins-Extra"
+title: "Documentation NextDom"
+description: "Ceci est la documentation du plugin de la team NextDom"
+author: "NextDom"
 image: https://avatars1.githubusercontent.com/u/36200380?s=200&v=4
 social:
-  name: Jeedom-Plugins-Extra
+  name: NextDom
   links:
-    - https://github.com/Jeedom-Plugins-Extra
+    - https://github.com/NextDom

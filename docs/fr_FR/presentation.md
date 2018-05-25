@@ -46,11 +46,11 @@ Actuellement le plugin a été vérifié sur les matériels suivants:
     - adb conncect 192.168.x.x:5555
     - debrancher le cable
 
-![Screenshot5](../images/Screenshot3.png)
+![Screenshot5](../images/Screenshot5.png)
 
 Vous pouvez également changer la couleur du bandeau du bas ou le rendre transparent.
 
-![Screenshot6](../images/Screenshot4.png)
+![Screenshot6](../images/Screenshot6.png)
 
 # Market
 
@@ -63,9 +63,5 @@ Retrouvez le sur le [Market](https://www.jeedom.com/market/index.php?v=d&p=marke
 ![Screenshot2](../images/Screenshot2.png)
 
 ![Screenshot3](../images/Screenshot3.png)
-
-![Screenshot4](../images/Screenshot4.png)
-
-![Screenshot7](../images/Screenshot7.png)
 
 Lien vers le [Forum](https://www.jeedom.com/forum/viewtopic.php?t=34154)

@@ -65,12 +65,18 @@ class AndroidRemoteControl extends eqLogic
         passthru('/bin/bash ' . $resource_path . '/install.sh ' . $resource_path . ' > ' . log::getPathToLog('AndroidRemoteControl_dep') . ' 2>&1 &');
     }
 
-    public static function resetAndroidRemoteControl($ip_address)
+    public function resetADB()
     {
-        log::remove('AndroidRemoteControl_reset');
-        $cmd = '/bin/bash ' . __DIR__ . '/../../3rdparty/reset.sh';
-        $cmd .= ' >> ' . log::getPathToLog('AndroidRemoteControl_reset') . ' 2>&1 &';
-        exec($cmd);
+        $sudo = exec("\$EUID");
+        if ($sudo != "0") {
+            $sudo_prefix = "sudo ";
+        }
+        $ip_address = $this->getConfiguration('ip_address');
+        log::add('AndroidRemoteControl', 'info', 'Kill préventif du service ADB');
+        shell_exec($sudo_prefix . "adb kill-server");
+        sleep(3);
+        log::add('AndroidRemoteControl', 'info', 'Connection au périphérique '.$ip_address.' encours');
+        shell_exec($sudo_prefix . "adb connect ".$ip_address);
     }
 
     public function postSave()
@@ -104,7 +110,7 @@ class AndroidRemoteControl extends eqLogic
         $volume->setUnite('%');
         $volume->setType('info');
         $volume->setSubType('numeric');
-        $volume->setConfiguration('repeatEventManagement', 'never');
+        $volume->setConfiguration('categorie', "commande");
         $volume->setEqLogic_id($this->getId());
         $volume->save();
 
@@ -116,6 +122,7 @@ class AndroidRemoteControl extends eqLogic
         }
         $cmd->setType('action');
         $cmd->setSubType('slider');
+        $cmd->setConfiguration('categorie', "commande");
         $cmd->setValue($volume->getId());
         $cmd->setEqLogic_id($this->getId());
         $cmd->save();
@@ -149,10 +156,11 @@ class AndroidRemoteControl extends eqLogic
         $volume       = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys audio | grep -A 4 STREAM_MUSIC |grep Current | cut -c26-27"), 0, -1);;
         $play_state  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555  shell dumpsys bluetooth_manager | grep mCurrentPlayState | cut -d,  -f1 | cut -c43-"), 0, -1);
         $battery_level  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555 shell dumpsys battery | grep level | cut -d: -f2"), 0, -1);
+        $battery_status  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555 shell dumpsys battery | grep status"), -3);
 
-        return array('power_state' => $power_state, 'encours' => $encours, 'version_android' => $version_android, 'name' => $name, 'type' => $type, 'resolution' => $resolution, 'disk_total' => $disk_total, 'disk_free' => $disk_free, 'title' => $title, 'volume' => $volume, 'play_state' => $play_state, 'battery_level' => $battery_level);
+        return array('power_state' => $power_state, 'encours' => $encours, 'version_android' => $version_android, 'name' => $name, 'type' => $type, 'resolution' => $resolution, 'disk_total' => $disk_total, 'disk_free' => $disk_free, 'title' => $title, 'volume' => $volume, 'play_state' => $play_state, 'battery_level' => $battery_level, 'battery_status' => $battery_status);
     }
-
+    
     public function updateInfo()
     {
         try {
@@ -207,10 +215,30 @@ class AndroidRemoteControl extends eqLogic
             $this->checkAndUpdateCmd('volume', $infos['volume']);
         }
         if (isset($infos['play_state'])) {
-            $this->checkAndUpdateCmd('play_state', $infos['play_state']);
+            if ($infos['play_state'] == 2) {
+                $this->checkAndUpdateCmd('play_state', "pause");
+            }elseif ($infos['play_state'] == 3){
+                $this->checkAndUpdateCmd('play_state', "lecture");
+            }elseif ($infos['play_state'] == 0){
+                $this->checkAndUpdateCmd('play_state', "arret");
+            }else
+            $this->checkAndUpdateCmd('play_state',"inconnue");
         }
+
         if (isset($infos['battery_level'])) {
             $this->checkAndUpdateCmd('battery_level', $infos['battery_level']);
+        }
+        if (isset($infos['battery_status'])) {
+            if ($infos['battery_status'] == 2) {
+                $this->checkAndUpdateCmd('battery_status',"en charge");
+            } elseif ($infos['battery_status'] == 3) {
+                $this->checkAndUpdateCmd('battery_status',"en décharge");
+            } elseif ($infos['battery_status'] == 4) {
+                $this->checkAndUpdateCmd('battery_status',"pas de charge");
+            } elseif ($infos['battery_status'] == 5 ) {
+                $this->checkAndUpdateCmd('battery_status',"pleine");
+            } else
+            $this->checkAndUpdateCmd('battery_status',"inconnue");
         }
     }
 
@@ -226,26 +254,21 @@ class AndroidRemoteControl extends eqLogic
         if (strstr($check, "offline")) {
             $cmd = $this->getCmd(null, 'encours');
             log::add('AndroidRemoteControl', 'info', 'Votre appareil est offline');
-            log::add('AndroidRemoteControl', 'info', 'Relance du service ADB');
             $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/erreur.png');
             $cmd->save();
-            exec('../3rdparty/reset.sh');
-            log::add('AndroidRemoteControl', 'info', 'Connection a Android');
-            shell_exec($sudo_prefix . "adb connect " . $ip_address);
+            $this->resetADB();
         } elseif (!strstr($check, "device")) {
             $cmd = $this->getCmd(null, 'encours');
             $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/erreur.png');
             $cmd->save();
-            log::add('AndroidRemoteControl', 'info', 'Votre appareil n\'est pas détecté par ADB. Tentative de reconnection, veuillez réessayer');
-            log::add('AndroidRemoteControl', 'info', 'Relance du service ADB');
-            exec('../3rdparty/reset.sh');
-            log::add('AndroidRemoteControl', 'info', 'Connection a Android');
-            shell_exec($sudo_prefix . "adb connect " . $ip_address);
+            log::add('AndroidRemoteControl', 'info', 'Votre appareil n\'est pas détecté par ADB.');
+            $this->resetADB();
         } elseif (strstr($check, "unauthorized")) {
             $cmd = $this->getCmd(null, 'encours');
             $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/erreur.png');
             $cmd->save();
             log::add('AndroidRemoteControl', 'info', 'Votre connection n\'est pas autorisé');
+            $this->resetADB();
         }
     }
 
@@ -271,10 +294,10 @@ class AndroidRemoteControl extends eqLogic
             }
 
             if ($cmd->getLogicalId() == 'play_state'){
-                if($cmd->execCmd() <= 2){
-                    $replace['#play_pause#'] = '"fa fa-play  fa-lg"';
+                if($cmd->execCmd() == 'play'){
+                    $replace['#play_pause#'] = '"fa fa-pause  fa-lg" style="color:green"';
                 }else{
-                    $replace['#play_pause#'] = '"fa fa-pause  fa-lg"; style="color:green"';
+                    $replace['#play_pause#'] = '"fa fa-play  fa-lg"';
                 }
             }
 
