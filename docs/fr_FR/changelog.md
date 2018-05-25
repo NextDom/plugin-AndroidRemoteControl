@@ -18,7 +18,7 @@ Ajout des fonctionnalités suivantes:
 * Prise en charge des applications suivantes (freeboxtv, tinycam)
 * Amélioration de la gestion de la reconnection ADB (suppression du fichier reset.sh)
 * Ajout d'un onglet spécifique "liste des applications" dans la configuration équipement pour la gestion des Applications
-![Screenshot8](../images/Screenshot8.png)
+![Screenshot8](../images/Screenshot8.PNG)
 * Il est maintenant possible d'ajouter des applications directement a partir de l'onglet "liste des applications"
 * Il est maintenant possible de modifier la commande ADB dans la configuration équipement
 

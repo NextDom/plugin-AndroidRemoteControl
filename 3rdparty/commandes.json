@@ -58,7 +58,7 @@
     "name": "battery_status",
     "type": "info",
     "categorie": "commande",
-    "subtype": "numeric"
+    "subtype": "string"
   },{
     "name": "mainmenu",
     "type": "action",
