@@ -38,8 +38,15 @@ Actuellement le plugin a été vérifié sur les matériels suivants:
 * Xiaomi mibox TV (Le port 5555 servant a ADB n'est pas ouvert par défaut), il faut connecter la box en USB et lancer les commandes suivantes:
     - adb connect
     - adb tcpip 5555
-    - adb conncect 192.168.x.x:5555
+    - adb connect 192.168.x.x:5555
     - debrancher le cable
+* Samsung galaxy (Le port 5555 servant a ADB n'est pas ouvert par défaut), il faut connecter la telephone en USB et lancer les commandes suivantes:
+    - adb connect
+    - adb tcpip 5555
+    - adb connect 192.168.x.x:5555
+    - debrancher le cable
+*  lenovo yoga 1 (pas de configurations supplémentaires a effectuer).
+
 
 ![Screenshot5](../images/Screenshot3.png)
 
@@ -58,5 +65,9 @@ Retrouvez le sur le [Market](https://www.jeedom.com/market/index.php?v=d&p=marke
 ![Screenshot2](../images/Screenshot2.png)
 
 ![Screenshot3](../images/Screenshot3.png)
+
+![Screenshot4](../images/Screenshot4.png)
+
+![Screenshot7](../images/Screenshot7.PNG)
 
 Lien vers le [Forum](https://www.jeedom.com/forum/viewtopic.php?t=34154)
