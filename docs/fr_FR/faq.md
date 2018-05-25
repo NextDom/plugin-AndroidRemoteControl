@@ -15,25 +15,16 @@ Le plugin installe le paquet debian 'adb-tools'
 
 ### Lorsque je clique sur une application, rien ne ce passe pourquoi?
 
-> Entre les appareils équipés d'android TV, smartphone, box opérateurs, le nom des applications de sont pas les memes, il faut donc modifier le fichier /3rdparty/applis.json pour mettre le bon nom de l'application.
-> 1)Pour cela lancer la commande shell ```sudo adb shell "pm list packages"|cut -f 2 -d ":"```
-> 2)Repérer le nom de l'application, par exemple "com.google.android.youtube.tv"
-> 3) Remplacer l'ancier nom de l'application par le nouveau dans la partie commande
-> ex: ```
-{
-    "name": "youtube",
-    "icon":"youtube.png",
-    "type": "action",
-    "subtype": "other",
-    "categorie": "appli",
-    "commande": "shell monkey -p **com.google.android.youtube.tv** -c android.intent.category.LAUNCHER 1"
-}
-```
+> Entre les appareils équipés d'android TV, smartphone, box opérateurs, le nom des applications ne sont pas les memes, il faut donc modifier la commande ADB.
+> 1) Pour cela lancer la commande shell ```sudo adb shell "pm list packages"|cut -f 2 -d ":"```
+> 2) Repérer le nom de l'application, par exemple "com.google.android.youtube.tv"
+> 3) Remplacer le nom de l'appli dans le champs commande de l'application (dans onglet "liste des applications" dans la configuration de l'équipement)
 
+![Screenshot8](../images/Screenshot8.png)
 
 ### Je ne trouve pas l'application dans la liste des commandes disponibles, comment faire ?
 
-> Il faut simplement créer une issue sur github : [https://github.com/NextDom/plugin-AndroidRemoteControl/issues](https://github.com/NextDom/plugin-AndroidRemoteControl/issues)
+> Il faut simplement créer une issue sur github : [https://github.com/Jeedom-Plugins-Extra/plugin-AndroidRemoteControl/issues](https://github.com/Jeedom-Plugins-Extra/plugin-AndroidRemoteControl/issues)
 
 ### Je ne vois pas l'option "débogage par reseau", que faire ?
 
