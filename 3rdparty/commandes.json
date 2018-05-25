@@ -48,9 +48,14 @@
     "name": "play_state",
     "type": "info",
     "categorie": "commande",
-    "subtype": "numeric"
+    "subtype": "string"
   },{
     "name": "battery_level",
+    "type": "info",
+    "categorie": "commande",
+    "subtype": "numeric"
+  },{
+    "name": "battery_status",
     "type": "info",
     "categorie": "commande",
     "subtype": "numeric"
@@ -113,7 +118,7 @@
     "type": "action",
     "subtype": "other",
     "categorie": "commande",
-    "commande": "sshell input keyevent 109"
+    "commande": "shell input keyevent 23"
   },{
     "name": "volume+",
     "type": "action",

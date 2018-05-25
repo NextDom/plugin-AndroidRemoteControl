@@ -30,7 +30,7 @@ if (!isConnect('admin')) {
 		type: 'POST',
 		url: 'plugins/AndroidRemoteControl/core/ajax/AndroidRemoteControl.ajax.php',
 		data: {
-			action: 'resetAndroidRemoteControl'
+			action: 'reset'
 		},
 		dataType: 'json',
 		global: false,
@@ -39,8 +39,8 @@ if (!isConnect('admin')) {
 		},
 		success: function () {
 			 jeedom.log.autoupdate({
-			       log : 'AndroidRemoteControl_reset',
-			       display : $('#pre_AndroidRemoteControlreset'),
+			       log : 'AndroidRemoteControl',
+			       display : $('#pre_AndroidRemoteControl'),
 			       search : $('#in_AndroidRemoteControlLogSearch'),
 			       control : $('#bt_AndroidRemoteControlLogStopStart'),
            		});
