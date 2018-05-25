@@ -49,8 +49,26 @@ if (!isConnect()) {
   $('#bt_resetAndroidRemoteControl').on('click',function(){
   		bootbox.confirm('{{Etes-vous sûr de vouloir relancer le service ADB ?}}', function (result) {
   			if (result) {
-  				$('#md_modal').dialog({title: "{{Reset}}"});
-  				$('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=reset.AndroidRemoteControl').dialog('open');
+              	$.post({
+        url: 'plugins/AndroidRemoteControl/core/ajax/AndroidRemoteControl.ajax.php',
+        data: {
+            action: 'resetADB'
+        },
+        dataType: 'json',
+        success: function (data, status) {
+            // Test si l'appel a échoué
+            if (data.state !== 'ok' || status !== 'success') {
+                $('#div_alert').showAlert({message: data.result, level: 'danger'});
+            }
+            else {
+
+            }
+        },
+        error: function (request, status, error) {
+            handleAjaxError(request, status, error);
+        }
+    });	
+
   			}
   		});
   	});
