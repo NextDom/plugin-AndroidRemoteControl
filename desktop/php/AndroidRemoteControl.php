@@ -128,16 +128,41 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                     </div>
                                 </div>
                                 <div class="form-group">
+                    <label class="col-sm-3 control-label">{{Methode de connection}}</label>
+                    <div class="col-sm-6">
+                        <select class="eqLogicAttr form-control tooltips" data-l1key="configuration" data-l2key="type_connection" title="{{Veuillez préciser la methode de connection our votre appareil.}}">
+                            <option value="TCPIP">TCPIP</option>
+                            <option value="USB">USB</option>
+                        </select>
+                    </div>
+                    
+                </div>
+                                <div class="form-group">
                                     <label class="col-sm-3 control-label">{{Adresse IP}}</label>
                                     <div class="col-sm-3">
                                         <input id="ip_address" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="ip_address"/>
                                     </div>
                                 </div>
+                                
                             </fieldset>
-                        </form>
+                            
                     </div>
                     <span id="serviceName" class="eqLogicAttr" data-l1key="configuration" data-l2key="serviceName" style="display:none;"></span>
-
+				<div class="col-sm-6">
+                                            <fieldset>
+                                <legend>{{Informations}}</legend>
+                   <div class="alert alert-info">
+                {{Le choix de la connection depend principalement de votre appareil Android. Il y a des avantages et inconvénients pour chaque:<br>
+                	- USB: nécéssite un cable et par consquent que votre Android soit a proximité de votre Jeedom<br>
+                    - ADB: Ne nécéssite aucune application tierce sur votre Android mais en focntion des équipements la connection peu etre capricieuse<br>
+                    - SSH: A venir (encours d'étude de faisabilité)<br>}}
+                 </div>
+                 <div class="alert alert-danger">
+                {{Si vous choisissez la connection USB, seul 1 périphérique peut etre controlé. Le plugin ne gère pas la connection USB et TCPIP en meme temps}}
+                 </div>
+                 </fieldset>
+            </div>
+                    
                 </form>
             </div>
             <div role="tabpanel" class="tab-pane" id="commandtab">
@@ -167,10 +192,8 @@ $eqLogics = eqLogic::byType($plugin->getId());
                     </tbody>
                 </table>
             </div>
-
+</div>
         </div>
-
-    </div>
 </div>
 
 <?php include_file('desktop', 'AndroidRemoteControl', 'js', 'AndroidRemoteControl');?>

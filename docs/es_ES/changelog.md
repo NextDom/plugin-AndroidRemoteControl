@@ -5,33 +5,16 @@
 # Prochaine version
 
 Ajout des fonctionnalités suivantes:
+    - Modification de l'icone lecture/pause en fonction du statut de lecture.
+    - Affichage capture d'écrans en cliquant sur l'icone du programme encours
     - Prise en charge de l'envoi de SMS sur les appareils compatibles
     - Envoi d'une notification (Toast)
-    - prise en charge de la connection ADB par USB
 
 # Changelog
 
-### Version 0.9.7:  (25/05/2018 - Version en cours sur le market)
+### Version 0.9.5:  (08/05/2018 - Version en cours sur le market)
 
-* Ajout du statut de charge de la batterie (En charge, en décharge, pleine)
-* Le statut de lecture est maintenant de type string (lecture, pause, arret)
-* Prise en charge des applications suivantes (freeboxtv, tinycam)
-* Amélioration de la gestion de la reconnection ADB (suppression du fichier reset.sh)
-* Ajout d'un onglet spécifique "liste des applications" dans la configuration équipement pour la gestion des Applications
-![Screenshot8](../images/Screenshot8.PNG)
-* Il est maintenant possible d'ajouter des applications directement a partir de l'onglet "liste des applications"
-* Il est maintenant possible de modifier la commande ADB dans la configuration équipement
-
-### Version 0.9.6:  (09/05/2018)
-
-* Modification de l'icone play/stop en fonction de l'état de lecture.
-* Ajout d'un effet blur lors du survole de l'affiche (pour signaifier que le bouton est cliquable)
-* Ajout d'un icone reboot (en haut a gauche)
-* Modification des keyvent pour plus de compatibilité
-
-### Version 0.9.5:  (08/05/2018)
-
-* Ajout de la fonction connect en fin d'assistant (afin d'obtenir le message d'autorisation d'adb)
+* Ajout de la fonction connect en fin d'assistant (afin d'obtenir le message d'authorisation d'adb)
 
 ### Version 0.9.4:  (06/05/2018)
 

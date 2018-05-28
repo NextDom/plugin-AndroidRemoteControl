@@ -65,17 +65,52 @@ class AndroidRemoteControl extends eqLogic
         passthru('/bin/bash ' . $resource_path . '/install.sh ' . $resource_path . ' > ' . log::getPathToLog('AndroidRemoteControl_dep') . ' 2>&1 &');
     }
 
-    public function resetADB()
+  public function runcmd($_cmd)
+    {
+     $type_connection = $this->getConfiguration('type_connection');
+     $ip_address = $this->getConfiguration('ip_address');
+     $sudo = exec("\$EUID");
+        if ($sudo != "0") {
+            $sudo_prefix = "sudo ";
+        }
+    if ($type_connection == "TCPIP") {
+      $data = shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 " . $_cmd);
+      return $data;
+    }elseif ($type_connection == "TCPIP") {
+      $data = shell_exec($sudo_prefix . "adb " . $_cmd);
+      return $data;
+    }else{
+    }
+  	}
+  		
+    public static function resetADB()
     {
         $sudo = exec("\$EUID");
         if ($sudo != "0") {
             $sudo_prefix = "sudo ";
         }
-        $ip_address = $this->getConfiguration('ip_address');
-        log::add('AndroidRemoteControl', 'info', 'Kill préventif du service ADB');
+        log::add('AndroidRemoteControl', 'debug', 'Arret du service ADB');
         shell_exec($sudo_prefix . "adb kill-server");
         sleep(3);
-        log::add('AndroidRemoteControl', 'info', 'Connection au périphérique '.$ip_address.' encours');
+        log::add('AndroidRemoteControl', 'debug', 'Lancement du service ADB');
+      	shell_exec($sudo_prefix . "adb start-server");
+
+        }
+  
+   public function connectADB($_ip_address)
+    {
+        $sudo = exec("\$EUID");
+        if ($sudo != "0") {
+            $sudo_prefix = "sudo ";
+        }
+     if (isset($_ip_address)) {
+      	$ip_address = $_ip_address;
+     }else{
+        $ip_address = $this->getConfiguration('ip_address');
+     }
+      	log::add('AndroidRemoteControl', 'debug', 'Déconnection préventive du périphérique '.$ip_address.' encours');
+        shell_exec($sudo_prefix . "adb connect ".$ip_address);
+        log::add('AndroidRemoteControl', 'debug', 'Connection au périphérique '.$ip_address.' encours');
         shell_exec($sudo_prefix . "adb connect ".$ip_address);
     }
 
@@ -126,6 +161,20 @@ class AndroidRemoteControl extends eqLogic
         $cmd->setValue($volume->getId());
         $cmd->setEqLogic_id($this->getId());
         $cmd->save();
+      
+      $sudo = exec("\$EUID");
+        if ($sudo != "0") {
+            $sudo_prefix = "sudo ";
+        }
+         if ($this->getConfiguration('type_connection') == "TCPIP") {
+        log::add('AndroidRemoteControl', 'debug', "Restart ADB en mode TCP");
+        $check = shell_exec($sudo_prefix . "adb devices TCPIP 5555");
+      } elseif ($this->getConfiguration('type_connection') == "SSH") {
+       log::add('AndroidRemoteControl', 'debug', "Check de la connection SSH");
+      } else{
+      log::add('AndroidRemoteControl', 'debug', "Restart ADB en mode USB");
+        $check = shell_exec($sudo_prefix . "adb devices USB");
+      }
     }
 
     public function preUpdate()
@@ -144,20 +193,33 @@ class AndroidRemoteControl extends eqLogic
         }
         $ip_address = $this->getConfiguration('ip_address');
 
-        $power_state = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys power -h | grep \"Display Power\" | cut -c22-"), 0, -1);
-        $encours     = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys window windows | grep -E 'mFocusedApp'| cut -d / -f 1 | cut -d \" \" -f 7"), 0, -1);
-        $version_android     = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell getprop ro.build.version.release"), 0, -1);
-        $name        = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell getprop ro.product.model"), 0, -1);
-        $type        = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell getprop ro.build.characteristics"), 0, -1);
-        $resolution  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555 shell dumpsys window displays | grep init | cut -c45-53"), 0, -1);
-        $disk_free = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys diskstats | grep Data-Free | cut -c44-46"), 0, -1);
-        $disk_total = round(substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys diskstats | grep Data-Free | cut -c25-33"), 0, -1)/1000000, 1);
-        $title        = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys bluetooth_manager | grep MediaAttributes | cut -d: -f3"), 0, -2);
-        $volume       = substr(shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell dumpsys audio | grep -A 4 STREAM_MUSIC |grep Current | cut -c26-27"), 0, -1);;
-        $play_state  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555  shell dumpsys bluetooth_manager | grep mCurrentPlayState | cut -d,  -f1 | cut -c43-"), 0, -1);
-        $battery_level  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555 shell dumpsys battery | grep level | cut -d: -f2"), 0, -1);
-        $battery_status  = substr(shell_exec($sudo_prefix . "adb -s " . $ip_address . ":5555 shell dumpsys battery | grep status"), -3);
-
+        $power_state = substr($this->runcmd("shell dumpsys power -h | grep \"Display Power\" | cut -c22-"), 0, -1);
+       	log::add('AndroidRemoteControl', 'debug', "power_state: " . $power_state);
+        $encours     = substr($this->runcmd("shell dumpsys window windows | grep -E 'mFocusedApp'| cut -d / -f 1 | cut -d \" \" -f 7"), 0, -1);
+      log::add('AndroidRemoteControl', 'debug', "encours: " .$encours );
+        $version_android     = substr($this->runcmd("shell getprop ro.build.version.release"), 0, -1);
+      log::add('AndroidRemoteControl', 'debug', "version_android: " .$version_android );
+        $name        = substr($this->runcmd("shell getprop ro.product.model"), 0, -1);
+      log::add('AndroidRemoteControl', 'debug', "name: " .$name );
+        $type        = substr($this->runcmd("shell getprop ro.build.characteristics"), 0, -1);
+      log::add('AndroidRemoteControl', 'debug', "type: " .$type);
+        $resolution  = substr($this->runcmd("shell dumpsys window displays | grep init | cut -c45-53"), 0, -1);
+      log::add('AndroidRemoteControl', 'debug', "resolution: " .$resolution );
+        $disk_free = substr($this->runcmd("shell dumpsys diskstats | grep Data-Free | cut -c44-46"), 0, -1);
+      log::add('AndroidRemoteControl', 'debug', "disk_free: " .$disk_free );
+        $disk_total = round(substr($this->runcmd("shell dumpsys diskstats | grep Data-Free | cut -c25-33"), 0, -1)/1000000, 1);
+      log::add('AndroidRemoteControl', 'debug', "disk_total: " .$disk_total);
+        $title        = substr($this->runcmd("shell dumpsys bluetooth_manager | grep MediaAttributes | cut -d: -f3"), 0, -2);
+      log::add('AndroidRemoteControl', 'debug', "title: " .$title);
+        $volume       = substr($this->runcmd("shell dumpsys audio | grep -A 4 STREAM_MUSIC |grep Current | cut -c26-27"), 0, -1);
+      log::add('AndroidRemoteControl', 'debug', "volume: " .$volume);
+        $play_state  = substr($this->runcmd("shell dumpsys bluetooth_manager | grep mCurrentPlayState | cut -d,  -f1 | cut -c43-"), 0, -1);
+      log::add('AndroidRemoteControl', 'debug',  "play_state: " .$play_state );
+        $battery_level  = substr($this->runcmd("shell dumpsys battery | grep level | cut -d: -f2"), 0, -1);
+      log::add('AndroidRemoteControl', 'debug', "battery_level: " .$battery_level);
+        $battery_status  = substr($this->runcmd("shell dumpsys battery | grep status"), -3);
+      log::add('AndroidRemoteControl', 'debug', "battery_status: " .$battery_status);
+     
         return array('power_state' => $power_state, 'encours' => $encours, 'version_android' => $version_android, 'name' => $name, 'type' => $type, 'resolution' => $resolution, 'disk_total' => $disk_total, 'disk_free' => $disk_free, 'title' => $title, 'volume' => $volume, 'play_state' => $play_state, 'battery_level' => $battery_level, 'battery_status' => $battery_status);
     }
     
@@ -249,28 +311,36 @@ class AndroidRemoteControl extends eqLogic
             $sudo_prefix = "sudo ";
         }
         $ip_address = $this->getConfiguration('ip_address');
+      
+      if ($this->getConfiguration('type_connection') == "TCPIP") {
+        log::add('AndroidRemoteControl', 'debug', "Check de la connection TCPIP");
         $check = shell_exec($sudo_prefix . "adb devices | grep " . $ip_address . " | cut -f2 | xargs");
-        echo $check;
-        if (strstr($check, "offline")) {
+      } elseif ($this->getConfiguration('type_connection') == "SSH") {
+       log::add('AndroidRemoteControl', 'debug', "Check de la connection SSH");
+      } else{
+      log::add('AndroidRemoteControl', 'debug', "Check de la connection USB");
+        $check = shell_exec($sudo_prefix . "adb devices | grep " . $ip_address . " | cut -f2 | xargs");
+      }
+              if (strstr($check, "offline")) {
             $cmd = $this->getCmd(null, 'encours');
             log::add('AndroidRemoteControl', 'info', 'Votre appareil est offline');
             $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/erreur.png');
             $cmd->save();
-            $this->resetADB();
+            $this->connectADB();
         } elseif (!strstr($check, "device")) {
             $cmd = $this->getCmd(null, 'encours');
             $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/erreur.png');
             $cmd->save();
             log::add('AndroidRemoteControl', 'info', 'Votre appareil n\'est pas détecté par ADB.');
-            $this->resetADB();
+            $this->connectADB();
         } elseif (strstr($check, "unauthorized")) {
             $cmd = $this->getCmd(null, 'encours');
             $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/erreur.png');
             $cmd->save();
             log::add('AndroidRemoteControl', 'info', 'Votre connection n\'est pas autorisé');
-            $this->resetADB();
+            $this->connectADB();
         }
-    }
+    } 
 
     public function toHtml($_version = 'dashboard') {
         $replace = $this->preToHtml($_version);

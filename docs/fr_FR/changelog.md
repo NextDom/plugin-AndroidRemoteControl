@@ -7,9 +7,15 @@
 Ajout des fonctionnalités suivantes:
     - Prise en charge de l'envoi de SMS sur les appareils compatibles
     - Envoi d'une notification (Toast)
-    - prise en charge de la connection ADB par USB
+    - prise en charge du control par SSH
 
 # Changelog
+
+### Version 0.9.8:  (25/05/2018 - Version beta)
+
+* Correction de la fonction connect en fin d'Assistant  
+* Ajout de la prise en charge du type de connection (USB, TCPIP)
+* Amélioration de la reconnection ADB pour les multi-devices
 
 ### Version 0.9.7:  (25/05/2018 - Version en cours sur le market)
 
@@ -18,7 +24,7 @@ Ajout des fonctionnalités suivantes:
 * Prise en charge des applications suivantes (freeboxtv, tinycam)
 * Amélioration de la gestion de la reconnection ADB (suppression du fichier reset.sh)
 * Ajout d'un onglet spécifique "liste des applications" dans la configuration équipement pour la gestion des Applications
-![Screenshot8](../images/Screenshot8.PNG)
+![Screenshot8](../images/Screenshot8.png)
 * Il est maintenant possible d'ajouter des applications directement a partir de l'onglet "liste des applications"
 * Il est maintenant possible de modifier la commande ADB dans la configuration équipement
 
