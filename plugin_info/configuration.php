@@ -21,9 +21,9 @@ if (!isConnect()) {
     include_file('desktop', '404', 'php');
     die();
 }
+include_file('desktop', 'AndroidRemoteControlForJeedomConfiguration', 'js', 'AndroidRemoteControl');
+
 ?>
-
-
 
 <form class="form-horizontal">
 
@@ -31,18 +31,35 @@ if (!isConnect()) {
     <div class="form-group">
       <label class="col-sm-2 control-label">{{Réparer :}}</label>
 			<div class="col-sm-4">
-				<a class="btn btn-success" id="bt_resetAndroidRemoteControl"><i class="fa fa-check"></i> {{Relancer le service ADB}}</a>
-			</div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label"></label>
+		<a class="btn btn-warning" id="bt_resetAndroidRemoteControl"><i class="fa fa-check"></i> {{Relancer le service ADB}}</a>
+    </div>      
+  <div class="form-group">
+  	<label class="col-sm-2 control-label">{{Informations :}}</label>
       <div class="col-sm-4">
-      </div>
-      <label class="col-sm-2 control-label">{{Informations :}}</label>
-      <div class="col-sm-4">
-        <a class="btn btn-success" href="https://NextDom.github.io/NextDom/"><i class="fa fa-question-circle"></i> {{NextDom}}</a>
-      </div>
+ 		<button id="show-nextdom-modal" class="btn btn-success"><i class="fa fa-users"></i> {{NextDom}}</button>     
     </div>
+  </div>
+  <div class="panel panel-info" style="height: 100%;">
+	<div class="panel-heading" role="tab">
+		<h4 class="panel-title">
+			Dons aux developpeurs
+		</h4>
+	</div>
+	<div class="form-group">
+		<div class="col-lg-8" style="margin-top:9px">
+
+			<li>{{Developpement}} : Byackee  >
+			<a class="btn-link" id="bt_paypal" href="https://paypal.me/byackee" target="_new" >
+				<img src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_donate_LG.gif" alt="{{Faire un don via Paypal au développeur Byackee}}">
+			</a>
+			</li><br>
+  <li>{{Assistant de configuration}} : Slobberbone   >
+			<a class="btn-link" id="bt_paypal" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=PH295BMQ33EFN&lc=FR&item_name=Plugin%20Jeedom%20AndroidRC&currency_code=EUR" target="_new" >
+				<img src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_donate_LG.gif" alt="{{Faire un don via Paypal au développeur Slobberbone}}">
+			</a>
+			</li>
+		</div>	
+	</div>
   </div>
 </form>
 <script>
