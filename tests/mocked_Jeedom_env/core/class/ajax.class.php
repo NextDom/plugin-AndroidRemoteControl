@@ -1,3 +1,5 @@
+<?php
+
 /*
  * This file is part of the NextDom software (https://github.com/NextDom or http://nextdom.github.io).
  * Copyright (c) 2018 NextDom.
@@ -15,7 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-<?php
+
 
 /**
  * Mock de la classe Ajax
