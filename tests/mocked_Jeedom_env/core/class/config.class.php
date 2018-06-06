@@ -1,3 +1,5 @@
+<?php
+
 /*
  * This file is part of the NextDom software (https://github.com/NextDom or http://nextdom.github.io).
  * Copyright (c) 2018 NextDom.
@@ -16,7 +18,7 @@
  */
 
 
-<?php
+
 
 require_once('../../mocked_core.php');
 
