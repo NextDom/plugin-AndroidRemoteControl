@@ -396,7 +396,7 @@ class AndroidRemoteControl extends eqLogic
 class AndroidRemoteControlCmd extends cmd
 {
 
-    public function execute(array $_options = array())
+    public function execute($_options = array())
     {
         $ARC = $this->getEqLogic();
         $ARC->checkAndroidRemoteControlStatus();
