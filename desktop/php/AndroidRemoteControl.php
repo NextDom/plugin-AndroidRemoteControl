@@ -140,7 +140,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">{{Adresse IP}}</label>
                                     <div class="col-sm-3">
-                                        <input id="ip_address" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="ip_address"/>
+                                        <input id="ip_address" data-inputmask="'alias': 'ip'" data-mask="" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="ip_address"/>
                                     </div>
                                 </div>
                                 
