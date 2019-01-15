@@ -56,7 +56,7 @@ Vous pouvez également changer la couleur du bandeau du bas ou le rendre transpa
 
 # Market
 
-Retrouvez le sur le [Market](https://www.jeedom.com/market/index.php?v=d&p=market&type=plugin&&name=Plugin) Jeedom
+Retrouvez le sur le [Market NextDom](https://nextdom.github.io/plugin-AlternativeMarketForJeedom/fr_FR/)
 
 # Prévisualisation
 
@@ -70,4 +70,4 @@ Retrouvez le sur le [Market](https://www.jeedom.com/market/index.php?v=d&p=marke
 
 ![Screenshot7](../images/Screenshot7.png)
 
-Lien vers le [Forum](https://www.jeedom.com/forum/viewtopic.php?t=34154)
+Lien vers le [Forum](https://www.nextdom.org/forum/plugin-android-remote-control)
