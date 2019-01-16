@@ -33,7 +33,7 @@
       	"type": "action",
     	"subtype": "other",
 		"categorie": "appli",
-		"commande": "shell am start tv.molotov.app/tv.molotov.android.tv.SplashActivity"
+		"commande": "shell monkey -p tv.molotov.app -c android.intent.category.LAUNCHER 1"
 	},{
 		"name": "spotify",
      	"icon":"spotify.png",

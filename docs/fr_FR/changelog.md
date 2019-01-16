@@ -11,13 +11,17 @@ Ajout des fonctionnalités suivantes:
 
 # Changelog
 
-### Version 0.9.8:  (25/05/2018 - Version beta)
+### Version 0.9.9:  (16/01/2019 - Version beta)
+* Ajout du template mobile 
+* Correction du lancement de Molotov  
+
+### Version 0.9.8:  (25/05/2018)
 
 * Correction de la fonction connect en fin d'Assistant  
 * Ajout de la prise en charge du type de connection (USB, TCPIP)
 * Amélioration de la reconnection ADB pour les multi-devices
 
-### Version 0.9.7:  (25/05/2018 - Version en cours sur le market)
+### Version 0.9.7:  (25/05/2018)
 
 * Ajout du statut de charge de la batterie (En charge, en décharge, pleine)
 * Le statut de lecture est maintenant de type string (lecture, pause, arret)
