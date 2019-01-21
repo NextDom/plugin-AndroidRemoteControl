@@ -98,7 +98,7 @@ class AndroidRemoteControl extends eqLogic
 
         }
   
-   public function connectADB($_ip_address)
+   public function connectADB($_ip_address = null)
     {
         $sudo = exec("\$EUID");
         if ($sudo != "0") {
@@ -327,19 +327,19 @@ class AndroidRemoteControl extends eqLogic
             log::add('AndroidRemoteControl', 'info', 'Votre appareil est offline');
             $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/erreur.png');
             $cmd->save();
-            $this->connectADB();
+            $this->connectADB($ip_address);
         } elseif (!strstr($check, "device")) {
             $cmd = $this->getCmd(null, 'encours');
             $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/erreur.png');
             $cmd->save();
             log::add('AndroidRemoteControl', 'info', 'Votre appareil n\'est pas détecté par ADB.');
-            $this->connectADB();
+            $this->connectADB($ip_address);
         } elseif (strstr($check, "unauthorized")) {
             $cmd = $this->getCmd(null, 'encours');
             $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/erreur.png');
             $cmd->save();
             log::add('AndroidRemoteControl', 'info', 'Votre connection n\'est pas autorisé');
-            $this->connectADB();
+            $this->connectADB($ip_address);
         }
     } 
 
