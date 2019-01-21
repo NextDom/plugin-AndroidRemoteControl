@@ -184,7 +184,7 @@
     width: 250px;
 }
 
-.AndroidRemoteControl_widget .content {
+.AndroidRemoteControl_widget .AndroidrcContent {
 	display: block;
 	margin-left: 30px;
 	overflow: hidden;
