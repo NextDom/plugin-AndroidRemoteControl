@@ -50,7 +50,7 @@ include_file('desktop', 'AndroidRemoteControlForJeedomConfiguration', 'js', 'And
 	<div class="form-group">
 		<div class="col-lg-8" style="margin-top:9px">
 
-			<li>{{Developpement}} : Byackee  >
+			<li>{{Développement}} : Byackee  >
 			<a class="btn-link" id="bt_paypal" href="https://paypal.me/byackee" target="_new" >
 				<img src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_donate_LG.gif" alt="{{Faire un don via Paypal au développeur Byackee}}">
 			</a>
