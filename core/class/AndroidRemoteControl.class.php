@@ -19,6 +19,7 @@
 
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../../../core/php/core.inc.php';
+require_once "AndroidRemoteControlCmd.class.php";
 
 class AndroidRemoteControl extends eqLogic
 {
@@ -83,7 +84,7 @@ class AndroidRemoteControl extends eqLogic
     }else{
     }
   	}
-  		
+
     public static function resetADB()
     {
         $sudo = exec("\$EUID");
@@ -97,7 +98,7 @@ class AndroidRemoteControl extends eqLogic
       	shell_exec($sudo_prefix . "adb start-server");
 
         }
-  
+
    public function connectADB($_ip_address = null)
     {
         $sudo = exec("\$EUID");
@@ -162,7 +163,7 @@ class AndroidRemoteControl extends eqLogic
         $cmd->setValue($volume->getId());
         $cmd->setEqLogic_id($this->getId());
         $cmd->save();
-      
+
       $sudo = exec("\$EUID");
         if ($sudo != "0") {
             $sudo_prefix = "sudo ";
@@ -206,12 +207,11 @@ class AndroidRemoteControl extends eqLogic
       log::add('AndroidRemoteControl', 'debug', "type: " .$type);
         $resolution  = substr($this->runcmd("shell dumpsys window displays | grep init | cut -c45-53"), 0, -1);
       log::add('AndroidRemoteControl', 'debug', "resolution: " .$resolution );
-        $disk_free = substr($this->runcmd("shell dumpsys diskstats | grep Data-Free | cut -c44-46"), 0, -1);
-      log::add('AndroidRemoteControl', 'debug', "disk_free: " .$disk_free );
-        $disk_total = round(substr($this->runcmd("shell dumpsys diskstats | grep Data-Free | cut -c25-33"), 0, -1)/1000000, 1);
-      log::add('AndroidRemoteControl', 'debug', "disk_total: " .$disk_total);
-        $title        = substr($this->runcmd("shell dumpsys bluetooth_manager | grep MediaAttributes | cut -d: -f3"), 0, -2);
-      log::add('AndroidRemoteControl', 'debug', "title: " .$title);
+        $disk_free = substr($this->runcmd("shell dumpsys diskstats | grep Data-Free | cut -d' ' -f7"), 0, -1);
+        log::add('AndroidRemoteControl', 'debug', "disk_free: " .$disk_free );
+        $disk_total = round(substr($this->runcmd("shell dumpsys diskstats | grep Data-Free | cut -d' ' -f4"), 0, -1)/1000000, 1);
+        log::add('AndroidRemoteControl', 'debug', "disk_total: " .$disk_total);
+        $title = substr($this->runcmd("shell dumpsys bluetooth_manager | grep MediaPlayerInfo | grep .$encours. |cut -d')' -f3 | cut -d, -f1 | grep -v null | sed 's/^\ *//g'"), 0);        log::add('AndroidRemoteControl', 'debug', "title: " .$title);
         $volume       = substr($this->runcmd("shell dumpsys audio | grep -A 4 STREAM_MUSIC |grep Current | cut -c26-27"), 0, -1);
       log::add('AndroidRemoteControl', 'debug', "volume: " .$volume);
         $play_state  = substr($this->runcmd("shell dumpsys bluetooth_manager | grep mCurrentPlayState | cut -d,  -f1 | cut -c43-"), 0, -1);
@@ -220,10 +220,10 @@ class AndroidRemoteControl extends eqLogic
       log::add('AndroidRemoteControl', 'debug', "battery_level: " .$battery_level);
         $battery_status  = substr($this->runcmd("shell dumpsys battery | grep status"), -3);
       log::add('AndroidRemoteControl', 'debug', "battery_status: " .$battery_status);
-     
+
         return array('power_state' => $power_state, 'encours' => $encours, 'version_android' => $version_android, 'name' => $name, 'type' => $type, 'resolution' => $resolution, 'disk_total' => $disk_total, 'disk_free' => $disk_free, 'title' => $title, 'volume' => $volume, 'play_state' => $play_state, 'battery_level' => $battery_level, 'battery_status' => $battery_status);
     }
-    
+
     public function updateInfo()
     {
         try {
@@ -312,7 +312,7 @@ class AndroidRemoteControl extends eqLogic
             $sudo_prefix = "sudo ";
         }
         $ip_address = $this->getConfiguration('ip_address');
-      
+
       if ($this->getConfiguration('type_connection') == "TCPIP") {
         log::add('AndroidRemoteControl', 'debug', "Check de la connection TCPIP");
         $check = shell_exec($sudo_prefix . "adb devices | grep " . $ip_address . " | cut -f2 | xargs");
@@ -341,7 +341,7 @@ class AndroidRemoteControl extends eqLogic
             log::add('AndroidRemoteControl', 'info', 'Votre connection n\'est pas autorisé');
             $this->connectADB($ip_address);
         }
-    } 
+    }
 
     public function toHtml($_version = 'dashboard') {
         $replace = $this->preToHtml($_version);
@@ -390,32 +390,6 @@ class AndroidRemoteControl extends eqLogic
         $replace['#ip#'] = $this->getConfiguration('ip_address');
 
         return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'eqLogic', 'AndroidRemoteControl')));
-    }
-
-}
-
-class AndroidRemoteControlCmd extends cmd
-{
-
-    public function execute($_options = array())
-    {
-        $ARC = $this->getEqLogic();
-        $ARC->checkAndroidRemoteControlStatus();
-
-        $sudo = exec("\$EUID");
-        if ($sudo != "0") {
-            $sudo_prefix = "sudo ";
-        }
-        $ip_address = $ARC->getConfiguration('ip_address');
-
-        log::add('AndroidRemoteControl', 'info', 'Command ' . $this->getConfiguration('commande') . ' sent to android device at ip address : ' . $ip_address);
-        shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 " . $this->getConfiguration('commande'));
-
-        if (stristr($this->getLogicalId(), 'setVolume')){
-            shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell service call audio 3 i32 3 i32 " . $_options['slider']);
-        }
-
-        $ARC->updateInfo();
     }
 
 }
