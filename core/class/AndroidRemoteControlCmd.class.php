@@ -37,7 +37,7 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 class AndroidRemoteControlCmd extends cmd
 {
 
-public function execute($_options = array())
+public function execute($_options = null)
 {
 $ARC = $this->getEqLogic();
 $ARC->checkAndroidRemoteControlStatus();
