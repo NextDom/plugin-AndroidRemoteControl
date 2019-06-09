@@ -14,6 +14,7 @@ Ajout des fonctionnalités suivantes:
 ### Version 0.9.9:  (16/01/2019 - Version beta)
 * Ajout du template mobile 
 * Correction du lancement de Molotov  
+* fix bugs
 
 ### Version 0.9.8:  (25/05/2018)
 
