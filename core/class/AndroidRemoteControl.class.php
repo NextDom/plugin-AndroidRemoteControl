@@ -212,7 +212,7 @@ class AndroidRemoteControl extends eqLogic
         $disk_total = round(substr($this->runcmd("shell dumpsys diskstats | grep Data-Free | cut -d' ' -f4"), 0, -1)/1000000, 1);
         log::add('AndroidRemoteControl', 'debug', "disk_total: " .$disk_total);
         $title = substr($this->runcmd("shell dumpsys bluetooth_manager | grep MediaPlayerInfo | grep .$encours. |cut -d')' -f3 | cut -d, -f1 | grep -v null | sed 's/^\ *//g'"), 0);        log::add('AndroidRemoteControl', 'debug', "title: " .$title);
-        $volume       = substr($this->runcmd("shell dumpsys audio | grep -A 4 STREAM_MUSIC |grep Current | cut -c26-27"), 0, -1);
+        $volume = substr($this->runcmd("shell dumpsys audio | grep -A 4 STREAM_MUSIC |grep Current | cut -c94-95 | tr -d ,"), 0, -1);
       log::add('AndroidRemoteControl', 'debug', "volume: " .$volume);
         $play_state  = substr($this->runcmd("shell dumpsys bluetooth_manager | grep mCurrentPlayState | cut -d,  -f1 | cut -c43-"), 0, -1);
       log::add('AndroidRemoteControl', 'debug',  "play_state: " .$play_state );
