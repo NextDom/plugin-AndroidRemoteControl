@@ -52,7 +52,11 @@ log::add('AndroidRemoteControl', 'info', 'Command ' . $this->getConfiguration('c
 shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 " . $this->getConfiguration('commande'));
 
 if (stristr($this->getLogicalId(), 'setVolume')){
+<<<<<<< HEAD
 shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell media volume --stream 3  --set . $_options['slider'])";
+=======
+shell_exec($sudo_prefix . "adb -s ".$ip_address.":5555 shell service call audio 3 i32 3 i32 . $_options['slider']) . i32 1";
+>>>>>>> develop
 }
 
 $ARC->updateInfo();
