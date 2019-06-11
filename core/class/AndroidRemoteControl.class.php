@@ -377,6 +377,7 @@ class AndroidRemoteControl extends eqLogic
             }
             $replace['#' . $cmd->getLogicalId() . '_id_display#'] = ($cmd->getIsVisible()) ? '#' . $cmd->getLogicalId() . "_id_display#" : "none";
         }
+		$replace['#applis#'] = "";
         foreach ($this->getCmd('action') as $cmd) {
             if ($cmd->getConfiguration('categorie') == 'appli'){
                 $replace['#applis#'] = $replace['#applis#'] . '<a class="btn cmd icons noRefresh" style="display:#'.$cmd->getLogicalId().'_id_display#; padding:3px" data-cmd_id="'.$cmd->getId().'" title="'.$cmd->getName().'" onclick="jeedom.cmd.execute({id: '.$cmd->getId().'});"><img src="plugins/AndroidRemoteControl/desktop/images/'.$cmd->getConfiguration('icon') .'"></a>';
