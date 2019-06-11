@@ -91,6 +91,13 @@
 		"categorie": "appli",
     	"commande": "shell input keyevent 3"
 	},{
+		"name": "tvlauncher",
+		"icon": "home.png",
+		"type": "action",
+		"subtype": "other",
+		"categorie": "appli",
+		"commande": "shell input keyevent 3"
+	},{
 		"name": "zapster",
 		"icon": "television.png",
       	"type": "action",

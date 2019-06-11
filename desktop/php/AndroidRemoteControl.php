@@ -65,149 +65,165 @@ $eqLogics = eqLogic::byType($plugin->getId());
         </ul>
         <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
             <div role="tabpanel" class="tab-pane active" id="eqlogictab">
-                <br/>
-                <form class="form-horizontal">
-                    <fieldset>
-                        <legend>{{Général}}</legend>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Nom de l'équipement}}</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
-                                <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" >{{Objet parent}}</label>
-                            <div class="col-sm-3">
-                                <select id="sel_object" class="eqLogicAttr form-control" data-l1key="object_id">
-                                    <option value="">{{Aucun}}</option>
-                                    <?php
-                                    foreach (object::all() as $object) {
-                                        echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Catégorie}}</label>
-                            <div class="col-sm-9">
-                                <?php
-                                foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-                                    echo '<label class="checkbox-inline">';
-                                    echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
-                                    echo '</label>';
-                                }
-                                ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">{{Commentaire}}</label>
-                            <div class="col-sm-3">
-                                <textarea class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire" ></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label"></label>
-                            <div class="col-md-8">
-                                <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
-                                <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
-                            </div>
-                        </div>
+                <br />
 
-                    </fieldset>
-                    <div class="col-sm-6">
-                        <form class="form-horizontal">
-                            <fieldset>
-                                <legend>{{Paramètres}}</legend>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">{{Assistant}}</label>
-                                    <div class="col-sm-3">
-                                        <a class="btn btn-infos" id="bt_configureAdb"><i class="fa fa-android"></i> {{Connecter un appareil Android}}
-                                        </a>
+                <div class="col-md-6">
+                    <div class="box">
+                        <div class="box-header backgroundColor">
+                            <h3 class="eqlogic-box-title">{{ Configuration générale }}</h3>
+                        </div>
+                        <div class="box-body">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <legend>{{Général}}</legend>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{Nom de l'équipement}}</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
+                                            <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement}}"/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                    <label class="col-sm-3 control-label">{{Methode de connection}}</label>
-                    <div class="col-sm-6">
-                        <select class="eqLogicAttr form-control tooltips" data-l1key="configuration" data-l2key="type_connection" title="{{Veuillez préciser la méthode de connexion pour votre appareil.}}">
-                            <option value="TCPIP">TCPIP</option>
-                            <option value="USB">USB</option>
-                        </select>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" >{{Objet parent}}</label>
+                                        <div class="col-sm-3">
+                                            <select id="sel_object" class="eqLogicAttr form-control" data-l1key="object_id">
+                                                <option value="">{{Aucun}}</option>
+                                                <?php
+                                                foreach (object::all() as $object) {
+                                                    echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{Catégorie}}</label>
+                                        <div class="col-sm-9">
+                                            <?php
+                                            foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+                                                echo '<label class="checkbox-inline">';
+                                                echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
+                                                echo '</label>';
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{Commentaire}}</label>
+                                        <div class="col-sm-3">
+                                            <textarea class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="commentaire" ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label"></label>
+                                        <div class="col-md-8">
+                                            <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
+                                            <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                        </div>
                     </div>
-                    
                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">{{Adresse IP}}</label>
-                                    <div class="col-sm-3">
-                                        <input id="ip_address" data-inputmask="'alias': 'ip'" data-mask="" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="ip_address"/>
+                <div class="col-sm-6">
+                    <div class="box">
+                        <div class="box-header backgroundColor">
+                            <h3 class="eqlogic-box-title">{{ Configuration équipement }}</h3>
+                        </div>
+                        <div class="box-body">
+                            <form class="form-horizontal">
+                                <fieldset>
+                                    <legend>{{Paramètres}}</legend>
+                                    <div class="form-group col-sm-12">
+                                        <label class="col-sm-3 control-label">{{Assistant}}</label>
+                                        <div class="col-sm-3">
+                                            <a class="btn btn-infos" id="bt_configureAdb"><i class="fa fa-android"></i> {{Connecter un appareil Android}}
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                            </fieldset>
-                            
+                                    <div class="form-group col-sm-12">
+                                        <label class="col-sm-3 control-label">{{Methode de connection}}</label>
+                                        <div class="col-sm-6">
+                                            <select class="eqLogicAttr form-control tooltips" data-l1key="configuration" data-l2key="type_connection" title="{{Veuillez préciser la methode de connection our votre appareil.}}">
+                                                <option value="TCPIP">TCPIP</option>
+                                                <option value="USB">USB</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{Adresse IP}}</label>
+                                        <div class="col-sm-3">
+                                            <input id="ip_address" data-inputmask="'alias': 'ip'" data-mask="" type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="ip_address"/>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                </br>
+                                <fieldset>
+                                    <legend>{{Informations}}</legend>
+                                    <div class="alert alert-info">
+                                        {{Le choix de la connection depend principalement de votre appareil Android. Il y a des avantages et inconvénients pour chaque:<br>
+                                        - USB: nécéssite un cable et par consquent que votre Android soit a proximité de votre Jeedom<br>
+                                        - ADB: Ne nécéssite aucune application tierce sur votre Android mais en focntion des équipements la connection peu etre capricieuse<br>
+                                        - SSH: A venir (encours d'étude de faisabilité)<br>}}
+                                    </div>
+                                    <div class="alert alert-danger">
+                                        {{Si vous choisissez la connection USB, seul 1 périphérique peut etre controlé. Le plugin ne gère pas la connection USB et TCPIP en meme temps}}
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <span id="serviceName" class="eqLogicAttr" data-l1key="configuration" data-l2key="serviceName" style="display:none;"></span>
                     </div>
-                    <span id="serviceName" class="eqLogicAttr" data-l1key="configuration" data-l2key="serviceName" style="display:none;"></span>
-				<div class="col-sm-6">
-                                            <fieldset>
-                                <legend>{{Informations}}</legend>
-                   <div class="alert alert-info">
-                {{Le choix de la connexion dépend principalement de votre appareil Android. Il y a des avantages et inconvénients pour chaque:<br>
-                	- USB: nécessite un cable et par conséquent que votre Android soit à proximité de votre Jeedom<br>
-                    - ADB: Ne nécessite aucune application tierce sur votre Android mais en fonction des équipements, la connexion peut être capricieuse<br>
-                    - SSH: A venir (en cours d'étude de faisabilité)<br>}}
-                 </div>
-                 <div class="alert alert-danger">
-                {{Si vous choisissez la connexion USB, seul 1 périphérique peut être contrôlé. Le plugin ne gère pas la connexion USB et TCPIP en même temps}}
-                 </div>
-                 </fieldset>
-            </div>
-                    
-                </form>
+
+                </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="commandtab">
                 <table id="table_cmd" class="table table-bordered table-condensed">
                     <thead>
-                        <tr>
-                            <th>{{Nom}}</th><th>{{Type}}</th><th>{{Afficher}}</th><th>{{Action}}</th>
-                        </tr>
+                    <tr>
+                        <th>{{Nom}}</th><th>{{Type}}</th><th>{{Afficher}}</th><th>{{Action}}</th>
+                    </tr>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>
             </div>
-            
+
             <div role="tabpanel" class="tab-pane" id="apptab">
-            <div class="alert alert-info">
-                {{Attention, il faut veiller à sélectionner le type "action" et le sous-type "defaut" lors de la création d'une nouvelle application}}
-            </div>
+                <div class="alert alert-info">
+                    {{Attention, il faut veillez a selectionner le type "action" et le sous-type "defaut" lors de la création d'une nouvelle application}}
+                </div>
                 <a class="btn btn-success btn-sm cmdAction pull-right addAppli" data-action="add" style="margin-top:5px;"><i class="fa fa-plus-circle"></i> {{Applications}}</a><br/><br/>
                 <table id="table_appli" class="table table-bordered table-condensed">
                     <thead>
-                        <tr>
-                            <th>{{Icon}}</th><th>{{Nom}}</th><th>{{Type}}</th><th>{{Commande}}</th><th>{{Afficher}}</th><th>{{Action}}</th>
-                        </tr>
+                    <tr>
+                        <th>{{Icon}}</th><th>{{Nom}}</th><th>{{Type}}</th><th>{{Commande}}</th><th>{{Afficher}}</th><th>{{Action}}</th>
+                    </tr>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>
             </div>
-</div>
         </div>
+    </div>
+</div>
 </div>
 
 <?php include_file('desktop', 'AndroidRemoteControl', 'js', 'AndroidRemoteControl');?>
 <?php include_file('core', 'plugin.template', 'js');?>
 
 <script>
-$("#bt_serviceLog").click(function(){
-    $('#md_modal').dialog({title: "{{Logs}}"});
-    $('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=log.AndroidRemoteControl').dialog('open');
-});
+    $("#bt_serviceLog").click(function(){
+        $('#md_modal').dialog({title: "{{Logs}}"});
+        $('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=log.AndroidRemoteControl').dialog('open');
+    });
 
-$("#bt_configureAdb").click(function(){
-    $('#md_modal').dialog({title: "{{Configuration de votre appareil Android}}"});
-    $('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=configureadb.AndroidRemoteControl').dialog('open');
-});
+    $("#bt_configureAdb").click(function(){
+        $('#md_modal').dialog({title: "{{Configuration de votre appareil Android}}"});
+        $('#md_modal').load('index.php?v=d&plugin=AndroidRemoteControl&modal=configureadb.AndroidRemoteControl').dialog('open');
+    });
 
 </script>

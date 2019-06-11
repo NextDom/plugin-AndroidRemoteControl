@@ -11,9 +11,13 @@ Ajout des fonctionnalités suivantes:
 
 # Changelog
 
-### Version 0.9.9:  (16/01/2019 - Version beta)
+### Version 1.0.0:  (11/06/2019) 
+* fix bugs (volume, erreurs dans les logs, etc..)
+
+### Version 0.9.9:  (16/01/2019)
 * Ajout du template mobile 
 * Correction du lancement de Molotov  
+* fix bugs
 
 ### Version 0.9.8:  (25/05/2018)
 
