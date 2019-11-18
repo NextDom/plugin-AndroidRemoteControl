@@ -7,13 +7,13 @@ Plugin permettant de piloter les terminaux android (TV, Shield, freebox mini 4k,
 ### Fonctions disponibles
 Infos :
 * nom de l'appareil
-* état (allumé/Eteint) (buggé pour l'instant)
+* état (allumé/éteint) (buggé pour l'instant)
 * application en cours
 * résolution
 * version Android
 * espace disque disponible
-* status de lecture (play, pause, arret)
-* nom du titre encours de lecture
+* status de lecture (play, pause, arrêt)
+* nom du titre en cours de lecture
 
 Actions :
 * accueil, retour
@@ -25,27 +25,27 @@ Actions :
 * précédent, suivant
 * lancement des applications : Youtube, FranceTV, Plex, Spotify, VLC, TF1, Google, Facebook, Molotov, Netflix, etc.
 
-Scénarios possible :
-* Allumer la box -> lancer Molotov -> lecture avec commande vocale Google Home/ifttt (ex: "ok google, met la télé en route").
+Scénarios possibles :
+* Allumer la box -> lancer Molotov -> lecture avec commande vocale Google Home/ifttt (ex: "OK Google, mets la télé en route").
 * Commander l'allumage de l'ampli (Yamaha dans mon cas) lorsque la box est allumée (car parfois le HDMI CEC).
 * Si Netflix lancé -> lumière salon à 50%
 
 ### Equipements testés
 Actuellement le plugin a été vérifié sur les matériels suivants:
 * Nvidia Shield (pas de configurations supplémentaires a effectuer).
-* Oneplus 5t (pas de configurations supplémentaires a effectuer).
-* Freebox mini 4k (pas de configurations supplémentaires a effectuer).
-* Xiaomi mibox TV (Le port 5555 servant a ADB n'est pas ouvert par défaut), il faut connecter la box en USB et lancer les commandes suivantes:
+* Oneplus 5t (pas de configurations supplémentaires à effectuer).
+* Freebox mini 4k (pas de configurations supplémentaires à effectuer).
+* Xiaomi Mibox TV (Le port 5555 servant à ADB n'est pas ouvert par défaut), il faut connecter la box en USB et lancer les commandes suivantes:
     - adb connect
     - adb tcpip 5555
     - adb connect 192.168.x.x:5555
-    - debrancher le cable
-* Samsung galaxy (Le port 5555 servant a ADB n'est pas ouvert par défaut), il faut connecter la telephone en USB et lancer les commandes suivantes:
+    - débrancher le cable
+* Samsung Galaxy (Le port 5555 servant à ADB n'est pas ouvert par défaut), il faut connecter la téléphone en USB et lancer les commandes suivantes:
     - adb connect
     - adb tcpip 5555
     - adb connect 192.168.x.x:5555
-    - debrancher le cable
-*  lenovo yoga 1 (pas de configurations supplémentaires a effectuer).
+    - débrancher le cable
+*  Lenovo Yoga 1 (pas de configurations supplémentaires a effectuer).
 
 
 ![Screenshot5](../images/Screenshot3.png)

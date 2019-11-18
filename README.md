@@ -7,7 +7,7 @@
 
 # Présentation:
 
-Plugin permettant de controler les appareils Android ( Android TV, smartphones, freebox 4k, etc..)
+Plugin permettant de contrôler les appareils Android ( Android TV, smartphones, Freebox 4k, etc..)
 
 # Documentation du plugin:
 [![Read the Docs](https://img.shields.io/readthedocs/pip.svg)](docs/fr_FR/presentation.md)

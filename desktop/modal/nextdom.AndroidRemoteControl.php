@@ -30,7 +30,7 @@ if (!isConnect('admin')) {
             </h4>
         </div>
         <div class="panel-body">
-            {{Nous sommes un regroupement de développeurs, passionnés, adeptes de la solution Open Source de domotique Jeedom réalisé par une équipe géniale ! Nous n'avons aucun lien commercial ou autre avec Jeedom SAS, hormis la volonté de faire grandir la solution.}}
+            {{Nous sommes un regroupement de développeurs, passionnés, adeptes de la solution Open Source de domotique Jeedom réalisée par une équipe géniale ! Nous n'avons aucun lien commercial ou autre avec Jeedom SAS, hormis la volonté de faire grandir la solution.}}
         </div>
     </div>
     <div class="panel panel-info">
