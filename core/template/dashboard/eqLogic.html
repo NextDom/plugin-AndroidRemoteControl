@@ -75,7 +75,7 @@ class="bouton_sup_volume" onclick="volume_AndroidRemoteControl#id#('bouton')"/>
 
 
 <script>
-if (#power_state# == 1) {
+if ('#power_state#' === '1') {
     $(".AndroidRemoteControl[data-eqLogic_id=#id#] .power_set").css('color','red');
 }
 
@@ -102,10 +102,10 @@ function panelRightClose#id#()
 
 function volume_AndroidRemoteControl#id#(bouton)
 {
-    if (bouton == 'bouton') {
+    if (bouton === 'bouton') {
         $('.AndroidRemoteControl[data-eqLogic_id=#id#] .volumeDownpart').css('display', 'block');
         $('.AndroidRemoteControl[data-eqLogic_id=#id#] .downpart').css('display', 'none');
-    } else if (bouton == 'volume') {
+    } else if (bouton === 'volume') {
         $('.AndroidRemoteControl[data-eqLogic_id=#id#] .volumeDownpart').css('display', 'none');
         $('.AndroidRemoteControl[data-eqLogic_id=#id#] .downpart').css('display', 'block');
     }
@@ -115,7 +115,7 @@ $(".AndroidRemoteControl[data-eqLogic_id=#id#] .volume").slider({
     min: 0,
     max: 15,
     range: "min",
-    value: ('#volume#' == '') ? 0 : parseInt('#volume#')
+    value: ('#volume#' === '') ? 0 : parseInt('#volume#')
 });
 $(".AndroidRemoteControl[data-eqLogic_id=#id#] .slider.slider-horizontal").css('z-index', 1);
 $(".AndroidRemoteControl[data-eqLogic_id=#id#] .slider.slider-horizontal").css('padding-top', '20px');
