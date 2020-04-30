@@ -164,13 +164,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
                                 <fieldset>
                                     <legend>{{Informations}}</legend>
                                     <div class="alert alert-info">
-                                        {{Le choix de la connection depend principalement de votre appareil Android. Il y a des avantages et inconvénients pour chaque:<br>
-                                        - USB: nécéssite un cable et par consquent que votre Android soit a proximité de votre Jeedom<br>
-                                        - ADB: Ne nécéssite aucune application tierce sur votre Android mais en focntion des équipements la connection peu etre capricieuse<br>
-                                        - SSH: A venir (encours d'étude de faisabilité)<br>}}
+                                        {{Le choix de la connexion dépend principalement de votre appareil Android. Il y a des avantages et inconvénients pour chaque:<br>
+                                        - USB: nécessite un cable et par conséquent que votre Android soit à proximité de votre Jeedom<br>
+                                        - ADB: Ne nécessite aucune application tierce sur votre Android mais en fonction des équipements la connexion peut être capricieuse<br>
+                                        - SSH: A venir (en cours d'étude de faisabilité)<br>}}
                                     </div>
                                     <div class="alert alert-danger">
-                                        {{Si vous choisissez la connection USB, seul 1 périphérique peut etre controlé. Le plugin ne gère pas la connection USB et TCPIP en meme temps}}
+                                        {{Si vous choisissez la connexion USB, seul 1 périphérique peut être contrôlé. Le plugin ne gère pas la connexion USB et TCPIP en même temps}}
                                     </div>
                                 </fieldset>
                             </form>
@@ -194,7 +194,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 
             <div role="tabpanel" class="tab-pane" id="apptab">
                 <div class="alert alert-info">
-                    {{Attention, il faut veillez a selectionner le type "action" et le sous-type "defaut" lors de la création d'une nouvelle application}}
+                    {{Attention, il faut veiller à sélectionner le type "action" et le sous-type "defaut" lors de la création d'une nouvelle application}}
                 </div>
                 <a class="btn btn-success btn-sm cmdAction pull-right addAppli" data-action="add" style="margin-top:5px;"><i class="fa fa-plus-circle"></i> {{Applications}}</a><br/><br/>
                 <table id="table_appli" class="table table-bordered table-condensed">
