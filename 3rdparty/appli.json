@@ -146,5 +146,13 @@
     	"subtype": "other",
 		"categorie": "appli",
     	"commande": "shell monkey -p com.alexvas.dvr.pro -c android.intent.category.LAUNCHER 1"
+	},
+	{
+		"name": "mediashell",
+		"icon": "home.png",
+		"type": "action",
+		"subtype": "other",
+		"categorie": "appli",
+		"commande": ""
 	}
 ]

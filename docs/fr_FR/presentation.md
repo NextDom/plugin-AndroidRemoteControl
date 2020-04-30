@@ -2,7 +2,7 @@
 
 # Description
 
-Plugin permettant de piloter les terminaux android (TV, Shield, Freebox mini 4k, Smartphone, etc..)
+Plugin permettant de piloter les terminaux android (TV, Shield, freebox mini 4k, Smartphone, etc..)
 
 ### Fonctions disponibles
 Infos :
@@ -31,8 +31,8 @@ Scénarios possibles :
 * Si Netflix lancé -> lumière salon à 50%
 
 ### Equipements testés
-Actuellement, le plugin a été vérifié sur les matériels suivants:
-* Nvidia Shield (pas de configurations supplémentaires à effectuer).
+Actuellement le plugin a été vérifié sur les matériels suivants:
+* Nvidia Shield (pas de configurations supplémentaires a effectuer).
 * Oneplus 5t (pas de configurations supplémentaires à effectuer).
 * Freebox mini 4k (pas de configurations supplémentaires à effectuer).
 * Xiaomi Mibox TV (Le port 5555 servant à ADB n'est pas ouvert par défaut), il faut connecter la box en USB et lancer les commandes suivantes:
@@ -45,7 +45,7 @@ Actuellement, le plugin a été vérifié sur les matériels suivants:
     - adb tcpip 5555
     - adb connect 192.168.x.x:5555
     - débrancher le cable
-*  Lenovo Yoga 1 (pas de configurations supplémentaires à effectuer).
+*  Lenovo Yoga 1 (pas de configurations supplémentaires a effectuer).
 
 
 ![Screenshot5](../images/Screenshot3.png)

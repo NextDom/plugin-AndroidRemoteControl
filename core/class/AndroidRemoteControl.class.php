@@ -197,8 +197,8 @@ class AndroidRemoteControl extends eqLogic
 
         $power_state = substr($this->runcmd("shell dumpsys power -h | grep \"Display Power\" | cut -c22-"), 0, -1);
        	log::add('AndroidRemoteControl', 'debug', "power_state: " . $power_state);
-        $encours     = substr($this->runcmd("shell dumpsys window windows | grep -E 'mFocusedApp'| cut -d / -f 1 | cut -d \" \" -f 7"), 0, -1);
-      log::add('AndroidRemoteControl', 'debug', "encours: " .$encours );
+        $encours     = substr($this->runcmd("shell dumpsys window windows | grep -E 'mFocusedApp'| cut -d / -f 1 | cut -d ' ' -f 7"), 0, -1);
+        log::add('AndroidRemoteControl', 'debug', "encours: " .$encours );
         $version_android     = substr($this->runcmd("shell getprop ro.build.version.release"), 0, -1);
       log::add('AndroidRemoteControl', 'debug', "version_android: " .$version_android );
         $name        = substr($this->runcmd("shell getprop ro.product.model"), 0, -1);
@@ -211,7 +211,8 @@ class AndroidRemoteControl extends eqLogic
         log::add('AndroidRemoteControl', 'debug', "disk_free: " .$disk_free );
         $disk_total = round(substr($this->runcmd("shell dumpsys diskstats | grep Data-Free | cut -d' ' -f4"), 0, -1)/1000000, 1);
         log::add('AndroidRemoteControl', 'debug', "disk_total: " .$disk_total);
-        $title = substr($this->runcmd("shell dumpsys bluetooth_manager | grep MediaPlayerInfo | grep .$encours. |cut -d')' -f3 | cut -d, -f1 | grep -v null | sed 's/^\ *//g'"), 0);        log::add('AndroidRemoteControl', 'debug', "title: " .$title);
+        $title = substr($this->runcmd("shell dumpsys bluetooth_manager | grep MediaPlayerInfo | grep .$encours. |cut -d')' -f3 | cut -d, -f1 | grep -v null | sed 's/^\ *//g'"), 0);
+      log::add('AndroidRemoteControl', 'debug', "title: " .$title);
         $volume = substr($this->runcmd("shell media volume --stream 3 --get | grep volume |grep is | cut -d\ -f4"), 0, -1);
       log::add('AndroidRemoteControl', 'debug', "volume: " .$volume);
         $play_state  = substr($this->runcmd("shell dumpsys bluetooth_manager | grep mCurrentPlayState | cut -d,  -f1 | cut -c43-"), 0, -1);
@@ -244,11 +245,16 @@ class AndroidRemoteControl extends eqLogic
             $url = __DIR__ . '/../../3rdparty/appli.json';
             $data = file_get_contents($url);
             $json_a = json_decode($data);
-            foreach ($json_a as $json_b) {
+            $app_known = 0;
+            foreach ($json_a as $json_b) { //parcours le json_a pour trouver une correspondance avec infos['encours']
                 if (stristr($infos['encours'], $json_b->name)){
                     $cmd->setDisplay('icon', 'plugins/AndroidRemoteControl/desktop/images/'.$json_b->icon);
                     $this->checkAndUpdateCmd('encours', $json_b->name);
+                    $app_known = 1;
                 }
+            }
+            if (!$app_known) {
+                log::add('AndroidRemoteControl', 'info', 'Application '.$infos['encours'].' non reconnu.'); // signale en info une appli non presente dans la liste appli.json
             }
             $cmd->save();
         }
